@@ -1,0 +1,37 @@
+<aside>
+  <div id="sidebar"  class="nav-collapse ">
+    <!-- sidebar menu start-->
+    <ul class="sidebar-menu" id="nav-accordion">
+
+      <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+      <h5 class="centered">洪嘉勇</h5>
+
+      <li class="mt">
+        <a [routerLink]="['./profile']">
+          <i class="glyphicon glyphicon-user"></i>
+          <span>个人中心</span>
+        </a>
+      </li>
+
+      <li class="sub-menu">
+        <a [routerLink]="['./dataset']" >
+          <i class="glyphicon glyphicon-heart"></i>
+          <span>数据共享中心</span>
+        </a>
+      </li>
+
+      <li class="sub-menu">
+        <a [routerLink]="['./competition']" >
+          <i class="glyphicon glyphicon-tower"></i>
+          <span>数据竞赛中心</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a [routerLink]="['./course']" >
+          <i class="glyphicon glyphicon-wrench"></i>
+          <span>数据课程中心</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>

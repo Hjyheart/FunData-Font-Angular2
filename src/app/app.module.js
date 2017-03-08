@@ -15,6 +15,7 @@ var ng2_bootstrap_1 = require('ng2-bootstrap');
 var ng2_bootstrap_2 = require('ng2-bootstrap');
 var app_routing_module_1 = require("./app.routing.module");
 var intro_module_1 = require("./introduction/intro.module");
+var dashboard_module_1 = require("./dashbord/dashboard.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,6 +26,7 @@ var AppModule = (function () {
                 ng2_bootstrap_1.ButtonsModule.forRoot(),
                 ng2_bootstrap_2.ModalModule.forRoot(),
                 intro_module_1.IntroModule,
+                dashboard_module_1.DashboardModule,
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [app_component_1.AppComponent],

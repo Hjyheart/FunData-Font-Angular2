@@ -5,6 +5,7 @@ import { ButtonsModule } from 'ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap';
 import {AppRoutingModule} from "./app.routing.module";
 import {IntroModule} from "./introduction/intro.module";
+import {DashboardModule} from "./dashbord/dashboard.module";
 
 @NgModule({
   imports:      [
@@ -12,6 +13,7 @@ import {IntroModule} from "./introduction/intro.module";
     ButtonsModule.forRoot(),
     ModalModule.forRoot(),
     IntroModule,
+    DashboardModule,
     AppRoutingModule
   ],
   declarations: [ AppComponent ],
