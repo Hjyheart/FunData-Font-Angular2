@@ -8,31 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/**
+ * Created by hongjiayong on 2017/3/8.
+ */
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_component_1 = require('./app.component');
-var ng2_bootstrap_1 = require('ng2-bootstrap');
-var ng2_bootstrap_2 = require('ng2-bootstrap');
-var app_routing_module_1 = require("./app.routing.module");
-var intro_module_1 = require("./introduction/intro.module");
-var AppModule = (function () {
-    function AppModule() {
+var common_1 = require('@angular/common');
+var forms_1 = require('@angular/forms');
+var intro_routing_1 = require("./intro.routing");
+var intro_component_1 = require("./intro.component");
+var IntroModule = (function () {
+    function IntroModule() {
     }
-    AppModule = __decorate([
+    IntroModule = __decorate([
         core_1.NgModule({
             imports: [
-                platform_browser_1.BrowserModule,
-                ng2_bootstrap_1.ButtonsModule.forRoot(),
-                ng2_bootstrap_2.ModalModule.forRoot(),
-                intro_module_1.IntroModule,
-                app_routing_module_1.AppRoutingModule
+                common_1.CommonModule,
+                forms_1.FormsModule,
+                intro_routing_1.IntroRoutingModule
             ],
-            declarations: [app_component_1.AppComponent],
-            bootstrap: [app_component_1.AppComponent]
+            declarations: [
+                intro_component_1.IntroComponent
+            ],
+            providers: []
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], IntroModule);
+    return IntroModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.IntroModule = IntroModule;
+//# sourceMappingURL=intro.module.js.map
