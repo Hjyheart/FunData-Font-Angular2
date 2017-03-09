@@ -1,7 +1,7 @@
 /**
  * Created by hongjiayong on 2017/3/9.
  */
-import {Component, OnInit, animate, transition, style, state, trigger} from '@angular/core';
+import {Component, OnInit, animate, transition, style, state, trigger, Output, EventEmitter} from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -29,14 +29,18 @@ export class BarComponent implements OnInit{
 
   private siderBarState: string = 'active';
 
+  @Output() siderBarListener = new EventEmitter<boolean>();
+
   ngOnInit(): void {
   }
 
   controlSiderBar(){
     if(this.siderBarState === 'inactive'){
       this.siderBarState = 'active';
+      this.siderBarListener.emit(true);
     }else{
       this.siderBarState = 'inactive';
+      this.siderBarListener.emit(false);
     }
   }
 

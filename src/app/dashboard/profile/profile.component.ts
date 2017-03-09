@@ -1,12 +1,13 @@
 /**
  * Created by hongjiayong on 2017/3/8.
  */
-import { Component, OnInit } from '@angular/core'
+import {Component, OnInit, Input} from '@angular/core'
 
 @Component({
   moduleId: module.id,
   selector: 'my-profile',
-  templateUrl: 'profile.component.html'
+  templateUrl: 'profile.component.html',
+  styleUrls: ['../dashboard.component.css']
 })
 
 export class ProfileComponent implements OnInit{

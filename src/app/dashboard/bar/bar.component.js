@@ -15,17 +15,24 @@ var core_1 = require('@angular/core');
 var BarComponent = (function () {
     function BarComponent() {
         this.siderBarState = 'active';
+        this.siderBarListener = new core_1.EventEmitter();
     }
     BarComponent.prototype.ngOnInit = function () {
     };
     BarComponent.prototype.controlSiderBar = function () {
         if (this.siderBarState === 'inactive') {
             this.siderBarState = 'active';
+            this.siderBarListener.emit(true);
         }
         else {
             this.siderBarState = 'inactive';
+            this.siderBarListener.emit(false);
         }
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], BarComponent.prototype, "siderBarListener", void 0);
     BarComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

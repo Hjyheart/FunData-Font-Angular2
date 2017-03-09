@@ -1,12 +1,14 @@
-<section id="container" >
+<section id="container">
 
-  <my-bar></my-bar>
+  <my-bar (siderBarListener)="dealMargin($event)"></my-bar>
 
   <!-- **********************************************************************************************************************************************************
   MAIN CONTENT
   *********************************************************************************************************************************************************** -->
   <!--main content start-->
-  <router-outlet></router-outlet>
+  <section id="main-content" [style.margin-left]="containerMargin">
+    <router-outlet></router-outlet>
+  </section>
   <!-- /MAIN CONTENT -->
 
   <!--main content end-->

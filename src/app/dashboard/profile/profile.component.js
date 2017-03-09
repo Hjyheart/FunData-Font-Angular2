@@ -21,7 +21,8 @@ var ProfileComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'my-profile',
-            templateUrl: 'profile.component.html'
+            templateUrl: 'profile.component.html',
+            styleUrls: ['../dashboard.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ProfileComponent);
