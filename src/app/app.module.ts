@@ -5,7 +5,10 @@ import { ButtonsModule } from 'ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap';
 import {AppRoutingModule} from "./app.routing.module";
 import {IntroModule} from "./introduction/intro.module";
-import {DashboardModule} from "./dashbord/dashboard.module";
+import {DashboardModule} from "./dashboard/dashboard.module";
+import {LoginComponent} from "./login/login.component";
+import {ErrorComponent} from "./error/error.componnet";
+import {RegisterComponent} from "./register/register.component";
 
 @NgModule({
   imports:      [
@@ -16,7 +19,12 @@ import {DashboardModule} from "./dashbord/dashboard.module";
     DashboardModule,
     AppRoutingModule
   ],
-  declarations: [ AppComponent ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    ErrorComponent
+  ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

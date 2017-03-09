@@ -8,21 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/**
+ * Created by hongjiayong on 2017/3/9.
+ */
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.singleModel = '1';
+var RegisterComponent = (function () {
+    function RegisterComponent() {
     }
-    AppComponent = __decorate([
+    RegisterComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: 'app.component.html',
-            styleUrls: ['app.component.css']
+            selector: 'my-register',
+            templateUrl: 'register.component.html',
+            styleUrls: ['../dashboard/dashboard.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], RegisterComponent);
+    return RegisterComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.RegisterComponent = RegisterComponent;
+//# sourceMappingURL=register.component.js.map

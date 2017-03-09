@@ -13,8 +13,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var error_componnet_1 = require("./error/error.componnet");
+var login_component_1 = require("./login/login.component");
+var register_component_1 = require("./register/register.component");
 var routes = [
     { path: '', redirectTo: '/introduction', pathMatch: 'full' },
+    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'register', component: register_component_1.RegisterComponent },
+    { path: '**', component: error_componnet_1.ErrorComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
