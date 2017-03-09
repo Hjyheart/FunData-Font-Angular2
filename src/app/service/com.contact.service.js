@@ -9,24 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 /**
- * Created by hongjiayong on 2017/3/8.
+ * Created by hongjiayong on 2017/3/9.
  */
-var core_1 = require('@angular/core');
-var SideBarComponent = (function () {
-    function SideBarComponent() {
+var core_1 = require("@angular/core");
+var ComContactService = (function () {
+    function ComContactService() {
+        this.sidebarState = 'active';
     }
-    SideBarComponent.prototype.ngOnInit = function () {
+    ComContactService.prototype.changeSideBarState = function () {
+        if (this.sidebarState === 'inactive') {
+            this.sidebarState = 'active';
+        }
+        else {
+            this.sidebarState = 'inactive';
+        }
     };
-    SideBarComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-sidebar',
-            templateUrl: 'sidebar.component.html',
-            styleUrls: ['../dashboard.component.css']
-        }), 
+    ComContactService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], SideBarComponent);
-    return SideBarComponent;
+    ], ComContactService);
+    return ComContactService;
 }());
-exports.SideBarComponent = SideBarComponent;
-//# sourceMappingURL=sidebar.component.js.map
+exports.ComContactService = ComContactService;
+//# sourceMappingURL=com.contact.service.js.map
