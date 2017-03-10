@@ -12,10 +12,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/3/8.
  */
 var core_1 = require('@angular/core');
+var AuthorizeService_1 = require("../../services/AuthorizeService");
+var router_1 = require("@angular/router");
 var HeaderComponent = (function () {
-    function HeaderComponent() {
+    function HeaderComponent(authorizeService, router) {
+        this.authorizeService = authorizeService;
+        this.router = router;
     }
     HeaderComponent.prototype.ngOnInit = function () {
+    };
+    Object.defineProperty(HeaderComponent.prototype, "isLogin", {
+        get: function () {
+            return this.authorizeService.isLogin;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    HeaderComponent.prototype.logout = function () {
+        var _this = this;
+        this.authorizeService.logout()
+            .subscribe(function (status) {
+            if (status === '200') {
+                _this.router.navigate(['/login']);
+            }
+        });
     };
     HeaderComponent = __decorate([
         core_1.Component({
@@ -24,7 +44,7 @@ var HeaderComponent = (function () {
             templateUrl: 'headerbar.component.html',
             styleUrls: ['../dashboard.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
     ], HeaderComponent);
     return HeaderComponent;
 }());

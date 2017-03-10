@@ -9,21 +9,29 @@ import {DashboardModule} from "./dashboard/dashboard.module";
 import {LoginComponent} from "./login/login.component";
 import {ErrorComponent} from "./error/error.componnet";
 import {RegisterComponent} from "./register/register.component";
+import {AuthorizeService} from "./services/AuthorizeService";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   imports:      [
-    BrowserModule,
-    ButtonsModule.forRoot(),
-    ModalModule.forRoot(),
-    IntroModule,
-    DashboardModule,
-    AppRoutingModule
+      BrowserModule,
+      ButtonsModule.forRoot(),
+      ModalModule.forRoot(),
+      IntroModule,
+      FormsModule,
+      HttpModule,
+      DashboardModule,
+      AppRoutingModule
   ],
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     ErrorComponent
+  ],
+  providers: [
+    AuthorizeService,
   ],
   bootstrap:    [ AppComponent ]
 })

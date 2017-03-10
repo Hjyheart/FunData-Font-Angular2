@@ -19,6 +19,9 @@ var dashboard_module_1 = require("./dashboard/dashboard.module");
 var login_component_1 = require("./login/login.component");
 var error_componnet_1 = require("./error/error.componnet");
 var register_component_1 = require("./register/register.component");
+var AuthorizeService_1 = require("./services/AuthorizeService");
+var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/http");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,6 +32,8 @@ var AppModule = (function () {
                 ng2_bootstrap_1.ButtonsModule.forRoot(),
                 ng2_bootstrap_2.ModalModule.forRoot(),
                 intro_module_1.IntroModule,
+                forms_1.FormsModule,
+                http_1.HttpModule,
                 dashboard_module_1.DashboardModule,
                 app_routing_module_1.AppRoutingModule
             ],
@@ -37,6 +42,9 @@ var AppModule = (function () {
                 login_component_1.LoginComponent,
                 register_component_1.RegisterComponent,
                 error_componnet_1.ErrorComponent
+            ],
+            providers: [
+                AuthorizeService_1.AuthorizeService,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
