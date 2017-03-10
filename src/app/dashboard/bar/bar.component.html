@@ -3,7 +3,7 @@
     <div class="fa fa-bars tooltips" data-placement="right" data-toggle="popover"></div>
   </div>
   <!--logo start-->
-  <a href="index.html" class="logo"><b>FunData</b></a>
+  <a [routerLink]="['/dashboard']" class="logo"><b>FunData</b></a>
   <!--logo end-->
   <div class="nav notify-row" id="top_menu">
     <!--  notification start -->
@@ -91,7 +91,7 @@
     <!-- sidebar menu start-->
     <ul class="sidebar-menu" id="nav-accordion">
 
-      <p class="centered"><a [routerLink]="['./profile']"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+      <p class="centered"><a [routerLink]="['./profile']"><img src="assets/img/ui-zac.jpg" class="img-circle" width="60"></a></p>
       <h5 class="centered">洪嘉勇</h5>
 
       <li class="mt">
@@ -118,6 +118,12 @@
         <a [routerLink]="['./course']" >
           <i class="glyphicon glyphicon-wrench"></i>
           <span>数据课程中心</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a [routerLink]="['./shop']" >
+          <i class="glyphicon glyphicon-shopping-cart"></i>
+          <span>商城</span>
         </a>
       </li>
     </ul>

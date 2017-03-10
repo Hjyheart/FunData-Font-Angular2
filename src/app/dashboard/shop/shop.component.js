@@ -9,30 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 /**
- * Created by hongjiayong on 2017/3/8.
+ * Created by hongjiayong on 2017/3/10.
  */
 var core_1 = require('@angular/core');
-var ProfileComponent = (function () {
-    function ProfileComponent() {
-        this.comIsCollapsed = true;
-        this.comInIsCollapsed = true;
-        this.datasetIsCollapsed = true;
-        this.datasetInIsCollapsed = true;
-        this.courseIsCollapsed = true;
-        this.courseInIsCollapsed = true;
+var ShopComponent = (function () {
+    function ShopComponent() {
     }
-    ProfileComponent.prototype.ngOnInit = function () {
+    ShopComponent.prototype.ngOnInit = function () {
     };
-    ProfileComponent = __decorate([
+    ShopComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-profile',
-            templateUrl: 'profile.component.html',
+            selector: 'my-shop',
+            templateUrl: 'shop.component.html',
             styleUrls: ['../dashboard.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], ProfileComponent);
-    return ProfileComponent;
+    ], ShopComponent);
+    return ShopComponent;
 }());
-exports.ProfileComponent = ProfileComponent;
-//# sourceMappingURL=profile.component.js.map
+exports.ShopComponent = ShopComponent;
+//# sourceMappingURL=shop.component.js.map

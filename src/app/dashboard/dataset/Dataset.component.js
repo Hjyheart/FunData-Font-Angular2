@@ -14,7 +14,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var DatasetComponent = (function () {
     function DatasetComponent() {
+        this.isCollapsed = false;
     }
+    DatasetComponent.prototype.collapsed = function (event) {
+        console.log(event);
+    };
+    DatasetComponent.prototype.expanded = function (event) {
+        console.log(event);
+    };
     DatasetComponent.prototype.ngOnInit = function () {
     };
     DatasetComponent = __decorate([

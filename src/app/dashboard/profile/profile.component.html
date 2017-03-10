@@ -31,6 +31,10 @@
             </div>
           </div>
           <button type="button" class="btn btn-primary" style="padding: 5px 10px 5px 10px">修改个人信息</button>
+          <button type="button" class="btn btn-danger" style="padding: 5px 10px 5px 10px"
+                  popover="今日打卡可以获得50金币~"
+                  triggers="mouseenter:mouseleave"
+          >今日打卡</button>
         </div>
       </div>
 
@@ -46,66 +50,294 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12">
+      <!--我的比赛-->
       <div>
-        <h4><i class="fa fa-angle-right"></i> 我的数据集</h4>
-        <div class="showback">
-          <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-              <span class="sr-only">40% Complete (success)</span>
+        <h4 (click)="comIsCollapsed = !comIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我的比赛</h4>
+
+        <div [collapse]="comIsCollapsed">
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn" (click)="toMyCompetition()">
+                  <div class="darkblue-header">
+                    <h5>比赛1</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛2</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+            </div>
+            <br/>
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛3</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛4</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
             </div>
           </div>
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-              <span class="sr-only">20% Complete</span>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我参与的比赛-->
+      <div>
+        <h4 (click)="comInIsCollapsed = !comInIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我参与的比赛</h4>
+
+        <div [collapse]="comInIsCollapsed">
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn" (click)="toMyCompetition()">
+                  <div class="darkblue-header">
+                    <h5>比赛1</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛2</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+            </div>
+            <br/>
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛3</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛4</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
             </div>
           </div>
-          <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-              <span class="sr-only">60% Complete (warning)</span>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我的共享-->
+      <div>
+        <h4 (click)="datasetIsCollapsed = !datasetIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我共享的数据集</h4>
+
+        <div [collapse]="datasetIsCollapsed">
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="stock card">
+                  <div class="stock-chart">
+                    <div id="chart"></div>
+                  </div>
+                  <div class="stock current-price">
+                    <div class="row">
+                      <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                        <time>发布时间</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="summary">
+                    <strong>18.3 M</strong> <span>人加入了分享</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="stock card">
+                  <div class="stock-chart">
+                    <div id="chart"></div>
+                  </div>
+                  <div class="stock current-price">
+                    <div class="row">
+                      <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                        <time>发布时间</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="summary">
+                    <strong>18.3 M</strong> <span>人加入了分享</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
-          <div class="progress">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-              <span class="sr-only">80% Complete</span>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我参与的共享-->
+      <div>
+        <h4 (click)="datasetInIsCollapsed = !datasetInIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我参与共享的数据集</h4>
+
+        <div [collapse]="datasetInIsCollapsed">
+          <div>
+            <div class="row">
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="stock card">
+              <div class="stock-chart">
+                <div id="chart"></div>
+              </div>
+              <div class="stock current-price">
+                <div class="row">
+                  <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                    <time>发布时间</time>
+                  </div>
+                </div>
+              </div>
+              <div class="summary">
+                <strong>18.3 M</strong> <span>人加入了分享</span>
+              </div>
             </div>
           </div>
-        </div><!--/showback -->
-      </div><!-- /showback -->
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="stock card">
+              <div class="stock-chart">
+                <div id="chart"></div>
+              </div>
+              <div class="stock current-price">
+                <div class="row">
+                  <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                    <time>发布时间</time>
+                  </div>
+                </div>
+              </div>
+              <div class="summary">
+                <strong>18.3 M</strong> <span>人加入了分享</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我的课程-->
       <div>
-        <h4><i class="fa fa-angle-right"></i> 我共享的数据集</h4>
-        <div class="alert alert-success"><b>Well done!</b> You successfully read this important alert message.</div>
-        <div class="alert alert-info"><b>Heads up!</b> This alert needs your attention, but it's not super important.</div>
-        <div class="alert alert-warning"><b>Warning!</b> Better check yourself, you're not looking too good.</div>
-        <div class="alert alert-danger"><b>Oh snap!</b> Change a few things up and try submitting again.</div>
-      </div><!-- /showback -->
+        <h4 (click)="courseIsCollapsed = !courseIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我的课程</h4>
+
+        <div [collapse]="courseIsCollapsed">
+          <div>course</div>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我参加的课程-->
       <div>
-        <h4><i class="fa fa-angle-right"></i> 我的比赛</h4>
-        <div class="alert alert-success"><b>Well done!</b> You successfully read this important alert message.</div>
-        <div class="alert alert-info"><b>Heads up!</b> This alert needs your attention, but it's not super important.</div>
-        <div class="alert alert-warning"><b>Warning!</b> Better check yourself, you're not looking too good.</div>
-        <div class="alert alert-danger"><b>Oh snap!</b> Change a few things up and try submitting again.</div>
-      </div><!-- /showback -->
-      <div>
-        <h4><i class="fa fa-angle-right"></i> 我参与的比赛</h4>
-        <div class="alert alert-success"><b>Well done!</b> You successfully read this important alert message.</div>
-        <div class="alert alert-info"><b>Heads up!</b> This alert needs your attention, but it's not super important.</div>
-        <div class="alert alert-warning"><b>Warning!</b> Better check yourself, you're not looking too good.</div>
-        <div class="alert alert-danger"><b>Oh snap!</b> Change a few things up and try submitting again.</div>
-      </div><!-- /showback -->
-      <div>
-        <h4><i class="fa fa-angle-right"></i> 我的课程</h4>
-        <div class="alert alert-success"><b>Well done!</b> You successfully read this important alert message.</div>
-        <div class="alert alert-info"><b>Heads up!</b> This alert needs your attention, but it's not super important.</div>
-        <div class="alert alert-warning"><b>Warning!</b> Better check yourself, you're not looking too good.</div>
-        <div class="alert alert-danger"><b>Oh snap!</b> Change a few things up and try submitting again.</div>
-      </div><!-- /showback -->
-      <div>
-        <h4><i class="fa fa-angle-right"></i> 我参与的课程</h4>
-        <div class="alert alert-success"><b>Well done!</b> You successfully read this important alert message.</div>
-        <div class="alert alert-info"><b>Heads up!</b> This alert needs your attention, but it's not super important.</div>
-        <div class="alert alert-warning"><b>Warning!</b> Better check yourself, you're not looking too good.</div>
-        <div class="alert alert-danger"><b>Oh snap!</b> Change a few things up and try submitting again.</div>
-      </div><!-- /showback -->
+        <h4 (click)="courseInIsCollapsed = !courseInIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我参与的课程</h4>
+
+        <div [collapse]="courseInIsCollapsed">
+          <div> in course</div>
+        </div>
+
+      </div>
+
     </div>
 
   </div>

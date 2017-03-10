@@ -994,6 +994,15 @@ PANELS CONFIGURATIONS
 
 }
 
+.com-pn{
+    height: 200px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.com-pn:hover{
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
 /*Grey Panel*/
 
 .grey-panel {
@@ -1029,6 +1038,7 @@ PANELS CONFIGURATIONS
 .darkblue-panel {
     text-align: center;
     background: #444c57;
+    cursor: pointer;
 }
 .darkblue-panel .darkblue-header {
     background: transparent;
@@ -2538,6 +2548,12 @@ label {
 
 }
 
+
+.Absolute-Center {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
 
 
 

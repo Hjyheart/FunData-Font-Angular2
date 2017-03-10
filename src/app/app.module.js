@@ -12,13 +12,14 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var ng2_bootstrap_1 = require('ng2-bootstrap');
-var ng2_bootstrap_2 = require('ng2-bootstrap');
 var app_routing_module_1 = require("./app.routing.module");
 var intro_module_1 = require("./introduction/intro.module");
 var dashboard_module_1 = require("./dashboard/dashboard.module");
 var login_component_1 = require("./login/login.component");
 var error_componnet_1 = require("./error/error.componnet");
 var register_component_1 = require("./register/register.component");
+var test_component_1 = require("./test/test.component");
+var forms_1 = require("@angular/forms");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,8 +27,18 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
                 ng2_bootstrap_1.ButtonsModule.forRoot(),
-                ng2_bootstrap_2.ModalModule.forRoot(),
+                ng2_bootstrap_1.ModalModule.forRoot(),
+                ng2_bootstrap_1.PopoverModule.forRoot(),
+                ng2_bootstrap_1.AccordionModule.forRoot(),
+                ng2_bootstrap_1.CarouselModule.forRoot(),
+                ng2_bootstrap_1.DatepickerModule.forRoot(),
+                ng2_bootstrap_1.DropdownModule.forRoot(),
+                ng2_bootstrap_1.TabsModule.forRoot(),
+                ng2_bootstrap_1.TooltipModule.forRoot(),
+                ng2_bootstrap_1.TypeaheadModule.forRoot(),
+                ng2_bootstrap_1.CollapseModule.forRoot(),
                 intro_module_1.IntroModule,
                 dashboard_module_1.DashboardModule,
                 app_routing_module_1.AppRoutingModule
@@ -36,7 +47,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 login_component_1.LoginComponent,
                 register_component_1.RegisterComponent,
-                error_componnet_1.ErrorComponent
+                error_componnet_1.ErrorComponent,
+                test_component_1.TestComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

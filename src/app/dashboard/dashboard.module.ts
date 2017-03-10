@@ -11,10 +11,13 @@ import {ProfileComponent} from "./profile/profile.component";
 import {DashboardRoutingModule} from "./dashboard.routing";
 import {BarComponent} from "./bar/bar.component";
 import {FooterComponent} from "./footer/footer.component";
+import {ShopComponent} from "./shop/shop.component";
+import {CollapseModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
     BrowserModule,
+    CollapseModule.forRoot(),
     DashboardRoutingModule
   ],
   declarations: [
@@ -24,7 +27,8 @@ import {FooterComponent} from "./footer/footer.component";
     DatasetComponent,
     ProfileComponent,
     FooterComponent,
-    BarComponent
+    BarComponent,
+    ShopComponent
   ]
 })
 export class DashboardModule { }

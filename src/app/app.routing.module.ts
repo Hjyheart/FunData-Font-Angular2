@@ -6,12 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import {ErrorComponent} from "./error/error.componnet";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
+import {TestComponent} from "./test/test.component";
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/introduction', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
+  { path: 'test', component: TestComponent},
   { path: '**', component: ErrorComponent}
 ];
 
