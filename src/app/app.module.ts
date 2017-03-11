@@ -12,6 +12,7 @@ import {RegisterComponent} from "./register/register.component";
 import {AuthorizeService} from "./services/AuthorizeService";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
+import {AuthorizeGuard} from "./services/AuthorizeGuard";
 
 @NgModule({
   imports:      [
@@ -32,6 +33,7 @@ import {HttpModule} from "@angular/http";
   ],
   providers: [
     AuthorizeService,
+      AuthorizeGuard
   ],
   bootstrap:    [ AppComponent ]
 })

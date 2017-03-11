@@ -22,6 +22,7 @@ var register_component_1 = require("./register/register.component");
 var AuthorizeService_1 = require("./services/AuthorizeService");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+var AuthorizeGuard_1 = require("./services/AuthorizeGuard");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -45,6 +46,7 @@ var AppModule = (function () {
             ],
             providers: [
                 AuthorizeService_1.AuthorizeService,
+                AuthorizeGuard_1.AuthorizeGuard
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

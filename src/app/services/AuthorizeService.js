@@ -20,9 +20,12 @@ var AuthorizeService = (function () {
     function AuthorizeService(http) {
         this.http = http;
     }
+    AuthorizeService.prototype.canActivate = function () {
+        return this.isLogin;
+    };
     Object.defineProperty(AuthorizeService.prototype, "isLogin", {
         get: function () {
-            return this._isLogin;
+            return ng2_cookies_1.Cookie.get('authorization') !== null;
         },
         enumerable: true,
         configurable: true
@@ -35,9 +38,6 @@ var AuthorizeService = (function () {
             _this.http.get(Constants_1.Constants.ServerHost + "/authorize/login?email=" + email + "&pwd=" + pwd, { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
-                if (body.code === '200') {
-                    _this._isLogin = true;
-                }
                 observer.next(body.code);
             }, function (err) {
                 console.log('AuthorizeService->login', err);
@@ -56,7 +56,6 @@ var AuthorizeService = (function () {
                 .subscribe(function (body) {
                 if (body.code === '200') {
                     ng2_cookies_1.Cookie.delete('authorization');
-                    _this._isLogin = false;
                 }
                 observer.next(body.code);
             }, function (err) {
@@ -73,9 +72,6 @@ var AuthorizeService = (function () {
             _this.http.post(Constants_1.Constants.ServerHost + "/authorize/register", "email=" + email + "&name=" + name + "&pwd=" + pwd, { headers: headers })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
-                if (body.code === '200') {
-                    _this._isLogin = true;
-                }
                 observer.next(body.code);
             }, function (err) {
                 console.log('AuthorizeService->register', err);

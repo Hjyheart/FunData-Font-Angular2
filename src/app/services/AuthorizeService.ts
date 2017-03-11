@@ -8,17 +8,20 @@ import {Http, Headers} from "@angular/http";
 import {Constants} from "../util/Constants";
 import {Cookie} from "ng2-cookies/ng2-cookies";
 import {Observable, Observer} from "rxjs/Rx";
+import {CanActivate} from "@angular/router";
 
 @Injectable()
-export class AuthorizeService {
-    private _isLogin: Boolean;
+export class AuthorizeService implements CanActivate {
 
-    get isLogin(): Boolean {
-        return this._isLogin;
+    canActivate() {
+        return this.isLogin
+    }
+
+    get isLogin(): boolean {
+        return Cookie.get('authorization') !== null;
     }
 
     constructor(private http: Http,) {
-
     }
 
     public login(email: String, pwd: String) {
@@ -28,9 +31,6 @@ export class AuthorizeService {
             this.http.get(`${Constants.ServerHost}/authorize/login?email=${email}&pwd=${pwd}`, {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
-                    if(body.code === '200') {
-                        this._isLogin = true;
-                    }
                     observer.next(body.code)
                 },
                 err => {
@@ -50,7 +50,6 @@ export class AuthorizeService {
                 .subscribe((body) => {
                     if(body.code === '200') {
                         Cookie.delete('authorization');
-                        this._isLogin = false;
                     }
                     observer.next(body.code);
                 },
@@ -69,9 +68,6 @@ export class AuthorizeService {
             this.http.post(`${Constants.ServerHost}/authorize/register`, `email=${email}&name=${name}&pwd=${pwd}`, {headers: headers})
                 .map(res => res.json())
                 .subscribe((body) => {
-                        if(body.code === '200') {
-                            this._isLogin = true;
-                        }
                         observer.next(body.code)
                     },
                     err => {

@@ -18,11 +18,12 @@ var Dataset_component_1 = require("./dataset/Dataset.component");
 var competition_component_1 = require("./competition/competition.component");
 var course_component_1 = require("./course/course.component");
 var dashboard_component_1 = require("./dashboard.component");
+var AuthorizeGuard_1 = require("../services/AuthorizeGuard");
 var DashboardRoutes = [
     {
         path: 'dashboard',
         component: dashboard_component_1.DashboardComponent,
-        // canActivate: [LoginRouteGuard]
+        canActivate: [AuthorizeGuard_1.AuthorizeGuard],
         children: [
             {
                 path: 'profile',
