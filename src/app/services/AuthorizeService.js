@@ -14,7 +14,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 var Constants_1 = require("../util/Constants");
-var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
+var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
 var Rx_1 = require("rxjs/Rx");
 var AuthorizeService = (function () {
     function AuthorizeService(http) {

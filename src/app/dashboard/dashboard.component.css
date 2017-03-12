@@ -45,6 +45,14 @@ a, a:hover, a:focus {
 /* Bootstrap Modifications */
 .modal-header {
     background: #68dff0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topright: 5px ;
+    -moz-border-radius-topleft: 5px;
+}
+
+.error {
+    background: red;
 }
 
 .modal-title {
@@ -1003,6 +1011,15 @@ PANELS CONFIGURATIONS
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
+.course-pn{
+    height:250px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.course-pn:hover{
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
 /*Grey Panel*/
 
 .grey-panel {
@@ -1542,8 +1559,8 @@ PANELS CONFIGURATIONS
     font-size: 15px;
 }
 
-/* Profile 02*/
-#profile-02 {
+/* course*/
+.course {
     background: url(../../assets/img/profile-02.jpg) no-repeat center top;
     margin-top: -15px;
     background-attachment: relative;
@@ -1559,15 +1576,21 @@ PANELS CONFIGURATIONS
     -o-background-size: cover;
     background-size: cover;
 }
-#profile-02 .user {
+.course .user {
     padding-top: 40px;
     text-align: center;
 }
-#profile-02 h4 {
+
+.course h4 {
     color: white;
     margin:0px;
     padding-top: 8px;
 }
+
+.pr2-social > button{
+   margin-top: 5px;
+}
+
 .pr2-social a {
     color: #cdcdcd;
 }

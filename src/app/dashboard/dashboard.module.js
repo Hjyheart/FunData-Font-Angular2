@@ -31,6 +31,8 @@ var DashboardModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 ng2_bootstrap_1.CollapseModule.forRoot(),
+                ng2_bootstrap_1.ModalModule.forRoot(),
+                ng2_bootstrap_1.PopoverModule.forRoot(),
                 dashboard_routing_1.DashboardRoutingModule
             ],
             declarations: [

@@ -12,11 +12,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/3/9.
  */
 var core_1 = require('@angular/core');
+var AuthorizeService_1 = require("../../services/AuthorizeService");
+var router_1 = require("@angular/router");
 var BarComponent = (function () {
-    function BarComponent() {
+    function BarComponent(authorizeService, router) {
+        this.authorizeService = authorizeService;
+        this.router = router;
         this.siderBarState = 'active';
         this.siderBarListener = new core_1.EventEmitter();
     }
+    Object.defineProperty(BarComponent.prototype, "isLogin", {
+        get: function () {
+            return this.authorizeService.isLogin;
+        },
+        enumerable: true,
+        configurable: true
+    });
     BarComponent.prototype.ngOnInit = function () {
     };
     BarComponent.prototype.controlSiderBar = function () {
@@ -28,6 +39,15 @@ var BarComponent = (function () {
             this.siderBarState = 'inactive';
             this.siderBarListener.emit(false);
         }
+    };
+    BarComponent.prototype.logout = function () {
+        var _this = this;
+        this.authorizeService.logout()
+            .subscribe(function (status) {
+            if (status === '200') {
+                _this.router.navigate(['/login']);
+            }
+        });
     };
     __decorate([
         core_1.Output(), 
@@ -54,7 +74,7 @@ var BarComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
     ], BarComponent);
     return BarComponent;
 }());

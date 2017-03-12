@@ -32,8 +32,7 @@
           </div>
           <button type="button" class="btn btn-primary" style="padding: 5px 10px 5px 10px">修改个人信息</button>
           <button type="button" class="btn btn-danger" style="padding: 5px 10px 5px 10px"
-                  popover="今日打卡可以获得50金币~"
-                  triggers="mouseenter:mouseleave"
+                  (click)="dakaErrorModal.show()"
           >今日打卡</button>
         </div>
       </div>
@@ -272,7 +271,7 @@
           <div>
             <div class="row">
 
-          <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="stock card">
               <div class="stock-chart">
                 <div id="chart"></div>
@@ -290,7 +289,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="stock card">
               <div class="stock-chart">
                 <div id="chart"></div>
@@ -308,7 +307,7 @@
             </div>
           </div>
 
-        </div>
+            </div>
           </div>
         </div>
 
@@ -321,7 +320,40 @@
         <h4 (click)="courseIsCollapsed = !courseIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我的课程</h4>
 
         <div [collapse]="courseIsCollapsed">
-          <div>course</div>
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="content-panel course-pn">
+                  <div class="course">
+                    <div class="user">
+                      <img src="assets/img/friends/fr-06.jpg" class="img-circle" width="80">
+                      <h4>课程名字</h4>
+                    </div>
+                  </div>
+                  <div class="pr2-social centered">
+                    <button class="btn btn-primary">查看详情</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="content-panel course-pn">
+                  <div class="course">
+                    <div class="user">
+                      <img src="assets/img/friends/fr-06.jpg" class="img-circle" width="80">
+                      <h4>课程名字</h4>
+                    </div>
+                  </div>
+                  <div class="pr2-social centered">
+                    <button class="btn btn-primary">查看详情</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -333,7 +365,39 @@
         <h4 (click)="courseInIsCollapsed = !courseInIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我参与的课程</h4>
 
         <div [collapse]="courseInIsCollapsed">
-          <div> in course</div>
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="content-panel course-pn">
+                  <div class="course">
+                    <div class="user">
+                      <img src="assets/img/friends/fr-06.jpg" class="img-circle" width="80">
+                      <h4>课程名字</h4>
+                    </div>
+                  </div>
+                  <div class="pr2-social centered">
+                    <button class="btn btn-primary">查看详情</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="content-panel course-pn">
+                  <div class="course">
+                    <div class="user">
+                      <img src="assets/img/friends/fr-06.jpg" class="img-circle" width="80">
+                      <h4>课程名字</h4>
+                    </div>
+                  </div>
+                  <div class="pr2-social centered">
+                    <button class="btn btn-primary">查看详情</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
 
       </div>
@@ -341,4 +405,49 @@
     </div>
 
   </div>
+  <br/>
 </section>
+
+<!--打卡 modal-->
+<div class="modal fade" bsModal #dakaModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">daka
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">每日打卡</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="dakaModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br/>
+         你今日获得的了<b>50</b>数据币！
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="dakaModal.hide()" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--打卡失败 modal-->
+<div class="modal fade" bsModal #dakaErrorModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">daka
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header error">
+        <h4 class="modal-title pull-left">每日打卡</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="dakaErrorModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br/>
+        系统繁忙，请稍后再试！
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="dakaErrorModal.hide()" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>

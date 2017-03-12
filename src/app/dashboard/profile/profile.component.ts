@@ -10,8 +10,10 @@ import {Component, OnInit} from '@angular/core'
   styleUrls: ['../dashboard.component.css']
 })
 
-//TODO: 解决图标向下的问题
-//TODO: 解决课程的卡片问题
+//TODO: 个人资料修改的弹框
+//TODO: 头像点击上传弹框
+//TODO: 各类row二分操作
+
 
 export class ProfileComponent implements OnInit{
   public comIsCollapsed:boolean = true;

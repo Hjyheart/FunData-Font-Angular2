@@ -12,12 +12,14 @@ import {DashboardRoutingModule} from "./dashboard.routing";
 import {BarComponent} from "./bar/bar.component";
 import {FooterComponent} from "./footer/footer.component";
 import {ShopComponent} from "./shop/shop.component";
-import {CollapseModule} from "ng2-bootstrap";
+import {CollapseModule, ModalModule, PopoverModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
     BrowserModule,
     CollapseModule.forRoot(),
+    ModalModule.forRoot(),
+    PopoverModule.forRoot(),
     DashboardRoutingModule
   ],
   declarations: [

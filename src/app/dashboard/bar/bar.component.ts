@@ -2,6 +2,8 @@
  * Created by hongjiayong on 2017/3/9.
  */
 import {Component, OnInit, animate, transition, style, state, trigger, Output, EventEmitter} from '@angular/core';
+import {AuthorizeService} from "../../services/AuthorizeService";
+import {Router} from "@angular/router";
 
 @Component({
   moduleId: module.id,
@@ -31,6 +33,18 @@ export class BarComponent implements OnInit{
 
   @Output() siderBarListener = new EventEmitter<boolean>();
 
+  constructor(
+    private authorizeService: AuthorizeService,
+    private router: Router
+  ){
+
+  }
+
+  get isLogin(): Boolean {
+    return this.authorizeService.isLogin
+  }
+
+
   ngOnInit(): void {
   }
 
@@ -42,6 +56,15 @@ export class BarComponent implements OnInit{
       this.siderBarState = 'inactive';
       this.siderBarListener.emit(false);
     }
+  }
+
+  public logout() {
+    this.authorizeService.logout()
+      .subscribe((status: String) => {
+        if(status==='200') {
+          this.router.navigate(['/login'])
+        }
+      })
   }
 
 }
