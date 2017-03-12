@@ -11,6 +11,16 @@ import { Component, OnInit } from '@angular/core'
 
 export class DatasetComponent implements OnInit{
 
+  public isCollapsed:boolean = false;
+
+  public collapsed(event:any):void {
+    console.log(event);
+  }
+
+  public expanded(event:any):void {
+    console.log(event);
+  }
+
   ngOnInit(): void {
   }
 

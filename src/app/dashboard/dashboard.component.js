@@ -14,15 +14,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var DashboardComponent = (function () {
     function DashboardComponent() {
+        this.containerMargin = '150px';
     }
     DashboardComponent.prototype.ngOnInit = function () {
+    };
+    DashboardComponent.prototype.dealMargin = function (state) {
+        if (state) {
+            this.containerMargin = '150px';
+        }
+        else {
+            this.containerMargin = '0px';
+        }
     };
     DashboardComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-dashbord',
             templateUrl: 'dashboard.component.html',
-            styleUrls: ['dashboard.component.css']
+            styleUrls: ['dashboard.component.css'],
         }), 
         __metadata('design:paramtypes', [])
     ], DashboardComponent);

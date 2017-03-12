@@ -9,6 +9,7 @@ import {CompetitionComponent} from "./competition/competition.component";
 import {CourseComponent} from "./course/course.component";
 import {DashboardComponent} from "./dashboard.component";
 import {AuthorizeGuard} from "../services/AuthorizeGuard";
+import {ShopComponent} from "./shop/shop.component";
 
 const DashboardRoutes: Routes = [
   {
@@ -31,6 +32,10 @@ const DashboardRoutes: Routes = [
       {
         path: 'course',
         component: CourseComponent
+      },
+      {
+        path: 'shop',
+        component: ShopComponent
       }
     ]
   }

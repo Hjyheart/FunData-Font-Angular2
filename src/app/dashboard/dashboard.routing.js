@@ -18,7 +18,11 @@ var Dataset_component_1 = require("./dataset/Dataset.component");
 var competition_component_1 = require("./competition/competition.component");
 var course_component_1 = require("./course/course.component");
 var dashboard_component_1 = require("./dashboard.component");
+<<<<<<< HEAD
 var AuthorizeGuard_1 = require("../services/AuthorizeGuard");
+=======
+var shop_component_1 = require("./shop/shop.component");
+>>>>>>> master
 var DashboardRoutes = [
     {
         path: 'dashboard',
@@ -40,6 +44,10 @@ var DashboardRoutes = [
             {
                 path: 'course',
                 component: course_component_1.CourseComponent
+            },
+            {
+                path: 'shop',
+                component: shop_component_1.ShopComponent
             }
         ]
     }

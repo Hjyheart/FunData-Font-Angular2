@@ -397,7 +397,7 @@ ul.sidebar-menu li a.active i {
 
 /* MAIN CONTENT CONFIGURATION */
 #main-content {
-    margin-left: 210px;
+    margin-left: 150px;
 }
 
 .header, .footer {
@@ -985,13 +985,22 @@ PANELS CONFIGURATIONS
 /*Panel Size*/
 
 .pn {
-    height: 250px;
+    height: 350px;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .pn:hover {
     box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
 
+}
+
+.com-pn{
+    height: 200px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.com-pn:hover{
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 /*Grey Panel*/
@@ -1029,6 +1038,7 @@ PANELS CONFIGURATIONS
 .darkblue-panel {
     text-align: center;
     background: #444c57;
+    cursor: pointer;
 }
 .darkblue-panel .darkblue-header {
     background: transparent;
@@ -2216,7 +2226,7 @@ label {
 
 /*footer*/
 .site-footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 30px;
@@ -2538,6 +2548,12 @@ label {
 
 }
 
+
+.Absolute-Center {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
 
 
 

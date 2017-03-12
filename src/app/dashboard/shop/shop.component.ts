@@ -1,5 +1,5 @@
 /**
- * Created by hongjiayong on 2017/3/8.
+ * Created by hongjiayong on 2017/3/10.
  */
 import { Component, OnInit } from '@angular/core';
 import {AuthorizeService} from "../../services/AuthorizeService";
@@ -7,12 +7,12 @@ import {Router} from "@angular/router";
 
 @Component({
   moduleId: module.id,
-  selector: 'my-header',
-  templateUrl: 'headerbar.component.html',
+  selector: 'my-shop',
+  templateUrl: 'shop.component.html',
   styleUrls: ['../dashboard.component.css']
 })
 
-export class HeaderComponent implements OnInit{
+export class ShopComponent implements OnInit{
 
     ngOnInit(): void {
     }

@@ -28,7 +28,7 @@
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
-        'ng2-cookies':'npm:ng2-cookies'
+      'ng2-cookies':'npm:ng2-cookies'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -42,9 +42,9 @@
       'ng2-bootstrap':{
         defaultExtension: 'js'
       },
-        'ng2-cookies':{
-          defaultExtension: 'js'
-        },
+      'ng2-cookies':{
+        defaultExtension: 'js'
+      },
     }
   });
 })(this);

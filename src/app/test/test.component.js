@@ -9,24 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 /**
- * Created by hongjiayong on 2017/3/8.
+ * Created by hongjiayong on 2017/3/10.
  */
 var core_1 = require('@angular/core');
-var SideBarComponent = (function () {
-    function SideBarComponent() {
+var TestComponent = (function () {
+    function TestComponent() {
     }
-    SideBarComponent.prototype.ngOnInit = function () {
-    };
-    SideBarComponent = __decorate([
+    TestComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-sidebar',
-            templateUrl: 'sidebar.component.html',
-            styleUrls: ['../dashboard.component.css']
+            selector: 'my-test',
+            templateUrl: 'test.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], SideBarComponent);
-    return SideBarComponent;
+    ], TestComponent);
+    return TestComponent;
 }());
-exports.SideBarComponent = SideBarComponent;
-//# sourceMappingURL=sidebar.component.js.map
+exports.TestComponent = TestComponent;
+//# sourceMappingURL=test.component.js.map

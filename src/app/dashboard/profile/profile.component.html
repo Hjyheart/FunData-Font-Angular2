@@ -1,0 +1,344 @@
+<section class="wrapper">
+  <h3><i class="fa fa-angle-right"></i> 个人中心</h3>
+  <div class="row mt">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div>
+        <h4><i class="fa fa-angle-right"></i> 我的个人信息</h4>
+        <div class="white-panel pn">
+          <div class="white-header">
+            <h5>名片</h5>
+          </div>
+          <p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+          <p><b>洪嘉勇</b></p>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="small mt">信息1</p>
+              <p>。。。</p>
+            </div>
+            <div class="col-md-6">
+              <p class="small mt">信息2</p>
+              <p>。。。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="small mt">信息3</p>
+              <p>。。。</p>
+            </div>
+            <div class="col-md-6">
+              <p class="small mt">信息4</p>
+              <p>。。。</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" style="padding: 5px 10px 5px 10px">修改个人信息</button>
+          <button type="button" class="btn btn-danger" style="padding: 5px 10px 5px 10px"
+                  popover="今日打卡可以获得50金币~"
+                  triggers="mouseenter:mouseleave"
+          >今日打卡</button>
+        </div>
+      </div>
+
+      <div>
+        <h4><i class="fa fa-angle-right"></i>通知</h4>
+        <div class="alert alert-success">
+          <b>通知来源</b>
+          <p>那个人的id</p>
+          <p>内容</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <!--我的比赛-->
+      <div>
+        <h4 (click)="comIsCollapsed = !comIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我的比赛</h4>
+
+        <div [collapse]="comIsCollapsed">
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn" (click)="toMyCompetition()">
+                  <div class="darkblue-header">
+                    <h5>比赛1</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛2</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+            </div>
+            <br/>
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛3</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛4</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我参与的比赛-->
+      <div>
+        <h4 (click)="comInIsCollapsed = !comInIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我参与的比赛</h4>
+
+        <div [collapse]="comInIsCollapsed">
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn" (click)="toMyCompetition()">
+                  <div class="darkblue-header">
+                    <h5>比赛1</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛2</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+            </div>
+            <br/>
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛3</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789 参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="darkblue-panel com-pn">
+                  <div class="darkblue-header">
+                    <h5>比赛4</h5>
+                  </div>
+                  <h1 class="mt"><i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+                  <p style="color: #797979">+ 1789参与者</p>
+                  <footer>
+                    <div class="centered">
+                      <h5><i class="fa fa-trophy"></i> 17,988</h5>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我的共享-->
+      <div>
+        <h4 (click)="datasetIsCollapsed = !datasetIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我共享的数据集</h4>
+
+        <div [collapse]="datasetIsCollapsed">
+          <div>
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="stock card">
+                  <div class="stock-chart">
+                    <div id="chart"></div>
+                  </div>
+                  <div class="stock current-price">
+                    <div class="row">
+                      <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                        <time>发布时间</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="summary">
+                    <strong>18.3 M</strong> <span>人加入了分享</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="stock card">
+                  <div class="stock-chart">
+                    <div id="chart"></div>
+                  </div>
+                  <div class="stock current-price">
+                    <div class="row">
+                      <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                        <time>发布时间</time>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="summary">
+                    <strong>18.3 M</strong> <span>人加入了分享</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我参与的共享-->
+      <div>
+        <h4 (click)="datasetInIsCollapsed = !datasetInIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我参与共享的数据集</h4>
+
+        <div [collapse]="datasetInIsCollapsed">
+          <div>
+            <div class="row">
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="stock card">
+              <div class="stock-chart">
+                <div id="chart"></div>
+              </div>
+              <div class="stock current-price">
+                <div class="row">
+                  <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                    <time>发布时间</time>
+                  </div>
+                </div>
+              </div>
+              <div class="summary">
+                <strong>18.3 M</strong> <span>人加入了分享</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="stock card">
+              <div class="stock-chart">
+                <div id="chart"></div>
+              </div>
+              <div class="stock current-price">
+                <div class="row">
+                  <div class="info col-sm-12 col-xs-12"><abbr>数据集名称</abbr>
+                    <time>发布时间</time>
+                  </div>
+                </div>
+              </div>
+              <div class="summary">
+                <strong>18.3 M</strong> <span>人加入了分享</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我的课程-->
+      <div>
+        <h4 (click)="courseIsCollapsed = !courseIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我的课程</h4>
+
+        <div [collapse]="courseIsCollapsed">
+          <div>course</div>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!--我参加的课程-->
+      <div>
+        <h4 (click)="courseInIsCollapsed = !courseInIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i> 我参与的课程</h4>
+
+        <div [collapse]="courseInIsCollapsed">
+          <div> in course</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

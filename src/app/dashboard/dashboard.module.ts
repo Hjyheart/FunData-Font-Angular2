@@ -9,13 +9,15 @@ import {CourseComponent} from "./course/course.component";
 import {DatasetComponent} from "./dataset/Dataset.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {DashboardRoutingModule} from "./dashboard.routing";
-import {SideBarComponent} from "./sidebar/sidebar.component";
-import {HeaderComponent} from "./headerbar/headerbar.component";
+import {BarComponent} from "./bar/bar.component";
 import {FooterComponent} from "./footer/footer.component";
+import {ShopComponent} from "./shop/shop.component";
+import {CollapseModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
     BrowserModule,
+    CollapseModule.forRoot(),
     DashboardRoutingModule
   ],
   declarations: [
@@ -24,9 +26,9 @@ import {FooterComponent} from "./footer/footer.component";
     CourseComponent,
     DatasetComponent,
     ProfileComponent,
-    SideBarComponent,
-    HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BarComponent,
+    ShopComponent
   ]
 })
 export class DashboardModule { }

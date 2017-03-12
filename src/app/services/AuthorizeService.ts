@@ -6,7 +6,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from "@angular/http";
 import {Constants} from "../util/Constants";
-import {Cookie} from "ng2-cookies/ng2-cookies";
+import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {Observable, Observer} from "rxjs/Rx";
 import {CanActivate} from "@angular/router";
 
