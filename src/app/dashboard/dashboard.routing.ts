@@ -8,14 +8,14 @@ import {DatasetComponent} from "./dataset/Dataset.component";
 import {CompetitionComponent} from "./competition/competition.component";
 import {CourseComponent} from "./course/course.component";
 import {DashboardComponent} from "./dashboard.component";
+import {AuthorizeGuard} from "../services/AuthorizeGuard";
 import {ShopComponent} from "./shop/shop.component";
-import {MyCompetitionsComponent} from "./profile/mycompetitions/mycompetitions.component";
 
 const DashboardRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    // canActivate: [LoginRouteGuard]
+    canActivate: [AuthorizeGuard],
     children:[
       {
         path: 'profile',

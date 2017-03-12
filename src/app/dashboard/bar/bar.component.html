@@ -79,8 +79,8 @@
     <!--  notification end -->
   </div>
   <div class="top-menu">
-    <ul class="nav pull-right top-menu">
-      <li><a class="logout" (click)="logOut()" [routerLink]="['/login']">Logout</a></li>
+    <ul class="nav pull-right top-menu" *ngIf="isLogin">
+      <li><a class="logout" (click)="logout()">Logout</a></li>
     </ul>
   </div>
 </header>

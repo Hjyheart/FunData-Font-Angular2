@@ -4,13 +4,20 @@
     <form class="form-login" action="index.html">
       <h2 class="form-login-heading">注册</h2>
       <div class="login-wrap">
-        <input type="text" class="form-control" placeholder="用户名" autofocus>
+        <input name="name" type="text" class="form-control" [(ngModel)]="name" (focus)="nameEmpty = false" placeholder="用户名" autofocus>
+        <span *ngIf="nameEmpty">用户名不能为空</span>
         <br>
-        <input type="password" class="form-control" placeholder="密码">
+        <input name="email" type="email" class="form-control" [(ngModel)]="email" (focus)="emailEmpty = false" placeholder="邮箱" autofocus>
+        <span *ngIf="emailEmpty">邮箱不能为空</span>
         <br>
-        <input type="password" class="form-control" placeholder="确认密码">
+        <input name="pwd" type="password" class="form-control" [(ngModel)]="pwd" (focus)="pwdEmpty = false; pwdEqual = true" placeholder="密码">
+        <span *ngIf="pwdEmpty">密码不能为空</span>
         <br>
-        <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-upload" aria-hidden="true"></i> 确认提交</button>
+        <input name="repwd" type="password" class="form-control" [(ngModel)]="repwd" (focus)="repwdEmpty = false; pwdEqual = true" placeholder="确认密码">
+        <span *ngIf="repwdEmpty">请确认密码</span>
+        <span *ngIf="!pwdEqual">两次密码输入不一致</span>
+        <br>
+        <button class="btn btn-theme btn-block" (click)="register()" ><i class="fa fa-upload" aria-hidden="true"></i> 确认提交</button>
         <button class="btn btn-danger btn-block" [routerLink]="['/introduction']"><i class="fa fa-chevron-left" aria-hidden="true"></i> 取消</button>
         <hr>
         <div class="registration">

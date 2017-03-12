@@ -8,27 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-/**
- * Created by hongjiayong on 2017/3/9.
- */
+var router_1 = require("@angular/router");
 var core_1 = require("@angular/core");
-var ComContactService = (function () {
-    function ComContactService() {
-        this.sidebarState = 'active';
+var AuthorizeService_1 = require("./AuthorizeService");
+/**
+ * Created by huang on 17-3-11.
+ */
+var AuthorizeGuard = (function () {
+    function AuthorizeGuard(authorizeService, router) {
+        this.authorizeService = authorizeService;
+        this.router = router;
     }
-    ComContactService.prototype.changeSideBarState = function () {
-        if (this.sidebarState === 'inactive') {
-            this.sidebarState = 'active';
+    AuthorizeGuard.prototype.canActivate = function () {
+        if (this.authorizeService.isLogin) {
+            return true;
         }
-        else {
-            this.sidebarState = 'inactive';
-        }
+        this.router.navigate(['/login']);
+        return false;
     };
-    ComContactService = __decorate([
+    AuthorizeGuard = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], ComContactService);
-    return ComContactService;
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
+    ], AuthorizeGuard);
+    return AuthorizeGuard;
 }());
-exports.ComContactService = ComContactService;
-//# sourceMappingURL=com.contact.service.js.map
+exports.AuthorizeGuard = AuthorizeGuard;
+//# sourceMappingURL=AuthorizeGuard.js.map

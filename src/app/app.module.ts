@@ -11,13 +11,17 @@ import {DashboardModule} from "./dashboard/dashboard.module";
 import {LoginComponent} from "./login/login.component";
 import {ErrorComponent} from "./error/error.componnet";
 import {RegisterComponent} from "./register/register.component";
-import {TestComponent} from "./test/test.component";
+import {AuthorizeService} from "./services/AuthorizeService";
 import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {AuthorizeGuard} from "./services/AuthorizeGuard";
+import {TestComponent} from "./test/test.component";
 
 @NgModule({
   imports:      [
     BrowserModule,
     FormsModule,
+    HttpModule,
     ButtonsModule.forRoot(),
     ModalModule.forRoot(),
     PopoverModule.forRoot(),
@@ -39,6 +43,10 @@ import {FormsModule} from "@angular/forms";
     RegisterComponent,
     ErrorComponent,
     TestComponent
+  ],
+  providers: [
+    AuthorizeService,
+      AuthorizeGuard
   ],
   bootstrap:    [ AppComponent ]
 })

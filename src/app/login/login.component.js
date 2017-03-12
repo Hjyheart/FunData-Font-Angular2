@@ -12,10 +12,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/3/9.
  */
 var core_1 = require('@angular/core');
+var AuthorizeService_1 = require("../services/AuthorizeService");
+var router_1 = require("@angular/router");
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(authorizeService, router) {
+        this.authorizeService = authorizeService;
+        this.router = router;
     }
     LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.login = function () {
+        var _this = this;
+        this.authorizeService.login(this.email, this.pwd)
+            .subscribe(function (status) {
+            if (status === '200') {
+                _this.router.navigate(['/dashboard']);
+            }
+        });
     };
     LoginComponent = __decorate([
         core_1.Component({
@@ -24,7 +37,7 @@ var LoginComponent = (function () {
             templateUrl: 'login.component.html',
             styleUrls: ['../dashboard/dashboard.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
     ], LoginComponent);
     return LoginComponent;
 }());
