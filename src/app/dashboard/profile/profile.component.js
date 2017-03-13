@@ -23,12 +23,18 @@ var ProfileComponent = (function () {
     }
     ProfileComponent.prototype.ngOnInit = function () {
     };
+    ProfileComponent.prototype.uploadPic = function () {
+        //TODO：上传头像并刷新侧边栏的头像和该页的头像
+        console.log('调用');
+    };
+    ProfileComponent.prototype.editProfile = function () {
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-profile',
             templateUrl: 'profile.component.html',
-            styleUrls: ['../dashboard.component.css']
+            styleUrls: ['../dashboard.component.css', 'fancybox.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ProfileComponent);

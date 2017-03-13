@@ -23,6 +23,7 @@ var bar_component_1 = require("./bar/bar.component");
 var footer_component_1 = require("./footer/footer.component");
 var shop_component_1 = require("./shop/shop.component");
 var ng2_bootstrap_1 = require("ng2-bootstrap");
+var forms_1 = require("@angular/forms");
 var DashboardModule = (function () {
     function DashboardModule() {
     }
@@ -30,6 +31,7 @@ var DashboardModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
                 ng2_bootstrap_1.CollapseModule.forRoot(),
                 ng2_bootstrap_1.ModalModule.forRoot(),
                 ng2_bootstrap_1.PopoverModule.forRoot(),

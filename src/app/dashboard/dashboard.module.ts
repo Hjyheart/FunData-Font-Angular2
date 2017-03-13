@@ -13,10 +13,12 @@ import {BarComponent} from "./bar/bar.component";
 import {FooterComponent} from "./footer/footer.component";
 import {ShopComponent} from "./shop/shop.component";
 import {CollapseModule, ModalModule, PopoverModule} from "ng2-bootstrap";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     CollapseModule.forRoot(),
     ModalModule.forRoot(),
     PopoverModule.forRoot(),
