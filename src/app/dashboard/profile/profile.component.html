@@ -45,15 +45,28 @@
       </div>
 
       <div>
-        <h4><i class="fa fa-angle-right"></i>通知</h4>
-        <div class="alert alert-success">
-          <b>通知来源</b>
-          <p>那个人的id</p>
-          <p>内容</p>
-          <a>跳转链接</a>
+        <h4 (click)="messageIsCollapsed = !messageIsCollapsed" style="cursor: pointer"><i class="fa fa-angle-right"></i>通知</h4>
+        <!--<div class="alert alert-success">-->
+          <!--<b>通知来源</b>-->
+          <!--<p>那个人的id</p>-->
+          <!--<p>内容</p>-->
+          <!--<a>跳转链接</a>-->
+        <!--</div>-->
+        <div [collapse]="messageIsCollapsed">
+          <div class="my-message">
+            <a href="index.html#">
+              <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+              <span class="subject">
+                                      <span class="from">Zac Snider</span>
+                                      <span class="time">Just now</span>
+                                      </span>
+              <span class="message">
+                                          Hi mate, how is everything?
+                                      </span>
+            </a>
+          </div>
         </div>
       </div>
-
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12">

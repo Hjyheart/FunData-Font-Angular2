@@ -2597,4 +2597,43 @@ label {
 }
 
 
+/* for my-message */
+.my-message {
+    width: 500px;
+}
+
+.my-message span{
+    color: black;
+}
+
+.my-message a .photo img {
+    border-radius: 2px 2px 2px 2px;
+    float: left;
+    height: 60px;
+    margin-right: 4px;
+    width: 60px;
+}
+
+.my-message a .subject {
+    display: block;
+}
+
+.my-message a .subject .from {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.my-message a .subject .time {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    /*position: absolute;*/
+    /*right: 40px;*/
+}
+
+.my-message a .message {
+    display: block !important;
+    font-size: 13px;
+}
+
 

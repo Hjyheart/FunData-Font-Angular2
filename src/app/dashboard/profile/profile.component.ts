@@ -12,7 +12,6 @@ declare var $:any;
   styleUrls: ['../dashboard.component.css', 'fancybox.css']
 })
 
-//TODO: 个人资料修改的弹框
 //TODO: 各类row二分操作
 
 
@@ -23,6 +22,7 @@ export class ProfileComponent implements OnInit{
   public datasetInIsCollapsed:boolean = true;
   public courseIsCollapsed:boolean = true;
   public courseInIsCollapsed:boolean = true;
+  public messageIsCollapsed:boolean = false;
 
   ngOnInit(): void {
   }
@@ -33,6 +33,6 @@ export class ProfileComponent implements OnInit{
   }
 
   editProfile(){
-
+    //TODO: 编辑个人信息
   }
 }

@@ -20,6 +20,7 @@ var ProfileComponent = (function () {
         this.datasetInIsCollapsed = true;
         this.courseIsCollapsed = true;
         this.courseInIsCollapsed = true;
+        this.messageIsCollapsed = false;
     }
     ProfileComponent.prototype.ngOnInit = function () {
     };
@@ -28,6 +29,7 @@ var ProfileComponent = (function () {
         console.log('调用');
     };
     ProfileComponent.prototype.editProfile = function () {
+        //TODO: 编辑个人信息
     };
     ProfileComponent = __decorate([
         core_1.Component({
