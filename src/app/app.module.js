@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
-var ng2_bootstrap_1 = require('ng2-bootstrap');
 var app_routing_module_1 = require("./app.routing.module");
 var intro_module_1 = require("./introduction/intro.module");
 var dashboard_module_1 = require("./dashboard/dashboard.module");
@@ -23,6 +22,10 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var AuthorizeGuard_1 = require("./services/AuthorizeGuard");
 var test_component_1 = require("./test/test.component");
+var dataset_module_1 = require("./dataset/dataset.module");
+var mooc_module_1 = require("./mooc/mooc.module");
+var com_module_1 = require("./competition/com.module");
+var shop_module_1 = require("./shop/shop.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,19 +35,12 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                ng2_bootstrap_1.ButtonsModule.forRoot(),
-                ng2_bootstrap_1.ModalModule.forRoot(),
-                ng2_bootstrap_1.PopoverModule.forRoot(),
-                ng2_bootstrap_1.AccordionModule.forRoot(),
-                ng2_bootstrap_1.CarouselModule.forRoot(),
-                ng2_bootstrap_1.DatepickerModule.forRoot(),
-                ng2_bootstrap_1.DropdownModule.forRoot(),
-                ng2_bootstrap_1.TabsModule.forRoot(),
-                ng2_bootstrap_1.TooltipModule.forRoot(),
-                ng2_bootstrap_1.TypeaheadModule.forRoot(),
-                ng2_bootstrap_1.CollapseModule.forRoot(),
                 intro_module_1.IntroModule,
+                dataset_module_1.DatasetModule,
                 dashboard_module_1.DashboardModule,
+                mooc_module_1.MoocModule,
+                com_module_1.ComModule,
+                shop_module_1.ShopModule,
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [

@@ -14,14 +14,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var dashboard_component_1 = require("./dashboard.component");
-var competition_component_1 = require("./competition/competition.component");
-var course_component_1 = require("./course/course.component");
-var Dataset_component_1 = require("./dataset/Dataset.component");
 var profile_component_1 = require("./profile/profile.component");
 var dashboard_routing_1 = require("./dashboard.routing");
 var bar_component_1 = require("./bar/bar.component");
 var footer_component_1 = require("./footer/footer.component");
-var shop_component_1 = require("./shop/shop.component");
 var ng2_bootstrap_1 = require("ng2-bootstrap");
 var forms_1 = require("@angular/forms");
 var DashboardModule = (function () {
@@ -39,13 +35,9 @@ var DashboardModule = (function () {
             ],
             declarations: [
                 dashboard_component_1.DashboardComponent,
-                competition_component_1.CompetitionComponent,
-                course_component_1.CourseComponent,
-                Dataset_component_1.DatasetComponent,
                 profile_component_1.ProfileComponent,
                 footer_component_1.FooterComponent,
-                bar_component_1.BarComponent,
-                shop_component_1.ShopComponent
+                bar_component_1.BarComponent
             ]
         }), 
         __metadata('design:paramtypes', [])

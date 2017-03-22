@@ -15,42 +15,12 @@ var core_1 = require('@angular/core');
 var IntroComponent = (function () {
     function IntroComponent() {
     }
-    /**
-     * 移动到大屏
-     */
-    IntroComponent.prototype.moveToHome = function () {
-        $.scrollTo('#home', 500);
-    };
-    /**
-     * 移动到概况
-     */
-    IntroComponent.prototype.moveToAbout = function () {
-        $.scrollTo('#about', 500);
-    };
-    /**
-     * 移动到特点
-     */
-    IntroComponent.prototype.moveToFeatures = function () {
-        $.scrollTo('#features', 500);
-    };
-    /**
-     * 移动到开始
-     */
-    IntroComponent.prototype.moveToGetStart = function () {
-        $.scrollTo('#get-start', 500);
-    };
-    /**
-     * 移动到联系我们
-     */
-    IntroComponent.prototype.moveToContact = function () {
-        $.scrollTo('#contact', 500);
-    };
     IntroComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-introduction',
             templateUrl: 'intro.component.html',
-            styleUrls: ['intro.component.css']
+            styleUrls: ['intro.component.css', '../main.css']
         }), 
         __metadata('design:paramtypes', [])
     ], IntroComponent);

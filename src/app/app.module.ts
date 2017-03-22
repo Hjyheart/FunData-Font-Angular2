@@ -1,10 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }  from './app.component';
-import {
-  ButtonsModule, PopoverModule, AccordionModule, CarouselModule, DatepickerModule, DropdownModule, ModalModule,
-  TabsModule, TooltipModule, TypeaheadModule, CollapseModule
-} from 'ng2-bootstrap';
 import {AppRoutingModule} from "./app.routing.module";
 import {IntroModule} from "./introduction/intro.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
@@ -16,25 +12,22 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AuthorizeGuard} from "./services/AuthorizeGuard";
 import {TestComponent} from "./test/test.component";
+import {DatasetModule} from "./dataset/dataset.module";
+import {MoocModule} from "./mooc/mooc.module";
+import {ComModule} from "./competition/com.module";
+import {ShopModule} from "./shop/shop.module";
 
 @NgModule({
   imports:      [
     BrowserModule,
     FormsModule,
     HttpModule,
-    ButtonsModule.forRoot(),
-    ModalModule.forRoot(),
-    PopoverModule.forRoot(),
-    AccordionModule.forRoot(),
-    CarouselModule.forRoot(),
-    DatepickerModule.forRoot(),
-    DropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    TooltipModule.forRoot(),
-    TypeaheadModule.forRoot(),
-    CollapseModule.forRoot(),
     IntroModule,
+    DatasetModule,
     DashboardModule,
+    MoocModule,
+    ComModule,
+    ShopModule,
     AppRoutingModule
   ],
   declarations: [

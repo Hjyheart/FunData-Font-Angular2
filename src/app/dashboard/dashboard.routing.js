@@ -14,12 +14,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var profile_component_1 = require("./profile/profile.component");
-var Dataset_component_1 = require("./dataset/Dataset.component");
-var competition_component_1 = require("./competition/competition.component");
-var course_component_1 = require("./course/course.component");
 var dashboard_component_1 = require("./dashboard.component");
 var AuthorizeGuard_1 = require("../services/AuthorizeGuard");
-var shop_component_1 = require("./shop/shop.component");
 var DashboardRoutes = [
     {
         path: 'dashboard',
@@ -29,22 +25,6 @@ var DashboardRoutes = [
             {
                 path: 'profile',
                 component: profile_component_1.ProfileComponent
-            },
-            {
-                path: 'dataset',
-                component: Dataset_component_1.DatasetComponent
-            },
-            {
-                path: 'competition',
-                component: competition_component_1.CompetitionComponent
-            },
-            {
-                path: 'course',
-                component: course_component_1.CourseComponent
-            },
-            {
-                path: 'shop',
-                component: shop_component_1.ShopComponent
             }
         ]
     }
