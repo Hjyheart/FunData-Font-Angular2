@@ -18,8 +18,8 @@ var ShopComponent = (function () {
     ShopComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-shopop',
-            templateUrl: 'sh.component.html',
+            selector: 'my-shop',
+            templateUrl: 'shop.component.html',
             styleUrls: ['shop.component.css', '../main.css']
         }), 
         __metadata('design:paramtypes', [])

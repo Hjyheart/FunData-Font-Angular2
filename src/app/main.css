@@ -150,7 +150,7 @@ pre code {
     font-family: 'Montserrat', sans-serif;
 }
 .header .main-nav .nav .nav-item.active a {
-    color: #17baef;
+    color: #eebf8f;
     background: none;
 }
 .header .main-nav .nav .nav-item a {
@@ -223,6 +223,7 @@ pre code {
     background: #0c86ae;
     padding: 10px 0;
     margin: 0 auto;
+    position: relative;
 }
 .promo .social-media li {
     margin-top: 15px;
@@ -724,5 +725,27 @@ pre[class*="language-"] {
 
 .token.entity {
     cursor: help;
+}
+
+.nav-login-btn {
+    position: relative;
+    top: 10px;
+    text-align: center;
+    height: 30px;
+    min-width: 70px;
+    background-color: #eebf3f;
+    border-radius: 4px
+}
+
+a.nav-login-btn:hover {
+    background: #eebf8f;
+    border: 1px solid #053c4e;
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-login-icon {
+    padding-top: 14px;
+    text-decoration: none;
 }
 

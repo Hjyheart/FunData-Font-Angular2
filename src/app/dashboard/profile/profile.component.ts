@@ -9,20 +9,13 @@ declare var $:any;
   moduleId: module.id,
   selector: 'my-profile',
   templateUrl: 'profile.component.html',
-  styleUrls: ['../dashboard.component.css', 'fancybox.css']
+  styleUrls: ['../dashboard.component.css', 'profile.component.css']
 })
 
 //TODO: 各类row二分操作
 
 
 export class ProfileComponent implements OnInit{
-  public comIsCollapsed:boolean = true;
-  public comInIsCollapsed:boolean = true;
-  public datasetIsCollapsed:boolean = true;
-  public datasetInIsCollapsed:boolean = true;
-  public courseIsCollapsed:boolean = true;
-  public courseInIsCollapsed:boolean = true;
-  public messageIsCollapsed:boolean = false;
 
   ngOnInit(): void {
   }

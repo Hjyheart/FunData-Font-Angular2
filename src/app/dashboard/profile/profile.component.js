@@ -14,13 +14,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ProfileComponent = (function () {
     function ProfileComponent() {
-        this.comIsCollapsed = true;
-        this.comInIsCollapsed = true;
-        this.datasetIsCollapsed = true;
-        this.datasetInIsCollapsed = true;
-        this.courseIsCollapsed = true;
-        this.courseInIsCollapsed = true;
-        this.messageIsCollapsed = false;
     }
     ProfileComponent.prototype.ngOnInit = function () {
     };
@@ -36,7 +29,7 @@ var ProfileComponent = (function () {
             moduleId: module.id,
             selector: 'my-profile',
             templateUrl: 'profile.component.html',
-            styleUrls: ['../dashboard.component.css', 'fancybox.css']
+            styleUrls: ['../dashboard.component.css', 'profile.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ProfileComponent);

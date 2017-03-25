@@ -2,7 +2,7 @@
 <header id="header" class="header">
   <div class="container">
     <h1 class="logo pull-left">
-      <a (click)="moveToHome()" style="cursor: pointer">
+      <a [routerLink]="['/introduction']">
         <span class="logo-title">FunData</span>
       </a>
     </h1><!--//logo-->
@@ -17,11 +17,11 @@
       </div><!--//navbar-header-->
       <div class="navbar-collapse collapse" id="navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active nav-item sr-only"><a style="cursor: pointer;">Home</a></li>
-          <li class="nav-item"><a style="cursor: pointer;" [routerLink]="['/com/list']">比赛中心</a></li>
-          <li class="nav-item"><a style="cursor: pointer;" [routerLink]="['/dataset/list']">数据集中心</a></li>
-          <li class="nav-item"><a style="cursor: pointer;" [routerLink]="['/mooc/list']">mooc</a></li>
-          <li class="nav-item"><a style="cursor: pointer;" [routerLink]="['/shop']">商城</a></li>
+          <li class="active nav-item sr-only"><a [routerLink]="['/introduction']">简介</a></li>
+          <li class="nav-item"><a [routerLink]="['/com/list']">比赛中心</a></li>
+          <li class="nav-item"><a [routerLink]="['/dataset/list']">数据集中心</a></li>
+          <li class="nav-item"><a [routerLink]="['/mooc/list']">mooc</a></li>
+          <li class="nav-item"><a [routerLink]="['/shop']">商城</a></li>
           <!--<li class="nav-item"><a class="nav-login-btn" style="padding: 5px">登录</a></li>-->
           <li class="nav-item last nav-login-icon"><i class="fa fa-user"><a style="color:  #eebf3f">Hong Jiayong</a></i></li>
         </ul><!--//nav-->
@@ -34,7 +34,7 @@
 <section id="home" class="promo section offset-header">
   <div class="container text-center">
     <h2 class="title">Fun<span class="highlight">Data</span></h2>
-    <p class="intro">Hello FunData!</p>
+    <p class="intro">你好, FunData!</p>
     <div class="btns">
       <a class="btn btn-cta-secondary" [routerLink]="['/login']" style="text-decoration: none;">登录</a>
       <a class="btn btn-cta-primary" [routerLink]="['/register']" style="text-decoration: none;">注册</a>

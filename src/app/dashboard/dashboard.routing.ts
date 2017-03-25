@@ -11,7 +11,7 @@ const DashboardRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthorizeGuard],
+    // canActivate: [AuthorizeGuard],
     children:[
       {
         path: 'profile',

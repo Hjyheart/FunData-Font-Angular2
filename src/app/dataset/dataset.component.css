@@ -1,0 +1,59 @@
+.welcome-text {
+    font-size: 2em;
+    color: white;
+}
+
+/*大屏幕介绍模块*/
+.set-header-intro {
+    display: flex;
+    display: -webkit-box;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    list-style: none;
+    margin-top: 40px;
+    padding-left: 0;
+}
+
+.set-header-item {
+    width: 30%;
+}
+
+.set-header-item > img {
+    height: 140px;
+    margin-bottom: 25px;
+    width: 140px;
+}
+
+.set-header-item > h3 {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.set-header-item > p{
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.social-media::before {
+    content: "";
+    position: absolute;
+    bottom: -53%;
+    left: 48%;
+    border: 25px solid #0c86ae;
+    border-color: #0c86ae transparent transparent transparent;
+}
+
+@media (max-width: 767px) {
+    .set-header-item > img {
+        height: 90px;
+        width: 90px;
+    }
+}
+
+@media (max-width: 400px) {
+    .set-header-intro {
+        display: none;
+    }
+}

@@ -1,0 +1,74 @@
+/* 数据集列表样式 */
+.dataset-list {
+    padding: 40px 0;
+    background: #f5f5f5;
+}
+
+.dataset-list .title {
+    color: #074f66;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.dataset-list a {
+    text-decoration: none;
+}
+
+.dataset-list hr{
+    border: 0;
+    border-top: 1px solid black;
+    height: 1px;
+    max-width: 200px;
+}
+
+.dataset-list .dataset-list-inner {
+    max-width: 900px;
+    background: #FFF;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 4px;
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+}
+
+.dataset-list-item {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-flow: row nowrap;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+}
+
+.dataset-list-item-intro {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-flow: row nowrap;
+    max-width: 575px;
+}
+
+.dataset-list-item-right {
+    display: flex;
+    align-self: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-flow: column nowrap;
+    font-size: 12px;
+    margin-left: auto;
+    min-width: 125px;
+    margin-top: 9px;
+}
+
+/*搜索栏*/
+#dataset-search {
+    position: relative;
+    width: 30%;
+    margin: 20px auto;
+}
+
+#dataset-search > span{
+    cursor: pointer;
+}

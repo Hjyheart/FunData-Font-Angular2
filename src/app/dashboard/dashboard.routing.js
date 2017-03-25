@@ -15,12 +15,11 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var profile_component_1 = require("./profile/profile.component");
 var dashboard_component_1 = require("./dashboard.component");
-var AuthorizeGuard_1 = require("../services/AuthorizeGuard");
 var DashboardRoutes = [
     {
         path: 'dashboard',
         component: dashboard_component_1.DashboardComponent,
-        canActivate: [AuthorizeGuard_1.AuthorizeGuard],
+        // canActivate: [AuthorizeGuard],
         children: [
             {
                 path: 'profile',

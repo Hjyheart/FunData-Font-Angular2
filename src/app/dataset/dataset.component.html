@@ -1,1 +1,104 @@
+<!-- ******HEADER****** -->
+<header id="header" class="header">
+  <div class="container">
+    <h1 class="logo pull-left">
+      <a [routerLink]="['/introduction']">
+        <span class="logo-title">FunData</span>
+      </a>
+    </h1><!--//logo-->
+    <nav id="main-nav" class="main-nav navbar-right" role="navigation">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button><!--//nav-toggle-->
+      </div><!--//navbar-header-->
+      <div class="navbar-collapse collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active nav-item sr-only"><a [routerLink]="['/introduction']">简介</a></li>
+          <li class="nav-item"><a [routerLink]="['/com/list']">比赛中心</a></li>
+          <li class="nav-item active"><a [routerLink]="['/dataset/list']">数据集中心</a></li>
+          <li class="nav-item"><a [routerLink]="['/mooc/list']">mooc</a></li>
+          <li class="nav-item"><a [routerLink]="['/shop']">商城</a></li>
+          <!--<li class="nav-item"><a class="nav-login-btn" style="padding: 5px">登录</a></li>-->
+          <li class="nav-item last nav-login-icon"><i class="fa fa-user"><a style="color:  #eebf3f">Hong Jiayong</a></i></li>
+        </ul><!--//nav-->
+      </div><!--//navabr-collapse-->
+    </nav><!--//main-nav-->
+  </div>
+</header><!--//header-->
+
+<!-- ******大屏幕****** -->
+<section id="home" class="promo section offset-header" style="padding-top: 60px;">
+  <div class="container text-center">
+    <h3 class="welcome-text">欢迎来到</h3>
+    <h2 class="title">Data<span class="highlight">Sets</span></h2>
+    <ul class="set-header-intro">
+      <li class="set-header-item">
+        <img src="../../assets/img/datasets-header-1.png">
+        <h3>发现</h3>
+        <p>
+          <span>
+            数据中心的数据集丰富多样，涉及生活的方方面面。
+            您可以在数据集中心搜索到您想要的所有数据集。
+          </span>
+        </p>
+      </li>
+      <li class="set-header-item">
+        <img src="../../assets/img/datasets-header-2.png">
+        <h3>探索</h3>
+        <p>
+          <span>
+            在每个数据集里您都可以把自己的数据共享出去与他人共享，成为该数据集的贡献者。
+            同时，您也可以在我们的社区中对数据集进行评论。
+          </span>
+        </p>
+      </li>
+      <li class="set-header-item">
+        <img src="../../assets/img/datasets-header-3.png">
+        <h3>创建数据集</h3>
+        <p>
+          <span>
+            您可以尝试点击下方的"创建数据集"按钮新建属于自己的数据集，开启自己的数据之旅！
+          </span>
+        </p>
+      </li>
+    </ul>
+    <div class="btns" style="margin-top: 30px">
+      <a class="btn btn-cta-secondary" [routerLink]="['/introduction']" style="text-decoration: none;">了解更多</a>
+      <a class="btn btn-cta-primary" [routerLink]="['/register']" style="text-decoration: none;">创建数据集</a>
+    </div>
+    <ul class="meta list-inline" style="margin-top: 40px">
+      <li><a href="https://github.com/Hjyheart/FunData-Font-Angular2" style="text-decoration: none" target="_blank">GitHub</a></li>
+      <li>开发团队: <a href="http://sse.tongji.edu.cn/" style="text-decoration: none" target="_blank">同济大学GC、IBM、APPLE俱乐部</a> 联合开发
+      </li>
+    </ul><!--//meta-->
+  </div><!--//container-->
+  <div class="social-media">
+    <div class="social-media-inner container text-center">
+      <ul class="list-inline">
+        <li class="github-star">
+          <iframe src="http://ghbtns.com/github-btn.html?user=Hjyheart&repo=FunData-Font-Angular2&type=watch&count=true"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+        </li>
+        <li class="github-fork">
+          <iframe src="http://ghbtns.com/github-btn.html?user=Hjyheart&repo=FunData-Font-Angular2&type=fork"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section><!--//promo-->
+
 <router-outlet></router-outlet>
+
+<!-- ******FOOTER****** -->
+<footer class="footer">
+  <div class="container text-center">
+    <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+    <small class="copyright">Designed with <i class="fa fa-heart"></i> by 吴凯、洪嘉勇、黄宗润
+    </small>
+  </div><!--//container-->
+</footer><!--//footer-->

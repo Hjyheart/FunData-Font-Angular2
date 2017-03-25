@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<section id="dataset-list" class="dataset-list section">
 
-</body>
-</html>
+  <div class="input-group" id="dataset-search">
+    <input type="text" class="form-control" placeholder="数据集名称" aria-describedby="basic-addon2">
+    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search"></i></span>
+  </div>
+
+  <div class="container">
+    <div class="dataset-list-inner">
+      <h2 class="title text-center">数据集</h2>
+      <hr/>
+      <div>
+        <div class="dataset-list-item">
+          <div class="dataset-list-item-intro">
+            <div>
+              <h3><a [routerLink]="['/dataset/list']">Title</a></h3>
+              <p>desc</p>
+              <p><a>hjyheart</a>&nbsp;<time>2017.3.25</time></p>
+            </div>
+          </div>
+          <div class="dataset-list-item-right">
+            <p>1289 贡献者</p>
+            <p>下载所需金币</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="dataset-list-item">
+          <div class="dataset-list-item-intro">
+            <div>
+              <h3><a [routerLink]="['/dataset/list']">Title</a></h3>
+              <p>desc</p>
+              <p><a>hjyheart</a>&nbsp;<time>2017.3.25</time></p>
+            </div>
+          </div>
+          <div class="dataset-list-item-right">
+            <p>1289 贡献者</p>
+            <p>下载所需金币</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
