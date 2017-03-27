@@ -102,6 +102,7 @@ pre code {
 .header.navbar-fixed-top {
     background: #fff;
     z-index: 9999;
+    opacity: 0.5;
     -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
@@ -749,3 +750,17 @@ a.nav-login-btn:hover {
     text-decoration: none;
 }
 
+/*弹框风格*/
+.modal-header {
+    background: #68dff0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modal-header > h1, h2, h3, h4, h5, h6, p, span {
+    color: white;
+}
+
+.error {
+    background: red;
+}

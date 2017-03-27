@@ -8,12 +8,15 @@ import {DatasetDetailComponent} from "./detail/detail.componnet";
 import {DatasetListComponent} from "./list/list.component";
 import {DatasetRoutingModule} from "./dataset.routing.module";
 import {DatasetComponent} from "./dataset.component";
+import {PaginationModule, ModalModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
     FormsModule,
     HttpModule,
-    DatasetRoutingModule
+    DatasetRoutingModule,
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [
     DatasetComponent,

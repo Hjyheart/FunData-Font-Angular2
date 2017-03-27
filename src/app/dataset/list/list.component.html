@@ -8,10 +8,12 @@
   <div class="container">
     <div class="dataset-list-inner">
       <h2 class="title text-center">数据集</h2>
-      <hr/>
+      <hr [style.width]="hrWidth"/>
+
       <div>
         <div class="dataset-list-item">
           <div class="dataset-list-item-intro">
+            <div class="dataset-list-img"><img src="../../../assets/img/ui-sherman.jpg"></div>
             <div>
               <h3><a [routerLink]="['/dataset/list']">Title</a></h3>
               <p>desc</p>
@@ -24,9 +26,11 @@
           </div>
         </div>
       </div>
+
       <div>
         <div class="dataset-list-item">
           <div class="dataset-list-item-intro">
+            <div class="dataset-list-img"><img src="../../../assets/img/ui-sherman.jpg"></div>
             <div>
               <h3><a [routerLink]="['/dataset/list']">Title</a></h3>
               <p>desc</p>
@@ -38,6 +42,12 @@
             <p>下载所需金币</p>
           </div>
         </div>
+      </div>
+
+      <!--换页栏-->
+      <div class="page-change">
+        <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
+                    [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
       </div>
     </div>
   </div>

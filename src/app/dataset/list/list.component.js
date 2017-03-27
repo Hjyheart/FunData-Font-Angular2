@@ -14,7 +14,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var DatasetListComponent = (function () {
     function DatasetListComponent() {
+        // 每页10个
+        this.totalItems = 100;
+        this.currentPage = 1;
     }
+    DatasetListComponent.prototype.ngOnInit = function () {
+        this.hrWidth = '0px';
+    };
+    DatasetListComponent.prototype.setPage = function (pageNo) {
+        this.currentPage = pageNo;
+    };
+    DatasetListComponent.prototype.pageChanged = function (event) {
+        console.log('Page changed to: ' + event.page);
+        console.log('Number items per page: ' + event.itemsPerPage);
+    };
+    DatasetListComponent.prototype.transition = function () {
+        if (scrollY > 400) {
+            this.hrWidth = '200px';
+        }
+    };
+    __decorate([
+        core_1.HostListener('window:scroll'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], DatasetListComponent.prototype, "transition", null);
     DatasetListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

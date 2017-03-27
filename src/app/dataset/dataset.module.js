@@ -18,6 +18,7 @@ var detail_componnet_1 = require("./detail/detail.componnet");
 var list_component_1 = require("./list/list.component");
 var dataset_routing_module_1 = require("./dataset.routing.module");
 var dataset_component_1 = require("./dataset.component");
+var ng2_bootstrap_1 = require("ng2-bootstrap");
 var DatasetModule = (function () {
     function DatasetModule() {
     }
@@ -26,7 +27,9 @@ var DatasetModule = (function () {
             imports: [
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                dataset_routing_module_1.DatasetRoutingModule
+                dataset_routing_module_1.DatasetRoutingModule,
+                ng2_bootstrap_1.PaginationModule.forRoot(),
+                ng2_bootstrap_1.ModalModule.forRoot()
             ],
             declarations: [
                 dataset_component_1.DatasetComponent,

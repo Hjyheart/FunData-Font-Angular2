@@ -68,7 +68,7 @@
     </ul>
     <div class="btns" style="margin-top: 30px">
       <a class="btn btn-cta-secondary" [routerLink]="['/introduction']" style="text-decoration: none;">了解更多</a>
-      <a class="btn btn-cta-primary" [routerLink]="['/register']" style="text-decoration: none;">创建数据集</a>
+      <a class="btn btn-cta-primary" (click)="createDatasetModal.show()" style="text-decoration: none;cursor: pointer;">创建数据集</a>
     </div>
     <ul class="meta list-inline" style="margin-top: 40px">
       <li><a href="https://github.com/Hjyheart/FunData-Font-Angular2" style="text-decoration: none" target="_blank">GitHub</a></li>
@@ -102,3 +102,24 @@
     </small>
   </div><!--//container-->
 </footer><!--//footer-->
+
+<!--创建数据集弹框-->
+<div bsModal #createDatasetModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">创建我的数据集</h4>
+        <button type="button" class="close pull-right" (click)="createDatasetModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" (click)="createDatasetModal.hide()">确定</button>
+        <button class="btn btn-danger" (click)="createDatasetModal.hide()">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
