@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
     moduleId: module.id,
     selector: 'my-register',
     templateUrl: 'register.component.html',
-    styleUrls: ['../dashboard/dashboard.component.css']
+    styleUrls: ['register.component.css']
 })
 
 export class RegisterComponent{

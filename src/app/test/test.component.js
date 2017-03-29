@@ -14,6 +14,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var TestComponent = (function () {
     function TestComponent() {
+        this.textData = "## Markdown content data";
     }
     TestComponent = __decorate([
         core_1.Component({

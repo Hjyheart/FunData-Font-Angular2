@@ -757,7 +757,7 @@ a.nav-login-btn:hover {
     border-top-right-radius: 5px;
 }
 
-.modal-header > h1, h2, h3, h4, h5, h6, p, span {
+.modal-header > h1 p h2 h3 h4 h5 h6 span {
     color: white;
 }
 

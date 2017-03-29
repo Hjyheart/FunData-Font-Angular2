@@ -13,13 +13,13 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var app_routing_module_1 = require("./app.routing.module");
 var intro_module_1 = require("./introduction/intro.module");
-var dashboard_module_1 = require("./dashboard/dashboard.module");
 var login_component_1 = require("./login/login.component");
 var error_componnet_1 = require("./error/error.componnet");
 var register_component_1 = require("./register/register.component");
 var AuthorizeService_1 = require("./services/AuthorizeService");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+var angular2_markdown_1 = require('angular2-markdown');
 var AuthorizeGuard_1 = require("./services/AuthorizeGuard");
 var test_component_1 = require("./test/test.component");
 var dataset_module_1 = require("./dataset/dataset.module");
@@ -37,7 +37,7 @@ var AppModule = (function () {
                 http_1.HttpModule,
                 intro_module_1.IntroModule,
                 dataset_module_1.DatasetModule,
-                dashboard_module_1.DashboardModule,
+                angular2_markdown_1.MarkdownModule.forRoot(),
                 mooc_module_1.MoocModule,
                 com_module_1.ComModule,
                 shop_module_1.ShopModule,

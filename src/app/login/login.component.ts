@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   moduleId: module.id,
   selector: 'my-login',
   templateUrl: 'login.component.html',
-  styleUrls: ['../dashboard/dashboard.component.css']
+  styleUrls: ['login.component.css']
 })
 
 export class LoginComponent implements OnInit{

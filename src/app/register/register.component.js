@@ -46,7 +46,7 @@ var RegisterComponent = (function () {
             moduleId: module.id,
             selector: 'my-register',
             templateUrl: 'register.component.html',
-            styleUrls: ['../dashboard/dashboard.component.css']
+            styleUrls: ['register.component.css']
         }), 
         __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
     ], RegisterComponent);

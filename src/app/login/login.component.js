@@ -35,7 +35,7 @@ var LoginComponent = (function () {
             moduleId: module.id,
             selector: 'my-login',
             templateUrl: 'login.component.html',
-            styleUrls: ['../dashboard/dashboard.component.css']
+            styleUrls: ['login.component.css']
         }), 
         __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
     ], LoginComponent);

@@ -10,5 +10,5 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TestComponent {
-
+  public textData = `## Markdown content data`;
 }
