@@ -19,18 +19,64 @@
 
 #dataset-detail-content > div {
     background: #f5f5f5;
+    border-radius: 4px;
 }
 
 .dataset-detail-content-main {
-    height: 400px;
     width: 100%;
     margin: 20px auto;
 }
 
+.back {
+    position: relative;
+    left: 3%;
+    top: 3%;
+    text-decoration: none;
+}
+
+.back > a {
+    font-size: 20px;
+}
+
+.back > a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.dataset-detail-content-main > article {
+    position: relative;
+    left: 2%;
+}
+
+.tags {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.tags > button {
+    width: 10%;
+    height: 30px;
+    margin: 0 2%;
+    border-radius: 4px;
+    border: 1px;
+    outline: none;
+}
+
+.tag1 {
+    background-color: #FE5722;
+}
+
+.tag2 {
+    background-color: #8BC24A;
+}
+
 .dataset-detail-content-follow {
-    height: 200px;
     width: 100%;
     margin: 20px auto;
+    border-radius: 4px;
 }
 
 
@@ -42,23 +88,58 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    width: 40%;
+    width: 30%;
 }
 
 #dataset-detail-side > div {
     background: #f5f5f5;
+    border-radius: 4px;
 }
 
 .user-block {
-    margin: 20px 10px;
+    margin: 20px 30px;
     width: 90%;
-    height: 200px;
+}
+
+.user-head {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-head > img {
+    border-radius: 50%;
+    margin: 3% auto;
+    height: 80px;
+    width: 80px;
+}
+
+.user-head > h2 {
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+.user-head > button {
+    margin: 10px;
+    border-radius: 4px;
 }
 
 .links {
-    margin: 20px 10px;
+    margin: 20px 30px;
     width: 90%;
-    height: 300px;
+}
+
+.links > table > thead > th {
+    height: 50px;
+    background-color: #F7F7F9;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.links > table > tbody > tr > th {
+    text-align: center;
 }
 
 /* 按钮组 */
@@ -70,6 +151,7 @@
     justify-content: center;
     align-items: center;
     width: 60%;
+    background: none !important;
 }
 
 .buttons > button {
@@ -77,4 +159,5 @@
     width: 20%;
     height: 40px;
     border-radius: 4px;
+    outline: none;
 }

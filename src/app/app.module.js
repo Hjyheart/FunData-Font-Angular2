@@ -26,6 +26,7 @@ var dataset_module_1 = require("./dataset/dataset.module");
 var mooc_module_1 = require("./mooc/mooc.module");
 var com_module_1 = require("./competition/com.module");
 var shop_module_1 = require("./shop/shop.module");
+var header_component_1 = require("./header/header.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -48,7 +49,8 @@ var AppModule = (function () {
                 login_component_1.LoginComponent,
                 register_component_1.RegisterComponent,
                 error_componnet_1.ErrorComponent,
-                test_component_1.TestComponent
+                test_component_1.TestComponent,
+                header_component_1.HeaderComponent
             ],
             providers: [
                 AuthorizeService_1.AuthorizeService,

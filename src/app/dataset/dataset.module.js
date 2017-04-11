@@ -29,7 +29,7 @@ var DatasetModule = (function () {
                 http_1.HttpModule,
                 dataset_routing_module_1.DatasetRoutingModule,
                 ng2_bootstrap_1.PaginationModule.forRoot(),
-                ng2_bootstrap_1.ModalModule.forRoot()
+                ng2_bootstrap_1.ModalModule.forRoot(),
             ],
             declarations: [
                 dataset_component_1.DatasetComponent,

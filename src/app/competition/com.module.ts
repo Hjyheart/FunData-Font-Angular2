@@ -8,6 +8,7 @@ import {ComComponent} from "./com.component";
 import {ComDetailComponent} from "./detail/detail.component";
 import {ComListComponent} from "./list/list.component";
 import {ComRoutingModule} from "./com.routing.module";
+import {HeaderComponent} from "../header/header.component";
 
 @NgModule({
   imports: [

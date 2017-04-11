@@ -16,6 +16,7 @@ import {DatasetModule} from "./dataset/dataset.module";
 import {MoocModule} from "./mooc/mooc.module";
 import {ComModule} from "./competition/com.module";
 import {ShopModule} from "./shop/shop.module";
+import {HeaderComponent} from "./header/header.component";
 
 @NgModule({
   imports:      [
@@ -35,11 +36,12 @@ import {ShopModule} from "./shop/shop.module";
     LoginComponent,
     RegisterComponent,
     ErrorComponent,
-    TestComponent
+    TestComponent,
+    HeaderComponent
   ],
   providers: [
     AuthorizeService,
-      AuthorizeGuard
+    AuthorizeGuard
   ],
   bootstrap:    [ AppComponent ]
 })
