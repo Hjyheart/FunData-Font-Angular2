@@ -1,0 +1,80 @@
+/* 数据集具体信息样式 */
+.detail-section {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 20px auto;
+    width: 80%;
+}
+
+/* 数据集主要内容样式 */
+#dataset-detail-content {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+#dataset-detail-content > div {
+    background: #f5f5f5;
+}
+
+.dataset-detail-content-main {
+    height: 400px;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.dataset-detail-content-follow {
+    height: 200px;
+    width: 100%;
+    margin: 20px auto;
+}
+
+
+/* 数据集侧边信息样式 */
+#dataset-detail-side {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 40%;
+}
+
+#dataset-detail-side > div {
+    background: #f5f5f5;
+}
+
+.user-block {
+    margin: 20px 10px;
+    width: 90%;
+    height: 200px;
+}
+
+.links {
+    margin: 20px 10px;
+    width: 90%;
+    height: 300px;
+}
+
+/* 按钮组 */
+.buttons {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.buttons > button {
+    margin: 10px 40px;
+    width: 20%;
+    height: 40px;
+    border-radius: 4px;
+}

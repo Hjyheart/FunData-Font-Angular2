@@ -12,8 +12,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/3/10.
  */
 var core_1 = require('@angular/core');
+// import { SweetAlertService } from 'ng-sweetalert2-slc';
 var TestComponent = (function () {
     function TestComponent() {
+        // constructor(private _swal2: SweetAlertService){
+        //   this._swal2.success({ title: 'This is a alert' });
+        // }
         this.textData = "## Markdown content data";
     }
     TestComponent = __decorate([

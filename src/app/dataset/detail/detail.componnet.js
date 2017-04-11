@@ -12,9 +12,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/3/22.
  */
 var core_1 = require('@angular/core');
+var router_1 = require("@angular/router");
 var DatasetDetailComponent = (function () {
-    function DatasetDetailComponent() {
+    function DatasetDetailComponent(route, router) {
+        this.route = route;
+        this.router = router;
     }
+    DatasetDetailComponent.prototype.ngOnInit = function () {
+        this.id = +this.route.snapshot.params['id'];
+        console.log(this.id);
+    };
     DatasetDetailComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -22,7 +29,7 @@ var DatasetDetailComponent = (function () {
             templateUrl: 'detail.component.html',
             styleUrls: ['detail.component.css', '../../main.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
     ], DatasetDetailComponent);
     return DatasetDetailComponent;
 }());
