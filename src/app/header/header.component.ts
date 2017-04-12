@@ -34,4 +34,17 @@ export class HeaderComponent implements OnInit{
     this.courseStyle = 'nav-item';
   }
 
+  focusOn(name:string){
+    this.clearStyle();
+    if (name == 'com'){
+      this.competitionStyle = 'nav-item active';
+    }else if(name == 'data'){
+      this.datasetStyle = 'nav-item active';
+    }else if(name == 'shop'){
+      this.shopStyle = 'nav-item active';
+    }else if(name == 'course'){
+      this.courseStyle = 'nav-item active';
+    }
+  }
+
 }

@@ -26,6 +26,21 @@ var HeaderComponent = (function () {
         this.shopStyle = 'nav-item';
         this.courseStyle = 'nav-item';
     };
+    HeaderComponent.prototype.focusOn = function (name) {
+        this.clearStyle();
+        if (name == 'com') {
+            this.competitionStyle = 'nav-item active';
+        }
+        else if (name == 'data') {
+            this.datasetStyle = 'nav-item active';
+        }
+        else if (name == 'shop') {
+            this.shopStyle = 'nav-item active';
+        }
+        else if (name == 'course') {
+            this.courseStyle = 'nav-item active';
+        }
+    };
     HeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
