@@ -17,11 +17,13 @@ import {MoocModule} from "./mooc/mooc.module";
 import {ComModule} from "./competition/com.module";
 import {ShopModule} from "./shop/shop.module";
 import {HeaderComponent} from "./header/header.component";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   imports:      [
     BrowserModule,
     FormsModule,
+    CommonModule,
     HttpModule,
     IntroModule,
     DatasetModule,

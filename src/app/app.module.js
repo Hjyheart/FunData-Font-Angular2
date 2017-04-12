@@ -27,6 +27,7 @@ var mooc_module_1 = require("./mooc/mooc.module");
 var com_module_1 = require("./competition/com.module");
 var shop_module_1 = require("./shop/shop.module");
 var header_component_1 = require("./header/header.component");
+var common_1 = require("@angular/common");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -35,6 +36,7 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
+                common_1.CommonModule,
                 http_1.HttpModule,
                 intro_module_1.IntroModule,
                 dataset_module_1.DatasetModule,

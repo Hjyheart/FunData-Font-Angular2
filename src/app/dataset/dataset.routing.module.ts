@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {DatasetListComponent} from "./list/list.component";
 import {DatasetComponent} from "./dataset.component";
 import {DatasetDetailComponent} from "./detail/detail.componnet";
+import {DatasetCreateComponent} from "./create/create.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'detail/:id',
         component: DatasetDetailComponent
+      },
+      {
+        path:'create',
+        component: DatasetCreateComponent
       }
     ]
   }

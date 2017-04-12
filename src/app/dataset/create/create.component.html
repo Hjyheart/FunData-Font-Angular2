@@ -1,0 +1,58 @@
+<form id="dataset-create" class="create-section" (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+  <div class="form-horizontal create-table">
+    <div class="form-group">
+      <label for="dataset-name" class="col-sm-2 control-label">数据集名称</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="dataset-name" name="dataset-name" [(ngModel)]="datasetName" placeholder="数据集名称">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-sm-2 control-label">数据集相关描述</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="description" name="dataset-des" [(ngModel)]="datasetDes" placeholder="数据集相关描述"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="format-des" class="col-sm-2 control-label">格式说明</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="format-des" name="dataset-des" [(ngModel)]="formatDes" placeholder="格式相关描述"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="attr-flag" class="col-sm-2 control-label">是否使用限制属性</label>
+      <div class="col-sm-10">
+        <input type="checkbox" id="attr-flag" name="attr-flag" [(ngModel)]="attrFlag">
+      </div>
+    </div>
+    <div *ngIf="attrFlag">
+      <div class="form-group">
+        <button type="button" class="btn-cta-secondary" id="add-attr-button" (click)="createLimitedModal.show()">添加</button>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button type="button" class="btn-cta-primary">取消</button>
+    <button type="submit" class="btn-cta-secondary">提交</button>
+  </div>
+</form>
+
+<!--创建数据集弹框-->
+<div bsModal #createLimitedModal="bs-modal" class="modal fade" style="top: 30%;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">创建限制</h4>
+        <button type="button" class="close pull-right" (click)="createLimitedModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" (click)="createLimitedModal.hide()">确定</button>
+        <button class="btn btn-danger" (click)="createLimitedModal.hide()">取消</button>
+      </div>
+    </div>
+  </div>
+</div>

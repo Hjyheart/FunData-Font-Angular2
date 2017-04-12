@@ -16,6 +16,7 @@ var router_1 = require('@angular/router');
 var list_component_1 = require("./list/list.component");
 var dataset_component_1 = require("./dataset.component");
 var detail_componnet_1 = require("./detail/detail.componnet");
+var create_component_1 = require("./create/create.component");
 var routes = [
     {
         path: 'dataset',
@@ -28,6 +29,10 @@ var routes = [
             {
                 path: 'detail/:id',
                 component: detail_componnet_1.DatasetDetailComponent
+            },
+            {
+                path: 'create',
+                component: create_component_1.DatasetCreateComponent
             }
         ]
     }

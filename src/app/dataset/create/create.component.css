@@ -1,0 +1,70 @@
+/* 创建数据集页面样式 */
+.create-section {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 80%;
+    margin: 20px auto;
+    transition: width 1s;
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+}
+
+.create-table {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    background: #f5f5f5;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.form-group {
+    position: relative;
+    margin-top: 3%;
+    margin-left: 10%;
+    max-width: 80%;
+}
+
+#description {
+    height: 100px;
+}
+
+#format-des {
+    height: 100px;
+}
+
+#attr-flag {
+    margin-top: 20px;
+}
+
+#add-attr-button {
+    position: relative;
+    left: 40%;
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+/* 按钮组 */
+.buttons {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+    background: none !important;
+}
+
+.buttons > button {
+    margin: 10px 40px;
+    width: 20%;
+    height: 40px;
+    border-radius: 4px;
+    outline: none;
+}
