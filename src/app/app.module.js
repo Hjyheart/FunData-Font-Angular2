@@ -28,6 +28,7 @@ var com_module_1 = require("./competition/com.module");
 var shop_module_1 = require("./shop/shop.module");
 var header_component_1 = require("./header/header.component");
 var common_1 = require("@angular/common");
+var CurrentPageService_1 = require("./services/CurrentPageService");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -56,7 +57,8 @@ var AppModule = (function () {
             ],
             providers: [
                 AuthorizeService_1.AuthorizeService,
-                AuthorizeGuard_1.AuthorizeGuard
+                AuthorizeGuard_1.AuthorizeGuard,
+                CurrentPageService_1.CurrentPageService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

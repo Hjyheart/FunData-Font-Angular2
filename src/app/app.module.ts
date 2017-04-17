@@ -18,6 +18,8 @@ import {ComModule} from "./competition/com.module";
 import {ShopModule} from "./shop/shop.module";
 import {HeaderComponent} from "./header/header.component";
 import {CommonModule} from "@angular/common";
+import {CurrentPageService} from "./services/CurrentPageService";
+import {HeaderModule} from "./header/header.module";
 
 @NgModule({
   imports:      [
@@ -43,7 +45,8 @@ import {CommonModule} from "@angular/common";
   ],
   providers: [
     AuthorizeService,
-    AuthorizeGuard
+    AuthorizeGuard,
+    CurrentPageService
   ],
   bootstrap:    [ AppComponent ]
 })

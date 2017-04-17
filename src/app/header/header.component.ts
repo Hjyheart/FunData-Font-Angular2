@@ -2,7 +2,9 @@
  * Created by hongjiayong on 2017/4/11.
  */
 import {Component, OnInit, Input, HostListener} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CommonModule} from "@angular/common";
+import {CurrentPageService} from "../services/CurrentPageService";
 
 @Component({
   moduleId: module.id,
@@ -20,12 +22,17 @@ export class HeaderComponent implements OnInit{
   private navDiv:string = 'none';
 
   constructor(
-    private route: ActivatedRoute
+    private currentPage: CurrentPageService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private common: CommonModule
   ){
   }
 
   ngOnInit(): void {
     this.clearStyle();
+    console.log(this.route.url);
+    console.log(this.router.url);
   }
 
   clearStyle(){

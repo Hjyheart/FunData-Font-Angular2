@@ -14,12 +14,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AuthorizeService_1 = require("../services/AuthorizeService");
 var router_1 = require("@angular/router");
+var CurrentPageService_1 = require("../services/CurrentPageService");
 var LoginComponent = (function () {
-    function LoginComponent(authorizeService, router) {
+    function LoginComponent(authorizeService, router, currentPageService) {
         this.authorizeService = authorizeService;
         this.router = router;
+        this.currentPageService = currentPageService;
     }
     LoginComponent.prototype.ngOnInit = function () {
+        this.currentPageService.currentPage = 'login';
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -37,7 +40,7 @@ var LoginComponent = (function () {
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router, CurrentPageService_1.CurrentPageService])
     ], LoginComponent);
     return LoginComponent;
 }());

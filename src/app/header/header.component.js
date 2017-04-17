@@ -13,13 +13,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
+var CurrentPageService_1 = require("../services/CurrentPageService");
 var HeaderComponent = (function () {
-    function HeaderComponent(route) {
+    function HeaderComponent(currentPage, route, router, common) {
+        this.currentPage = currentPage;
         this.route = route;
+        this.router = router;
+        this.common = common;
         this.navDiv = 'none';
     }
     HeaderComponent.prototype.ngOnInit = function () {
         this.clearStyle();
+        console.log(this.route.url);
+        console.log(this.router.url);
     };
     HeaderComponent.prototype.clearStyle = function () {
         this.datasetStyle = 'nav-item';
@@ -52,7 +59,7 @@ var HeaderComponent = (function () {
             templateUrl: 'header.component.html',
             styleUrls: ['header.component.css', '../main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, router_1.ActivatedRoute, router_1.Router, common_1.CommonModule])
     ], HeaderComponent);
     return HeaderComponent;
 }());
