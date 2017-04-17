@@ -69,7 +69,7 @@ var AuthorizeService = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Rx_1.Observable(function (observer) {
-            _this.http.post(Constants_1.Constants.ServerHost + "/authorize/register", "email=" + email + "&name=" + name + "&pwd=" + pwd, { headers: headers })
+            _this.http.post(Constants_1.Constants.ServerHost + "/authorize/register", "email=" + email + "&name=" + name + "&pwd=" + pwd, { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);

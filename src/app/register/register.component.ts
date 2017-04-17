@@ -41,7 +41,7 @@ export class RegisterComponent{
         this.authorizeService.register(this.email, this.name, this.pwd)
           .subscribe((status: String) => {
               if(status == '200') {
-                  this.router.navigate(['/dashboard'])
+                  this.router.navigate(['/'])
               }
         })
 

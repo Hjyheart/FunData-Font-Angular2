@@ -13,9 +13,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
+var AuthorizeService_1 = require("../services/AuthorizeService");
 var HeaderComponent = (function () {
-    function HeaderComponent(route) {
+    function HeaderComponent(route, authorizeService, router) {
         this.route = route;
+        this.authorizeService = authorizeService;
+        this.router = router;
         this.navDiv = 'none';
     }
     HeaderComponent.prototype.ngOnInit = function () {
@@ -45,6 +48,15 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.showNav = function () {
         this.navDiv = (this.navDiv === 'none') ? 'block' : 'none';
     };
+    HeaderComponent.prototype.logout = function () {
+        var _this = this;
+        this.authorizeService.logout()
+            .subscribe(function (status) {
+            if (status === '200') {
+                _this.router.navigate(['/login']);
+            }
+        });
+    };
     HeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -52,7 +64,7 @@ var HeaderComponent = (function () {
             templateUrl: 'header.component.html',
             styleUrls: ['header.component.css', '../main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, AuthorizeService_1.AuthorizeService, router_1.Router])
     ], HeaderComponent);
     return HeaderComponent;
 }());

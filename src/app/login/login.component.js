@@ -26,7 +26,7 @@ var LoginComponent = (function () {
         this.authorizeService.login(this.email, this.pwd)
             .subscribe(function (status) {
             if (status === '200') {
-                _this.router.navigate(['/dashboard']);
+                _this.router.navigate(['/']);
             }
         });
     };
