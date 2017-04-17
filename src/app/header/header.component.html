@@ -22,8 +22,16 @@
           <li [class]="courseStyle" (click)="focusOn('course')"><a [routerLink]="['/mooc/list']">mooc</a></li>
           <li [class]="shopStyle" (click)="focusOn('shop')"><a [routerLink]="['/shop']">商城</a></li>
           <!--<li class="nav-item"><a class="nav-login-btn" style="padding: 5px">登录</a></li>-->
-          <li class="nav-item last nav-login-icon"><i class="fa fa-user"><a style="color:  #eebf3f">Hong Jiayong</a></i></li>
+          <li class="nav-item last nav-login-icon"><i class="fa fa-user"><a style="color:  #eebf3f" (click) = "showNav()">Hong Jiayong</a></i></li>
         </ul><!--//nav-->
+        <!--profile center div-->
+        <ul class="my-div" [style.display]="navDiv">
+          <li>我的个人资料</li>
+          <li>我的数据集</li>
+          <li>我的数据比赛</li>
+          <li>我的课程</li>
+          <li>登出</li>
+        </ul>
       </div><!--//navabr-collapse-->
     </nav><!--//main-nav-->
   </div>

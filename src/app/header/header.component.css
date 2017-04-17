@@ -1,0 +1,33 @@
+/* 顶栏样式 */
+.nav-login-icon > i > a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.my-div {
+    position: absolute;
+    top: 60px;
+    right: 74px;
+    text-decoration: none;
+    list-style: none;
+    background: white;
+    display: block;
+    border-radius: 4px;
+}
+
+.my-div::before{
+    content: '';
+    position: absolute;
+    top: -25%;
+    left: 10%;
+    border: 25px solid #e5e5e5;
+    border-color: transparent transparent white transparent;
+}
+
+.my-div > li {
+    color: black;
+    padding: 3px;
+    padding-top: 5px;
+    left: -15px;
+    position: relative;
+}

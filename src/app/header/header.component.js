@@ -16,6 +16,7 @@ var router_1 = require("@angular/router");
 var HeaderComponent = (function () {
     function HeaderComponent(route) {
         this.route = route;
+        this.navDiv = 'none';
     }
     HeaderComponent.prototype.ngOnInit = function () {
         this.clearStyle();
@@ -40,6 +41,9 @@ var HeaderComponent = (function () {
         else if (name == 'course') {
             this.courseStyle = 'nav-item active';
         }
+    };
+    HeaderComponent.prototype.showNav = function () {
+        this.navDiv = (this.navDiv === 'none') ? 'block' : 'none';
     };
     HeaderComponent = __decorate([
         core_1.Component({

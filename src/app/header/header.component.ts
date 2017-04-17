@@ -1,7 +1,7 @@
 /**
  * Created by hongjiayong on 2017/4/11.
  */
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, HostListener} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit{
   private competitionStyle:string;
   private shopStyle:string;
   private courseStyle:string;
+  private navDiv:string = 'none';
 
   constructor(
     private route: ActivatedRoute
@@ -45,6 +46,10 @@ export class HeaderComponent implements OnInit{
     }else if(name == 'course'){
       this.courseStyle = 'nav-item active';
     }
+  }
+
+  showNav(){
+    this.navDiv = (this.navDiv === 'none') ? 'block' : 'none';
   }
 
 }

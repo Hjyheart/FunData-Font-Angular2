@@ -40,9 +40,13 @@
     margin-top: 20px;
 }
 
+#format-table {
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+}
+
 #add-attr-button {
-    position: relative;
-    left: 40%;
     width: 60px;
     height: 30px;
     border-radius: 4px;
