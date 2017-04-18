@@ -65,7 +65,7 @@ export class AuthorizeService implements CanActivate {
         let headers:Headers=new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Observable((observer: Observer<String>) => {
-            this.http.post(`${Constants.ServerHost}/authorize/register`, `email=${email}&name=${name}&pwd=${pwd}`, {headers: headers})
+            this.http.post(`${Constants.ServerHost}/authorize/register`, `email=${email}&name=${name}&pwd=${pwd}`, {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
                         observer.next(body.code)

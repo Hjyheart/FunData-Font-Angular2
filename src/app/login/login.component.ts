@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
     this.authorizeService.login(this.email, this.pwd)
         .subscribe((status: String) => {
             if(status === '200') {
-                this.router.navigate(['/dashboard'])
+                this.router.navigate(['/'])
             }
         })
   }
