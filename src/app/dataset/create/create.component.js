@@ -24,9 +24,11 @@ var DatasetCreateComponent = (function () {
         this.keys = new Array();
         this.keyName = '';
         this.keyType = 0;
+        this.loaderClass = 'loader loader-default';
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
         console.log(form.value);
+        this.loaderClass = 'loader loader-default is-active';
     };
     DatasetCreateComponent.prototype.addKey = function () {
         var type;
