@@ -2,6 +2,11 @@
  * Created by huang on 17-3-9.
  */
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -16,8 +21,11 @@ var http_1 = require("@angular/http");
 var Constants_1 = require("../util/Constants");
 var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
 var Rx_1 = require("rxjs/Rx");
-var AuthorizeService = (function () {
+var HttpBaseService_1 = require("./HttpBaseService");
+var AuthorizeService = (function (_super) {
+    __extends(AuthorizeService, _super);
     function AuthorizeService(http) {
+        _super.call(this);
         this.http = http;
     }
     AuthorizeService.prototype.canActivate = function () {
@@ -32,10 +40,8 @@ var AuthorizeService = (function () {
     });
     AuthorizeService.prototype.login = function (email, pwd) {
         var _this = this;
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Rx_1.Observable(function (observer) {
-            _this.http.get(Constants_1.Constants.ServerHost + "/authorize/login?email=" + email + "&pwd=" + pwd, { headers: headers, withCredentials: true })
+            _this.http.get(Constants_1.Constants.ServerHost + "/authorize/login?email=" + email + "&pwd=" + pwd, { headers: _this.headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);
@@ -47,11 +53,9 @@ var AuthorizeService = (function () {
     };
     AuthorizeService.prototype.logout = function () {
         var _this = this;
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        this.headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Rx_1.Observable(function (observer) {
-            _this.http.post(Constants_1.Constants.ServerHost + "/authorize/logout", '', { headers: headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/authorize/logout", '', { headers: _this.headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 if (body.code === '200') {
@@ -66,10 +70,8 @@ var AuthorizeService = (function () {
     };
     AuthorizeService.prototype.register = function (email, name, pwd) {
         var _this = this;
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Rx_1.Observable(function (observer) {
-            _this.http.post(Constants_1.Constants.ServerHost + "/authorize/register", "email=" + email + "&name=" + name + "&pwd=" + pwd, { headers: headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/authorize/register", "email=" + email + "&name=" + name + "&pwd=" + pwd, { headers: _this.headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);
@@ -84,6 +86,6 @@ var AuthorizeService = (function () {
         __metadata('design:paramtypes', [http_1.Http])
     ], AuthorizeService);
     return AuthorizeService;
-}());
+}(HttpBaseService_1.HttpBaseService));
 exports.AuthorizeService = AuthorizeService;
 //# sourceMappingURL=AuthorizeService.js.map
