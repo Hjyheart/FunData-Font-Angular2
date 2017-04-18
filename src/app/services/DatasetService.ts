@@ -19,13 +19,13 @@ export class DatasetService extends HttpBaseService{
     public createDataset(dataset: DataSet) {
         return new Observable((observer: Observer<String>) => {
             JSON.stringify(dataset);
-            this.http.post(`${Constants.ServerHost}/dataset/createDataset`, {headers: this.headers, withCredentials: true})
+            this.http.post(`${Constants.ServerHost}/dataset/createDataset`,`ds_name=${dataset.name}&ds_desc=${dataset.ds_des}&format_desc=${dataset.format_des}&columns=${JSON.stringify(dataset.columns)}` , {headers: this.headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
                         observer.next(body.code)
                     },
                     err => {
-                        console.log('AuthorizeService->login', err);
+                        console.log('DatasetService->createDataset', err);
                         observer.next('-1');
                     });
         })

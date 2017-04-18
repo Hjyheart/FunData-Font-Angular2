@@ -31,12 +31,12 @@ var DatasetService = (function (_super) {
         var _this = this;
         return new Observable_1.Observable(function (observer) {
             JSON.stringify(dataset);
-            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", { headers: _this.headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.ds_des + "&format_desc=" + dataset.format_des + "&columns=" + JSON.stringify(dataset.columns), { headers: _this.headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);
             }, function (err) {
-                console.log('AuthorizeService->login', err);
+                console.log('DatasetService->createDataset', err);
                 observer.next('-1');
             });
         });
