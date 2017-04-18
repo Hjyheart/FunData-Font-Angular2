@@ -3,6 +3,7 @@
  */
 import {Component, OnInit, trigger, state, style, transition, animate, ViewChild, ElementRef} from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {CurrentPageService} from "../../services/CurrentPageService";
 
 @Component({
   moduleId: module.id,
@@ -21,10 +22,12 @@ export class DatasetCreateComponent implements OnInit{
   keys = new Array();
   private keyName:string;
   private keyType:number;
-  private minValue:number;
-  private maxValue:number;
 
   private loaderClass:string;
+
+  constructor(
+    private currentPage: CurrentPageService
+  ){}
 
   ngOnInit(): void {
     this.datasetName = '';
@@ -35,10 +38,13 @@ export class DatasetCreateComponent implements OnInit{
     this.keyName = '';
     this.keyType = 0;
     this.loaderClass = 'loader loader-default';
+
+    this.currentPage.currentPage = 'dataset';
   }
 
   onSubmit(form: NgForm) {
     console.log(form.value);
+    console.log(this.keys);
     this.loaderClass = 'loader loader-default is-active';
   }
 
@@ -57,7 +63,8 @@ export class DatasetCreateComponent implements OnInit{
     }
     this.keys.push({
       'key_name': this.keyName,
-      'key_type': type
+      'key_type': type,
+      'key_limited': []
     });
     this.keyName = '';
     this.keyType = 0;

@@ -13,14 +13,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
+var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetDetailComponent = (function () {
-    function DatasetDetailComponent(route, router) {
+    function DatasetDetailComponent(route, router, currentPage) {
         this.route = route;
         this.router = router;
+        this.currentPage = currentPage;
     }
     DatasetDetailComponent.prototype.ngOnInit = function () {
         this.id = +this.route.snapshot.params['id'];
         console.log(this.id);
+        this.currentPage.currentPage = 'dataset';
     };
     DatasetDetailComponent = __decorate([
         core_1.Component({
@@ -29,7 +32,7 @@ var DatasetDetailComponent = (function () {
             templateUrl: 'detail.component.html',
             styleUrls: ['detail.component.css', '../../main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, CurrentPageService_1.CurrentPageService])
     ], DatasetDetailComponent);
     return DatasetDetailComponent;
 }());

@@ -2,6 +2,7 @@
  * Created by hongjiayong on 2017/3/22.
  */
 import {Component, OnInit, HostListener} from '@angular/core';
+import {CurrentPageService} from "../../services/CurrentPageService";
 
 @Component({
   moduleId: module.id,
@@ -18,8 +19,14 @@ export class DatasetListComponent implements OnInit{
   public totalItems: number = 100;
   public currentPage: number = 1;
 
+  constructor(
+    private currentPageService: CurrentPageService
+  ){}
+
   ngOnInit(): void {
     this.hrWidth = '0px';
+
+    this.currentPageService.currentPage = 'dataset';
   }
 
   public setPage(pageNo: number): void {

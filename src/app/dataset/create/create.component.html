@@ -22,7 +22,7 @@
     <div class="form-group">
       <label for="format-table" class="col-sm-2 control-label">表格属性</label>
       <div class="col-sm-10">
-        <button id="format-table" class="btn-cta-secondary" (click)="createDbTitileModal.show()">添加</button>
+        <button id="format-table" type="button" class="btn-cta-secondary" (click)="createDbTitileModal.show()">添加</button>
         <br>
         <table class="table table-bordered">
           <thead>
@@ -44,17 +44,11 @@
               <tr *ngFor="let key of keys">
                 <th>{{key.key_name}}({{key.key_type}})</th>
                 <th>
-                  <select name="limited" id="limited" class="form-control" #limitTable>
+                  <select name="limited" id="limited" multiple="multiple" class="form-control" [(ngModel)]="key.key_limited">
                     <option [ngValue]="1">平均值</option>
                     <option [ngValue]="2">方差</option>
                     <option [ngValue]="3">标准差</option>
                   </select>
-                </th>
-                <th>
-                  <input type="number" class="form-control" placeholder="最小值" name="minValue" [(ngModel)]="minValue">
-                </th>
-                <th>
-                  <input type="number" class="form-control" placeholder="最大值" name="maxValue" [(ngModel)]="maxValue">
                 </th>
               </tr>
             </tbody>
@@ -97,7 +91,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" type="submit" (click)="addKey(); createDbTitileModal.hide();">确定</button>
-        <button class="btn btn-danger" (click)="createDbTitileModal.hide()">取消</button>
+        <button class="btn btn-danger"  type="button" (click)="createDbTitileModal.hide()">取消</button>
       </div>
     </div>
   </div>

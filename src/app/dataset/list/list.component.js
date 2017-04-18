@@ -12,14 +12,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/3/22.
  */
 var core_1 = require('@angular/core');
+var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetListComponent = (function () {
-    function DatasetListComponent() {
+    function DatasetListComponent(currentPageService) {
+        this.currentPageService = currentPageService;
         // 每页10个
         this.totalItems = 100;
         this.currentPage = 1;
     }
     DatasetListComponent.prototype.ngOnInit = function () {
         this.hrWidth = '0px';
+        this.currentPageService.currentPage = 'dataset';
     };
     DatasetListComponent.prototype.setPage = function (pageNo) {
         this.currentPage = pageNo;
@@ -46,7 +49,7 @@ var DatasetListComponent = (function () {
             templateUrl: 'list.component.html',
             styleUrls: ['list.component.css', '../../main.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService])
     ], DatasetListComponent);
     return DatasetListComponent;
 }());

@@ -17,15 +17,19 @@
       <div class="navbar-collapse collapse" id="navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="active nav-item sr-only"><a [routerLink]="['/introduction']">简介</a></li>
-          <li [class]="competitionStyle" (click)="focusOn('com')"><a [routerLink]="['/com/list']">比赛中心</a></li>
-          <li [class]="datasetStyle" (click)="focusOn('data')"><a [routerLink]="['/dataset/list']">数据集中心</a></li>
-          <li [class]="courseStyle" (click)="focusOn('course')"><a [routerLink]="['/mooc/list']">mooc</a></li>
-          <li [class]="shopStyle" (click)="focusOn('shop')"><a [routerLink]="['/shop']">商城</a></li>
-          <!--<li class="nav-item"><a class="nav-login-btn" style="padding: 5px">登录</a></li>-->
-          <li class="nav-item last nav-login-icon"><i class="fa fa-user"><a style="color:  #eebf3f" (click) = "showNav()">Hong Jiayong</a></i></li>
+          <li *ngIf="currentPage.currentPage === 'com'" class="nav-item active"><a [routerLink]="['/com/list']">比赛中心</a></li>
+          <li *ngIf="currentPage.currentPage !== 'com'" class="nav-item"><a [routerLink]="['/com/list']">比赛中心</a></li>
+          <li *ngIf="currentPage.currentPage === 'dataset'" class="nav-item active"><a [routerLink]="['/dataset/list']">数据集中心</a></li>
+          <li *ngIf="currentPage.currentPage !== 'dataset'" class="nav-item"><a [routerLink]="['/dataset/list']">数据集中心</a></li>
+          <li *ngIf="currentPage.currentPage === 'mooc'" class="nav-item active"><a [routerLink]="['/mooc/list']">mooc</a></li>
+          <li *ngIf="currentPage.currentPage !== 'mooc'" class="nav-item"><a [routerLink]="['/mooc/list']">mooc</a></li>
+          <li *ngIf="currentPage.currentPage === 'shop'" class="nav-item active"><a [routerLink]="['/shop']">商城</a></li>
+          <li *ngIf="currentPage.currentPage !== 'shop'" class="nav-item"><a [routerLink]="['/shop']">商城</a></li>
+          <li *ngIf="!authorizeService.isLogin" class="nav-item"><a class="nav-login-btn" style="padding: 5px" [routerLink]="'/login'">登录</a></li>
+          <li *ngIf="authorizeService.isLogin" class="nav-item last nav-login-icon"><i class="fa fa-user"><a style="color:  #eebf3f" (click) = "showNav()">Hong Jiayong</a></i></li>
         </ul><!--//nav-->
         <!--profile center div-->
-        <ul class="my-div" [style.display]="navDiv">
+        <ul *ngIf="authorizeService.isLogin" class="my-div" [style.display]="navDiv">
           <li>我的个人资料</li>
           <li>我的数据集</li>
           <li>我的数据比赛</li>

@@ -12,8 +12,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/4/12.
  */
 var core_1 = require('@angular/core');
+var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetCreateComponent = (function () {
-    function DatasetCreateComponent() {
+    function DatasetCreateComponent(currentPage) {
+        this.currentPage = currentPage;
         this.keys = new Array();
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
@@ -25,9 +27,11 @@ var DatasetCreateComponent = (function () {
         this.keyName = '';
         this.keyType = 0;
         this.loaderClass = 'loader loader-default';
+        this.currentPage.currentPage = 'dataset';
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
         console.log(form.value);
+        console.log(this.keys);
         this.loaderClass = 'loader loader-default is-active';
     };
     DatasetCreateComponent.prototype.addKey = function () {
@@ -49,7 +53,8 @@ var DatasetCreateComponent = (function () {
         }
         this.keys.push({
             'key_name': this.keyName,
-            'key_type': type
+            'key_type': type,
+            'key_limited': []
         });
         this.keyName = '';
         this.keyType = 0;
@@ -63,7 +68,7 @@ var DatasetCreateComponent = (function () {
             templateUrl: 'create.component.html',
             styleUrls: ['../../main.css', 'create.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService])
     ], DatasetCreateComponent);
     return DatasetCreateComponent;
 }());

@@ -14,42 +14,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var AuthorizeService_1 = require("../services/AuthorizeService");
-var common_1 = require("@angular/common");
 var CurrentPageService_1 = require("../services/CurrentPageService");
 var HeaderComponent = (function () {
-    function HeaderComponent(authorizeService, currentPage, route, router, common) {
+    function HeaderComponent(authorizeService, currentPage, route, router) {
         this.authorizeService = authorizeService;
         this.currentPage = currentPage;
         this.route = route;
         this.router = router;
-        this.common = common;
         this.navDiv = 'none';
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        this.clearStyle();
         console.log(this.route.url);
         console.log(this.router.url);
-    };
-    HeaderComponent.prototype.clearStyle = function () {
-        this.datasetStyle = 'nav-item';
-        this.competitionStyle = 'nav-item';
-        this.shopStyle = 'nav-item';
-        this.courseStyle = 'nav-item';
-    };
-    HeaderComponent.prototype.focusOn = function (name) {
-        this.clearStyle();
-        if (name == 'com') {
-            this.competitionStyle = 'nav-item active';
-        }
-        else if (name == 'data') {
-            this.datasetStyle = 'nav-item active';
-        }
-        else if (name == 'shop') {
-            this.shopStyle = 'nav-item active';
-        }
-        else if (name == 'course') {
-            this.courseStyle = 'nav-item active';
-        }
     };
     HeaderComponent.prototype.showNav = function () {
         this.navDiv = (this.navDiv === 'none') ? 'block' : 'none';
@@ -70,7 +46,7 @@ var HeaderComponent = (function () {
             templateUrl: 'header.component.html',
             styleUrls: ['header.component.css', '../main.css']
         }), 
-        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, CurrentPageService_1.CurrentPageService, router_1.ActivatedRoute, router_1.Router, common_1.CommonModule])
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, CurrentPageService_1.CurrentPageService, router_1.ActivatedRoute, router_1.Router])
     ], HeaderComponent);
     return HeaderComponent;
 }());
