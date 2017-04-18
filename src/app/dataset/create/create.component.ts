@@ -24,6 +24,8 @@ export class DatasetCreateComponent implements OnInit{
   private minValue:number;
   private maxValue:number;
 
+  private loaderClass:string;
+
   ngOnInit(): void {
     this.datasetName = '';
     this.datasetDes = '';
@@ -32,10 +34,12 @@ export class DatasetCreateComponent implements OnInit{
     this.keys = new Array();
     this.keyName = '';
     this.keyType = 0;
+    this.loaderClass = 'loader loader-default';
   }
 
   onSubmit(form: NgForm) {
     console.log(form.value);
+    this.loaderClass = 'loader loader-default is-active';
   }
 
   addKey(){
