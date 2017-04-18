@@ -19,7 +19,6 @@ import {ShopModule} from "./shop/shop.module";
 import {HeaderComponent} from "./header/header.component";
 import {CommonModule} from "@angular/common";
 import {CurrentPageService} from "./services/CurrentPageService";
-import {HeaderModule} from "./header/header.module";
 
 @NgModule({
   imports:      [
