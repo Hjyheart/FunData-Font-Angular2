@@ -4,6 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthorizeService} from "../services/AuthorizeService";
 import {Router} from "@angular/router";
+import {CurrentPageService} from "../services/CurrentPageService";
 
 @Component({
   moduleId: module.id,
@@ -18,10 +19,12 @@ export class LoginComponent implements OnInit{
   public pwd: String;
 
   ngOnInit(): void {
+    this.currentPageService.currentPage = 'login';
   }
 
   constructor(private authorizeService: AuthorizeService,
-              private router: Router){}
+              private router: Router,
+              private currentPageService: CurrentPageService){}
 
   public login() {
     this.authorizeService.login(this.email, this.pwd)

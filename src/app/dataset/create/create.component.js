@@ -14,15 +14,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var DatasetCreateComponent = (function () {
     function DatasetCreateComponent() {
+        this.keys = new Array();
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
         this.datasetName = '';
         this.datasetDes = '';
         this.formatDes = '';
         this.attrFlag = false;
+        this.keys = new Array();
+        this.keyName = '';
+        this.keyType = 0;
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
         console.log(form.value);
+    };
+    DatasetCreateComponent.prototype.addKey = function () {
+        var type;
+        if (this.keyType === 1) {
+            type = 'String';
+        }
+        else if (this.keyType === 2) {
+            type = 'Integer';
+        }
+        else if (this.keyType === 3) {
+            type = 'Double';
+        }
+        else if (this.keyType === 4) {
+            type = 'Char';
+        }
+        else {
+            type = '';
+        }
+        this.keys.push({
+            'key_name': this.keyName,
+            'key_type': type
+        });
+        this.keyName = '';
+        this.keyType = 0;
+        console.log(this.keys);
+        // this.keyModal.nativeElement;
     };
     DatasetCreateComponent = __decorate([
         core_1.Component({

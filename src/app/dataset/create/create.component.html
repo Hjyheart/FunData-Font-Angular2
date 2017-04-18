@@ -21,7 +21,15 @@
     <div class="form-group">
       <label for="format-table" class="col-sm-2 control-label">表格属性</label>
       <div class="col-sm-10">
-        <button id="format-table" class="btn-cta-secondary">添加</button>
+        <button id="format-table" class="btn-cta-secondary" (click)="createDbTitileModal.show()">添加</button>
+        <br>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th *ngFor="let key of keys">{{key.key_name}}({{key.key_type}})</th>
+            </tr>
+          </thead>
+        </table>
       </div>
     </div>
     <div class="form-group">
@@ -29,7 +37,27 @@
       <div class="col-sm-10">
         <input type="checkbox" id="attr-flag" name="attr-flag" [(ngModel)]="attrFlag">
         <div *ngIf="attrFlag">
-          <button type="button" class="btn-cta-secondary" id="add-attr-button" (click)="createLimitedModal.show()">添加</button>
+          <!--<button type="button" class="btn-cta-secondary" id="add-attr-button" (click)="createLimitedModal.show()">添加</button>-->
+          <table class="table table-bordered">
+            <tbody>
+              <tr *ngFor="let key of keys">
+                <th>{{key.key_name}}({{key.key_type}})</th>
+                <th>
+                  <select name="limited" id="limited" class="form-control" #limitTable>
+                    <option [ngValue]="1">平均值</option>
+                    <option [ngValue]="2">方差</option>
+                    <option [ngValue]="3">标准差</option>
+                  </select>
+                </th>
+                <th>
+                  <input type="number" class="form-control" placeholder="最小值" name="minValue" [(ngModel)]="minValue">
+                </th>
+                <th>
+                  <input type="number" class="form-control" placeholder="最大值" name="maxValue" [(ngModel)]="maxValue">
+                </th>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -41,42 +69,71 @@
 </form>
 
 <!--创建数据库表名-->
-<div bsModal #createDbTitileModal="bs-modal" class="modal fade">
-
-</div>
-
-
-<!--创建数据集弹框-->
-<div bsModal #createLimitedModal="bs-modal" class="modal fade" style="top: 20%;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div bsModal #createDbTitileModal="bs-modal" class="modal fade" style="top: 20%" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">创建限制</h4>
+        <h4 class="modal-title pull-left">创建键值对</h4>
         <button type="button" class="close pull-right" (click)="createLimitedModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="limitName">种类</label>
-          <select class="form-control" id="limitName">
-            <option value="1">平均值</option>
-            <option value="2">方差</option>
+          <label for="key-name">键值名</label>
+          <input type="text" class="form-control" id="key-name" [(ngModel)]="keyName">
+        </div>
+        <div class="form-group">
+          <label for="key-type">类型</label>
+          <br>
+          <select name="key-type" id="key-type" [(ngModel)]="keyType" class="form-control">
+            <option [ngValue]="1">String</option>
+            <option [ngValue]="2">Integer</option>
+            <option [ngValue]="3">Double</option>
+            <option [ngValue]="4">Char</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="limitValue-low">最小值</label>
-          <input type="text" class="form-control" id="limitValue-low">
-        </div>
-        <div class="form-group">
-          <label for="limitValue-high">最大值</label>
-          <input type="text" class="form-control" id="limitValue-high">
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" (click)="createLimitedModal.hide()">确定</button>
-        <button class="btn btn-danger" (click)="createLimitedModal.hide()">取消</button>
+        <button class="btn btn-primary" type="submit" (click)="addKey(); createDbTitileModal.hide();">确定</button>
+        <button class="btn btn-danger" (click)="createDbTitileModal.hide()">取消</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<!--创建数据集弹框-->
+<!--<div bsModal #createLimitedModal="bs-modal" class="modal fade" style="top: 20%;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">-->
+  <!--<div class="modal-dialog modal-sm">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<h4 class="modal-title pull-left">创建限制</h4>-->
+        <!--<button type="button" class="close pull-right" (click)="createLimitedModal.hide()" aria-label="Close">-->
+          <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<div class="modal-body">-->
+        <!--<div class="form-group">-->
+          <!--<label for="limitName">种类</label>-->
+          <!--<select class="form-control" id="limitName">-->
+            <!--<option value="1">平均值</option>-->
+            <!--<option value="2">方差</option>-->
+          <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<label for="limitValue-low">最小值</label>-->
+          <!--<input type="text" class="form-control" id="limitValue-low">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<label for="limitValue-high">最大值</label>-->
+          <!--<input type="text" class="form-control" id="limitValue-high">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="modal-footer">-->
+        <!--<button class="btn btn-primary" type="submit" (click)="createLimitedModal.hide()">确定</button>-->
+        <!--<button class="btn btn-danger" (click)="createLimitedModal.hide()">取消</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

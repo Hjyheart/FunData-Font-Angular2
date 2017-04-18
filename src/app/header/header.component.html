@@ -1,4 +1,4 @@
-<header id="header" class="header">
+<header id="header" class="header" *ngIf="currentPage.currentPage != 'login'">
   <div class="container">
     <h1 class="logo pull-left">
       <a [routerLink]="['/introduction']">

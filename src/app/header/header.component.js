@@ -1,3 +1,6 @@
+/**
+ * Created by hongjiayong on 2017/4/11.
+ */
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8,21 +11,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-/**
- * Created by hongjiayong on 2017/4/11.
- */
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var AuthorizeService_1 = require("../services/AuthorizeService");
+var common_1 = require("@angular/common");
+var CurrentPageService_1 = require("../services/CurrentPageService");
 var HeaderComponent = (function () {
-    function HeaderComponent(route, authorizeService, router) {
-        this.route = route;
+    function HeaderComponent(authorizeService, currentPage, route, router, common) {
         this.authorizeService = authorizeService;
+        this.currentPage = currentPage;
+        this.route = route;
         this.router = router;
+        this.common = common;
         this.navDiv = 'none';
     }
     HeaderComponent.prototype.ngOnInit = function () {
         this.clearStyle();
+        console.log(this.route.url);
+        console.log(this.router.url);
     };
     HeaderComponent.prototype.clearStyle = function () {
         this.datasetStyle = 'nav-item';
@@ -64,7 +70,7 @@ var HeaderComponent = (function () {
             templateUrl: 'header.component.html',
             styleUrls: ['header.component.css', '../main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, AuthorizeService_1.AuthorizeService, router_1.Router])
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, CurrentPageService_1.CurrentPageService, router_1.ActivatedRoute, router_1.Router, common_1.CommonModule])
     ], HeaderComponent);
     return HeaderComponent;
 }());

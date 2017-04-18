@@ -37,7 +37,8 @@
 }
 
 #attr-flag {
-    margin-top: 20px;
+    position: relative;
+    margin-top: 13px;
 }
 
 #format-table {
@@ -71,4 +72,18 @@
     height: 40px;
     border-radius: 4px;
     outline: none;
+}
+
+/* 表格 */
+.table {
+    margin-top: 15px;
+    background-color: white;
+}
+
+.table > thead > tr > th {
+    text-align: center;
+}
+
+.table > tbody > tr > th {
+    text-align: center;
 }
