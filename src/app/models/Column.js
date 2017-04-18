@@ -1,7 +1,7 @@
-"use strict";
 /**
  * Created by huang on 17-4-18.
  */
+"use strict";
 var Column = (function () {
     function Column() {
     }
