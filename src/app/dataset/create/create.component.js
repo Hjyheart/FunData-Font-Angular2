@@ -13,9 +13,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
+var DataSet_1 = require("../../models/DataSet");
+var Column_1 = require("../../models/Column");
+var DatasetService_1 = require("../../services/DatasetService");
 var DatasetCreateComponent = (function () {
-    function DatasetCreateComponent(currentPage) {
+    function DatasetCreateComponent(currentPage, datasetService) {
         this.currentPage = currentPage;
+        this.datasetService = datasetService;
         this.keys = new Array();
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
@@ -30,9 +34,24 @@ var DatasetCreateComponent = (function () {
         this.currentPage.currentPage = 'dataset';
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
+        var _this = this;
         console.log(form.value);
         console.log(this.keys);
+        var dataset = new DataSet_1.DataSet();
+        dataset.name = this.datasetName;
+        dataset.ds_des = this.datasetDes;
+        dataset.format_des = this.formatDes;
+        dataset.columns = this.keys;
         this.loaderClass = 'loader loader-default is-active';
+        this.datasetService.createDataset(dataset)
+            .subscribe(function (res) {
+            if (res === '200') {
+                _this.loaderClass = 'loader loader-default';
+            }
+            else if (res === '-1') {
+                _this.loaderClass = 'loader loader-default';
+            }
+        });
     };
     DatasetCreateComponent.prototype.addKey = function () {
         var type;
@@ -51,11 +70,7 @@ var DatasetCreateComponent = (function () {
         else {
             type = '';
         }
-        this.keys.push({
-            'key_name': this.keyName,
-            'key_type': type,
-            'key_limited': []
-        });
+        this.keys.push(new Column_1.Column(this.keyName, type, []));
         this.keyName = '';
         this.keyType = 0;
         console.log(this.keys);
@@ -68,7 +83,7 @@ var DatasetCreateComponent = (function () {
             templateUrl: 'create.component.html',
             styleUrls: ['../../main.css', 'create.component.css']
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService])
     ], DatasetCreateComponent);
     return DatasetCreateComponent;
 }());

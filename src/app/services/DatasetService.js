@@ -21,6 +21,7 @@ var http_1 = require("@angular/http");
 var HttpBaseService_1 = require("./HttpBaseService");
 var Constants_1 = require("../util/Constants");
 var Observable_1 = require("rxjs/Observable");
+var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
 var DatasetService = (function (_super) {
     __extends(DatasetService, _super);
     function DatasetService(http) {
@@ -29,6 +30,9 @@ var DatasetService = (function (_super) {
     }
     DatasetService.prototype.createDataset = function (dataset) {
         var _this = this;
+        if (!this.headers.has('authorization')) {
+            this.headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        }
         return new Observable_1.Observable(function (observer) {
             JSON.stringify(dataset);
             _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.ds_des + "&format_desc=" + dataset.format_des + "&columns=" + JSON.stringify(dataset.columns), { headers: _this.headers, withCredentials: true })

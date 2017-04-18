@@ -4,6 +4,9 @@
 import {Component, OnInit, trigger, state, style, transition, animate, ViewChild, ElementRef} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {CurrentPageService} from "../../services/CurrentPageService";
+import {DataSet} from "../../models/DataSet";
+import {Column} from "../../models/Column";
+import {DatasetService} from "../../services/DatasetService";
 
 @Component({
   moduleId: module.id,
@@ -26,7 +29,8 @@ export class DatasetCreateComponent implements OnInit{
   private loaderClass:string;
 
   constructor(
-    private currentPage: CurrentPageService
+    private currentPage: CurrentPageService,
+    private datasetService: DatasetService
   ){}
 
   ngOnInit(): void {
@@ -45,7 +49,26 @@ export class DatasetCreateComponent implements OnInit{
   onSubmit(form: NgForm) {
     console.log(form.value);
     console.log(this.keys);
+
+    let dataset = new DataSet();
+    dataset.name = this.datasetName;
+    dataset.ds_des = this.datasetDes;
+    dataset.format_des = this.formatDes;
+    dataset.columns = this.keys;
+
     this.loaderClass = 'loader loader-default is-active';
+
+    this.datasetService.createDataset(dataset)
+      .subscribe(
+        res => {
+          if (res === '200'){
+            this.loaderClass = 'loader loader-default';
+          }else if(res === '-1'){
+            this.loaderClass = 'loader loader-default';
+          }
+        }
+      );
+
   }
 
   addKey(){
@@ -61,11 +84,7 @@ export class DatasetCreateComponent implements OnInit{
     }else{
       type = '';
     }
-    this.keys.push({
-      'key_name': this.keyName,
-      'key_type': type,
-      'key_limited': []
-    });
+    this.keys.push(new Column(this.keyName, type, []));
     this.keyName = '';
     this.keyType = 0;
     console.log(this.keys);

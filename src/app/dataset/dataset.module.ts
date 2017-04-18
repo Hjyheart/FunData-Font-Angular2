@@ -12,6 +12,7 @@ import {PaginationModule, ModalModule} from "ng2-bootstrap";
 import {HeaderComponent} from "../header/header.component";
 import {DatasetCreateComponent} from "./create/create.component";
 import {CommonModule} from "@angular/common";
+import {DatasetService} from "../services/DatasetService";
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import {CommonModule} from "@angular/common";
     DatasetCreateComponent
   ],
   providers: [
-
+    DatasetService
   ]
 })
 

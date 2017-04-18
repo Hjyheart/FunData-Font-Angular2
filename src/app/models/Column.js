@@ -3,7 +3,10 @@
  */
 "use strict";
 var Column = (function () {
-    function Column() {
+    function Column(name, type, limits) {
+        this.name = name;
+        this.type = type;
+        this.limits = limits;
     }
     return Column;
 }());
