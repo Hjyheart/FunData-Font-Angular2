@@ -3,10 +3,11 @@ import {Column} from "./Column";
  * Created by huang on 17-4-18.
  */
 
-export class DataSet {
+export class Dataset {
     public name: String;
-    public ds_des: String;
-    public format_des: String;
+    public dsDescription: String;
+    public formatDescription: String;
+    public createTime: String;
     public columns: Column[];
 
 }

@@ -4,7 +4,7 @@
     <form class="form-login" action="index.html">
       <h2 class="form-login-heading">注册</h2>
       <div class="login-wrap">
-        <input name="name" type="text" class="form-control" [(ngModel)]="name" (focus)="nameEmpty = false" placeholder="用户名" autofocus>
+        <input name="name" type="text" class="form-control" [(ngModel)]="colName" (focus)="nameEmpty = false" placeholder="用户名" autofocus>
         <span *ngIf="nameEmpty">用户名不能为空</span>
         <br>
         <input name="email" type="email" class="form-control" [(ngModel)]="email" (focus)="emailEmpty = false" placeholder="邮箱" autofocus>

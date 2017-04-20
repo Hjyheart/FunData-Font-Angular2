@@ -1,1 +1,0 @@
-{"version":3,"file":"HttpBaseService.js","sourceRoot":"","sources":["HttpBaseService.ts"],"names":[],"mappings":"AAAA;;GAEG;;AAEH,qBAAsB,eAAe,CAAC,CAAA;AACtC;IAEI;QADU,YAAO,GAAW,IAAI,cAAO,EAAE,CAAC;QAEtC,IAAI,CAAC,OAAO,CAAC,MAAM,CAAC,cAAc,EAAE,mCAAmC,CAAC,CAAC;IAC7E,CAAC;IAEL,sBAAC;AAAD,CAAC,AAND,IAMC;AANY,uBAAe,kBAM3B,CAAA"}

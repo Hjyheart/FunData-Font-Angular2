@@ -1,9 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,27 +13,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var HttpBaseService_1 = require("./HttpBaseService");
 var Constants_1 = require("../util/Constants");
 var Observable_1 = require("rxjs/Observable");
 var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
-var DatasetService = (function (_super) {
-    __extends(DatasetService, _super);
+var DatasetService = (function () {
     function DatasetService(http) {
-        _super.call(this);
         this.http = http;
     }
     DatasetService.prototype.createDataset = function (dataset) {
         var _this = this;
-        if (!this.headers.has('authorization')) {
-            this.headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
-        }
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             JSON.stringify(dataset);
-            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.ds_des + "&format_desc=" + dataset.format_des + "&columns=" + JSON.stringify(dataset.columns), { headers: _this.headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.dsDescription + "&format_desc=" + dataset.formatDescription + "&columns=" + JSON.stringify(dataset.columns), { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);
+            }, function (err) {
+                console.log('DatasetService->createDataset', err);
+                observer.next('-1');
+            });
+        });
+    };
+    DatasetService.prototype.getUserDataset = function (curPage) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.get(Constants_1.Constants.ServerHost + "/dataset/getMyDataset?curPage=" + curPage, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body);
             }, function (err) {
                 console.log('DatasetService->createDataset', err);
                 observer.next('-1');
@@ -50,6 +58,6 @@ var DatasetService = (function (_super) {
         __metadata('design:paramtypes', [http_1.Http])
     ], DatasetService);
     return DatasetService;
-}(HttpBaseService_1.HttpBaseService));
+}());
 exports.DatasetService = DatasetService;
 //# sourceMappingURL=DatasetService.js.map

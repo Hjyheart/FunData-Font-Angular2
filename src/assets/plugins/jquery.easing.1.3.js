@@ -189,7 +189,7 @@ jQuery.extend( jQuery.easing,
  * of conditions and the following disclaimer in the documentation and/or other materials 
  * provided with the distribution.
  * 
- * Neither the name of the author nor the names of contributors may be used to endorse 
+ * Neither the colName of the author nor the names of contributors may be used to endorse
  * or promote products derived from this software without specific prior written permission.
  * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 

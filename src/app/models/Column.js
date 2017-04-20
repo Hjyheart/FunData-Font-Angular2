@@ -4,8 +4,8 @@
 "use strict";
 var Column = (function () {
     function Column(name, type, limits) {
-        this.name = name;
-        this.type = type;
+        this.colName = name;
+        this.colType = type;
         this.limits = limits;
     }
     return Column;

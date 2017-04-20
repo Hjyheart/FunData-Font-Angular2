@@ -4,15 +4,14 @@
 
 
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {Constants} from "../util/Constants";
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {Observable, Observer} from "rxjs/Rx";
 import {CanActivate} from "@angular/router";
-import {HttpBaseService} from "./HttpBaseService";
 
 @Injectable()
-export class AuthorizeService extends HttpBaseService implements CanActivate {
+export class AuthorizeService implements CanActivate {
 
     canActivate() {
         return this.isLogin
@@ -23,12 +22,13 @@ export class AuthorizeService extends HttpBaseService implements CanActivate {
     }
 
     constructor(private http: Http,) {
-        super();
     }
 
     public login(email: String, pwd: String) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Observable((observer: Observer<String>) => {
-            this.http.get(`${Constants.ServerHost}/authorize/login?email=${email}&pwd=${pwd}`, {headers: this.headers, withCredentials: true})
+            this.http.get(`${Constants.ServerHost}/authorize/login?email=${email}&pwd=${pwd}`, {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
                     observer.next(body.code)
@@ -41,9 +41,11 @@ export class AuthorizeService extends HttpBaseService implements CanActivate {
     }
 
     public logout() {
-        this.headers.append('authorization', Cookie.get('authorization'));
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
-            this.http.post(`${Constants.ServerHost}/authorize/logout`,'', {headers: this.headers, withCredentials: true})
+            this.http.post(`${Constants.ServerHost}/authorize/logout`,'', {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
                     if(body.code === '200') {
@@ -60,8 +62,10 @@ export class AuthorizeService extends HttpBaseService implements CanActivate {
     }
 
     public register(email: String, name: String, pwd: String) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Observable((observer: Observer<String>) => {
-            this.http.post(`${Constants.ServerHost}/authorize/register`, `email=${email}&name=${name}&pwd=${pwd}`, {headers: this.headers, withCredentials: true})
+            this.http.post(`${Constants.ServerHost}/authorize/register`, `email=${email}&name=${name}&pwd=${pwd}`, {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
                         observer.next(body.code)
