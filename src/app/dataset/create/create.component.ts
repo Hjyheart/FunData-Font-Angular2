@@ -4,7 +4,7 @@
 import {Component, OnInit, trigger, state, style, transition, animate, ViewChild, ElementRef} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {CurrentPageService} from "../../services/CurrentPageService";
-import {DataSet} from "../../models/DataSet";
+import {Dataset} from "../../models/Dataset";
 import {Column} from "../../models/Column";
 import {DatasetService} from "../../services/DatasetService";
 
@@ -50,10 +50,10 @@ export class DatasetCreateComponent implements OnInit{
     console.log(form.value);
     console.log(this.keys);
 
-    let dataset = new DataSet();
+    let dataset = new Dataset();
     dataset.name = this.datasetName;
-    dataset.ds_des = this.datasetDes;
-    dataset.format_des = this.formatDes;
+    dataset.dsDescription = this.datasetDes;
+    dataset.formatDescription = this.formatDes;
     dataset.columns = this.keys;
 
     this.loaderClass = 'loader loader-default is-active';

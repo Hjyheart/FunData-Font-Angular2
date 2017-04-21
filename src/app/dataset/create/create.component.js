@@ -13,7 +13,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
-var DataSet_1 = require("../../models/DataSet");
+var Dataset_1 = require("../../models/Dataset");
 var Column_1 = require("../../models/Column");
 var DatasetService_1 = require("../../services/DatasetService");
 var DatasetCreateComponent = (function () {
@@ -37,10 +37,10 @@ var DatasetCreateComponent = (function () {
         var _this = this;
         console.log(form.value);
         console.log(this.keys);
-        var dataset = new DataSet_1.DataSet();
+        var dataset = new Dataset_1.Dataset();
         dataset.name = this.datasetName;
-        dataset.ds_des = this.datasetDes;
-        dataset.format_des = this.formatDes;
+        dataset.dsDescription = this.datasetDes;
+        dataset.formatDescription = this.formatDes;
         dataset.columns = this.keys;
         this.loaderClass = 'loader loader-default is-active';
         this.datasetService.createDataset(dataset)

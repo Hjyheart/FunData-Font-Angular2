@@ -3,8 +3,8 @@
  */
 
 export class Column {
-    public name: String;
-    public type: String;
+    public colName: String;
+    public colType: String;
     public limits: number[];
 
     constructor(
@@ -12,8 +12,8 @@ export class Column {
       type: string,
       limits: number[]
     ){
-        this.name = name;
-        this.type = type;
+        this.colName = name;
+        this.colType = type;
         this.limits = limits;
     }
 }

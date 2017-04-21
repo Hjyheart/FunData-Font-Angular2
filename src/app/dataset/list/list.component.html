@@ -10,14 +10,15 @@
       <h2 class="title text-center">数据集</h2>
       <hr [style.width]="hrWidth"/>
 
-      <div>
+      <div *ngFor="let dataset of datasets">
         <div class="dataset-list-item">
           <div class="dataset-list-item-intro">
-            <div class="dataset-list-img"><img src="../../../assets/img/ui-sherman.jpg"></div>
+            <div class="dataset-list-img"><img src="{{dataset.ownerUrl}}"></div>
             <div>
-              <h3><a [routerLink]="['/dataset/detail/1']">Title</a></h3>
-              <p>desc</p>
-              <p><a>hjyheart</a>&nbsp;<time>2017.3.25</time></p>
+              <h3><a [routerLink]="['/dataset/detail/1']">{{dataset.name}}</a></h3>
+              <p>数据集描述：{{dataset.dsDescription}}</p>
+              <p>格式描述：{{dataset.dsDescription}}</p>
+              <p><a>{{dataset.ownerName}}</a>&nbsp;<time>{{dataset.createTime}}</time></p>
             </div>
           </div>
           <div class="dataset-list-item-right">
@@ -26,24 +27,6 @@
           </div>
         </div>
       </div>
-
-      <div>
-        <div class="dataset-list-item">
-          <div class="dataset-list-item-intro">
-            <div class="dataset-list-img"><img src="../../../assets/img/ui-sherman.jpg"></div>
-            <div>
-              <h3><a [routerLink]="['/dataset/detail/2']">Title</a></h3>
-              <p>desc</p>
-              <p><a>hjyheart</a>&nbsp;<time>2017.3.25</time></p>
-            </div>
-          </div>
-          <div class="dataset-list-item-right">
-            <p>1289 贡献者</p>
-            <p>下载所需金币</p>
-          </div>
-        </div>
-      </div>
-
       <!--换页栏-->
       <div class="page-change">
         <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"

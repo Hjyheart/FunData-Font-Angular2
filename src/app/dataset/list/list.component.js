@@ -13,23 +13,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
+var DatasetService_1 = require("../../services/DatasetService");
 var DatasetListComponent = (function () {
-    function DatasetListComponent(currentPageService) {
+    function DatasetListComponent(currentPageService, datasetService) {
         this.currentPageService = currentPageService;
+        this.datasetService = datasetService;
         // 每页10个
-        this.totalItems = 100;
-        this.currentPage = 1;
+        this.totalItems = 0;
+        this.currentPage = 0;
+        this.datasets = null;
     }
     DatasetListComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.hrWidth = '0px';
         this.currentPageService.currentPage = 'dataset';
+        this.datasetService.getUserDataset(0)
+            .subscribe(function (res) {
+            _this.datasets = res.datasets;
+            _this.totalItems = res.total;
+        });
     };
-    DatasetListComponent.prototype.setPage = function (pageNo) {
-        this.currentPage = pageNo;
+    DatasetListComponent.prototype.setPage = function (curPage) {
+        this.currentPage = curPage;
     };
     DatasetListComponent.prototype.pageChanged = function (event) {
+        var _this = this;
         console.log('Page changed to: ' + event.page);
         console.log('Number items per page: ' + event.itemsPerPage);
+        this.datasetService.getUserDataset(event.page - 1)
+            .subscribe(function (res) {
+            _this.datasets = res.datasets;
+            _this.currentPage = event.page;
+        });
     };
     DatasetListComponent.prototype.transition = function () {
         if (scrollY > 400) {
@@ -49,7 +64,7 @@ var DatasetListComponent = (function () {
             templateUrl: 'list.component.html',
             styleUrls: ['list.component.css', '../../main.css']
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService])
     ], DatasetListComponent);
     return DatasetListComponent;
 }());

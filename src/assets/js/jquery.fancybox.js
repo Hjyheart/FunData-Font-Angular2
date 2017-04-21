@@ -139,14 +139,14 @@
 			tpl: {
 				wrap     : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
 				image    : '<img class="fancybox-image" src="{href}" alt="" />',
-				iframe   : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
+				iframe   : '<iframe id="fancybox-frame{rnd}" colName="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
 				error    : '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please try again later.</p>',
 				closeBtn : '<a title="Close" class="fancybox-item fancybox-close" href="javascript:;"></a>',
 				next     : '<a title="Next" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
 				prev     : '<a title="Previous" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>'
 			},
 
-			// Properties for each animation type
+			// Properties for each animation colType
 			// Opening fancyBox
 			openEffect  : 'fade', // 'elastic', 'fade' or 'none'
 			openSpeed   : 250,
@@ -241,7 +241,7 @@
 				group = isQuery(group) ? $(group).get() : [group];
 			}
 
-			// Recheck if the type of each element is `object` and set content type (image, ajax, etc)
+			// Recheck if the colType of each element is `object` and set content colType (image, ajax, etc)
 			$.each(group, function(i, element) {
 				var obj = {},
 					href,
@@ -282,7 +282,7 @@
 				type    = content ? 'html' : (opts.type  || obj.type);
 
 				if (!type && obj.isDom) {
-					type = element.data('fancybox-type');
+					type = element.data('fancybox-colType');
 
 					if (!type) {
 						rez  = element.prop('class').match(/fancybox\.(\w+)/);
@@ -291,7 +291,7 @@
 				}
 
 				if (isString(href)) {
-					// Try to guess the content type
+					// Try to guess the content colType
 					if (!type) {
 						if (F.isImage(href)) {
 							type = 'image';
@@ -523,7 +523,7 @@
 			}
 		},
 
-		// Center inside viewport and toggle position type to fixed or absolute if needed
+		// Center inside viewport and toggle position colType to fixed or absolute if needed
 		reposition: function (e, onlyAbsolute) {
 			var current = F.current,
 				wrap    = current ? current.wrap : null,
@@ -841,7 +841,7 @@
 			coming.group  = F.group;
 			coming.index  = index;
 
-			// Give a chance for callback or helpers to update coming item (type, title, etc)
+			// Give a chance for callback or helpers to update coming item (colType, title, etc)
 			F.coming = coming;
 
 			if (false === F.trigger('beforeLoad')) {
@@ -856,7 +856,7 @@
 			if (!type) {
 				F.coming = null;
 
-				//If we can not determine content type then drop silently or display next/prev item if looping through gallery
+				//If we can not determine content colType then drop silently or display next/prev item if looping through gallery
 				if (F.current && F.router && F.router !== 'jumpto') {
 					F.current.index = index;
 
@@ -882,7 +882,7 @@
 			}
 
 			// Build the neccessary markup
-			coming.wrap = $(coming.tpl.wrap).addClass('fancybox-' + (isTouch ? 'mobile' : 'desktop') + ' fancybox-type-' + type + ' fancybox-tmp ' + coming.wrapCSS).appendTo( coming.parent || 'body' );
+			coming.wrap = $(coming.tpl.wrap).addClass('fancybox-' + (isTouch ? 'mobile' : 'desktop') + ' fancybox-colType-' + type + ' fancybox-tmp ' + coming.wrapCSS).appendTo( coming.parent || 'body' );
 
 			$.extend(coming, {
 				skin  : $('.fancybox-skin',  coming.wrap),
@@ -1121,15 +1121,15 @@
 				break;
 
 				case 'swf':
-					content = '<object id="fancybox-swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%"><param name="movie" value="' + href + '"></param>';
+					content = '<object id="fancybox-swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%"><param colName="movie" value="' + href + '"></param>';
 					embed   = '';
 
 					$.each(current.swf, function(name, val) {
-						content += '<param name="' + name + '" value="' + val + '"></param>';
+						content += '<param colName="' + name + '" value="' + val + '"></param>';
 						embed   += ' ' + name + '="' + val + '"';
 					});
 
-					content += '<embed src="' + href + '" type="application/x-shockwave-flash" width="100%" height="100%"' + embed + '></embed></object>';
+					content += '<embed src="' + href + '" colType="application/x-shockwave-flash" width="100%" height="100%"' + embed + '></embed></object>';
 				break;
 			}
 
@@ -2014,7 +2014,7 @@
 
 		H.removeClass('fancybox-lock-test');
 
-		$("<style type='text/css'>.fancybox-margin{margin-right:" + (w2 - w1) + "px;}</style>").appendTo("head");
+		$("<style colType='text/css'>.fancybox-margin{margin-right:" + (w2 - w1) + "px;}</style>").appendTo("head");
 	});
 
 }(window, document, jQuery));
