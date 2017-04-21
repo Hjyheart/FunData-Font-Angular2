@@ -40,7 +40,7 @@ var DatasetListComponent = (function () {
         var _this = this;
         console.log('Page changed to: ' + event.page);
         console.log('Number items per page: ' + event.itemsPerPage);
-        this.datasetService.getUserDataset(event.page)
+        this.datasetService.getUserDataset(event.page - 1)
             .subscribe(function (res) {
             _this.datasets = res.datasets;
             _this.currentPage = event.page;

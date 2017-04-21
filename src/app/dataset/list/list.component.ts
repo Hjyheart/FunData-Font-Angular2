@@ -44,7 +44,7 @@ export class DatasetListComponent implements OnInit{
   public pageChanged(event: any): void {
     console.log('Page changed to: ' + event.page);
     console.log('Number items per page: ' + event.itemsPerPage);
-    this.datasetService.getUserDataset(event.page)
+    this.datasetService.getUserDataset(event.page-1)
         .subscribe((res: any) => {
           this.datasets = res.datasets;
           this.currentPage = event.page;

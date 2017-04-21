@@ -13,12 +13,12 @@
       <div *ngFor="let dataset of datasets">
         <div class="dataset-list-item">
           <div class="dataset-list-item-intro">
-            <div class="dataset-list-img"><img src="../../../assets/img/ui-sherman.jpg"></div>
+            <div class="dataset-list-img"><img src="{{dataset.ownerUrl}}"></div>
             <div>
               <h3><a [routerLink]="['/dataset/detail/1']">{{dataset.name}}</a></h3>
               <p>数据集描述：{{dataset.dsDescription}}</p>
               <p>格式描述：{{dataset.dsDescription}}</p>
-              <p><a>hjyheart</a>&nbsp;<time>{{dataset.createTime}}</time></p>
+              <p><a>{{dataset.ownerName}}</a>&nbsp;<time>{{dataset.createTime}}</time></p>
             </div>
           </div>
           <div class="dataset-list-item-right">
