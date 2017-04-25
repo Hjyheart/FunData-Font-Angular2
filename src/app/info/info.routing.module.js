@@ -14,7 +14,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var info_component_1 = require("./info.component");
-var info_overview_component_1 = require("./overview/info.overview.component");
 var info_datasets_component_1 = require("./datasets/info.datasets.component");
 var info_courses_component_1 = require("./courses/info.courses.component");
 var info_com_component_1 = require("./competitions/info.com.component");
@@ -23,10 +22,6 @@ var routes = [
         path: 'myinfo',
         component: info_component_1.InfoComponent,
         children: [
-            {
-                path: 'overview',
-                component: info_overview_component_1.InfoOverviewComponent
-            },
             {
                 path: 'datasets',
                 component: info_datasets_component_1.InfoDatasetsComponent

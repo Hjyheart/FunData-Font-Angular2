@@ -12,8 +12,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by hongjiayong on 2017/4/25.
  */
 var core_1 = require('@angular/core');
+var CurrentPageService_1 = require("../services/CurrentPageService");
 var InfoComponent = (function () {
-    function InfoComponent() {
+    function InfoComponent(currentPageService) {
+        this.currentPageService = currentPageService;
     }
     InfoComponent.prototype.ngOnInit = function () {
     };
@@ -23,7 +25,7 @@ var InfoComponent = (function () {
             templateUrl: 'info.component.html',
             styleUrls: ['../main.css', 'info.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService])
     ], InfoComponent);
     return InfoComponent;
 }());

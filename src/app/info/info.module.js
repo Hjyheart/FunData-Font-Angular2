@@ -19,7 +19,6 @@ var info_component_1 = require("./info.component");
 var info_datasets_component_1 = require("./datasets/info.datasets.component");
 var info_com_component_1 = require("./competitions/info.com.component");
 var info_courses_component_1 = require("./courses/info.courses.component");
-var info_overview_component_1 = require("./overview/info.overview.component");
 var info_routing_module_1 = require("./info.routing.module");
 var InfoModule = (function () {
     function InfoModule() {
@@ -36,8 +35,7 @@ var InfoModule = (function () {
                 info_component_1.InfoComponent,
                 info_datasets_component_1.InfoDatasetsComponent,
                 info_com_component_1.InfoComComponent,
-                info_courses_component_1.InfoCoursesComponent,
-                info_overview_component_1.InfoOverviewComponent
+                info_courses_component_1.InfoCoursesComponent
             ],
             providers: []
         }), 

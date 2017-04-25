@@ -1,1 +1,36 @@
-<router-outlet></router-outlet>
+<div class="profile-container">
+  <div class="left-content">
+    <div class="user-profile">
+      <div class="profile-detail">
+        <img src="../../../assets/img/friends/fr-01.jpg" alt="头像">
+        <div>
+          <h2>姓名</h2>
+          <h5>123456@qq.com</h5>
+          <i class="fa fa-edit"></i>
+        </div>
+      </div>
+      <ul>
+        <li *ngIf="currentPageService.currentPage == 'infoCom'" class="active"><a [routerLink]="['./competitions']">我的竞赛</a></li>
+        <li *ngIf="currentPageService.currentPage != 'infoCom'"><a [routerLink]="['./competitions']">我的竞赛</a></li>
+        <li *ngIf="currentPageService.currentPage == 'infoDatasets'" class="active"><a [routerLink]="['./datasets']">我的数据集</a></li>
+        <li *ngIf="currentPageService.currentPage != 'infoDatasets'"><a [routerLink]="['./datasets']">我的数据集</a></li>
+
+        <li *ngIf="currentPageService.currentPage == 'infoCourses'" class="active"><a [routerLink]="['./courses']">我的课程</a></li>
+        <li *ngIf="currentPageService.currentPage != 'infoCourses'"><a [routerLink]="['./courses']">我的课程</a></li>
+      </ul>
+    </div>
+    <div class="tab-page">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="right-content">b</div>
+</div>
+
+<!-- ******FOOTER****** -->
+<footer class="footer">
+  <div class="container text-center">
+    <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+    <small class="copyright">Designed with <i class="fa fa-heart"></i> by 吴凯、洪嘉勇、黄宗润
+    </small>
+  </div><!--//container-->
+</footer><!--//footer-->

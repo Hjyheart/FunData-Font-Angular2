@@ -9,7 +9,6 @@ import {InfoComponent} from "./info.component";
 import {InfoDatasetsComponent} from "./datasets/info.datasets.component";
 import {InfoComComponent} from "./competitions/info.com.component";
 import {InfoCoursesComponent} from "./courses/info.courses.component";
-import {InfoOverviewComponent} from "./overview/info.overview.component";
 import {InfoRoutingModule} from "./info.routing.module";
 
 @NgModule({
@@ -23,8 +22,7 @@ import {InfoRoutingModule} from "./info.routing.module";
     InfoComponent,
     InfoDatasetsComponent,
     InfoComComponent,
-    InfoCoursesComponent,
-    InfoOverviewComponent
+    InfoCoursesComponent
   ],
   providers: [
 

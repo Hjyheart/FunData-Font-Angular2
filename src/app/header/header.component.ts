@@ -8,6 +8,7 @@ import {AuthorizeService} from "../services/AuthorizeService";
 import {CommonModule} from "@angular/common";
 import {CurrentPageService} from "../services/CurrentPageService";
 
+declare var $: any;
 
 @Component({
   moduleId: module.id,
@@ -35,7 +36,11 @@ export class HeaderComponent implements OnInit{
   }
 
   showNav(){
-    this.navDiv = (this.navDiv === 'none') ? 'block' : 'none';
+    $('.dropdown-menu').css('display', 'block');
+  }
+
+  hideNav(){
+    $('.dropdown-menu').css('display', 'none');
   }
 
   public logout() {

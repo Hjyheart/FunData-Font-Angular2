@@ -28,7 +28,10 @@ var HeaderComponent = (function () {
         console.log(this.router.url);
     };
     HeaderComponent.prototype.showNav = function () {
-        this.navDiv = (this.navDiv === 'none') ? 'block' : 'none';
+        $('.dropdown-menu').css('display', 'block');
+    };
+    HeaderComponent.prototype.hideNav = function () {
+        $('.dropdown-menu').css('display', 'none');
     };
     HeaderComponent.prototype.logout = function () {
         var _this = this;
