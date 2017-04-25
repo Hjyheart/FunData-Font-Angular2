@@ -20,12 +20,17 @@ var router_1 = require("@angular/router");
 var UploadService_1 = require("../../services/UploadService");
 var DatasetCreateComponent = (function () {
     function DatasetCreateComponent(currentPage, datasetService, uploadService, router) {
+        var _this = this;
         this.currentPage = currentPage;
         this.datasetService = datasetService;
         this.uploadService = uploadService;
         this.router = router;
         this.keys = new Array();
         this.uploader = null;
+        this.uploadService.upload(1, 1)
+            .subscribe(function (uploader) {
+            _this.uploader = uploader;
+        });
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
         this.datasetName = '';
@@ -40,11 +45,6 @@ var DatasetCreateComponent = (function () {
         this.currentPage.currentPage = 'dataset';
     };
     DatasetCreateComponent.prototype.uploadCover = function () {
-        var _this = this;
-        this.uploadService.upload(1, 1)
-            .subscribe(function (uploader) {
-            _this.uploader = uploader;
-        });
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
         var _this = this;

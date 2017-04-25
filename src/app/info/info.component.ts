@@ -17,4 +17,8 @@ export class InfoComponent implements OnInit{
   constructor(
     private currentPageService: CurrentPageService
   ){}
+
+  public edit() {
+
+  }
 }

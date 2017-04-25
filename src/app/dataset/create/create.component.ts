@@ -33,13 +33,18 @@ export class DatasetCreateComponent implements OnInit{
 
   private loaderClass:string;
   private loaderText:string;
-    private uploader = null;
+    private uploader:any = null;
   constructor(
     private currentPage: CurrentPageService,
     private datasetService: DatasetService,
     private uploadService: UploadService,
     private router: Router
-  ){}
+  ){
+    this.uploadService.upload(1, 1)
+        .subscribe((uploader) => {
+          this.uploader = uploader;
+        });
+  }
 
   ngOnInit(): void {
     this.datasetName = '';
@@ -57,10 +62,7 @@ export class DatasetCreateComponent implements OnInit{
 
   public uploadCover() {
 
-      this.uploadService.upload(1, 1)
-          .subscribe((uploader) => {
-          this.uploader = uploader;
-          });
+
   }
 
   onSubmit(form: NgForm) {

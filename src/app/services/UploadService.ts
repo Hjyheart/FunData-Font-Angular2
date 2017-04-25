@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {Constants} from "../util/Constants";
 import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
@@ -25,7 +25,7 @@ export class UploadService {
                     let loader = {
                         runtimes: 'html5,flash,html4',      // 上传模式，依次退化
                         browse_button: 'upload',         // 上传选择的点选按钮，必需
-                        uptoken: res["uptoken"],
+                        uptoken_url: `${Constants.Urls['getToken']}`,
                         get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的uptoken
                         domain: 'ooyqe04dh.bkt.clouddn.com',     // bucket域名，下载资源时用到，必需
                         container: 'upload-form',             // 上传区域DOM ID，默认是browser_button的父元素
@@ -37,31 +37,31 @@ export class UploadService {
                         auto_start: true,
 
                         init: {
-                            'FilesAdded': function (up, files) {
-                                plupload.each(files, function (file) {
+                            'FilesAdded': function (up: any, files: any) {
+                                plupload.each(files, function (file: any) {
                                     console.log(file);
                                 });
                             },
-                            'BeforeUpload': function (up, file) {
+                            'BeforeUpload': function (up: any, file: any) {
                                 // 每个文件上传前，处理相关的事情
                             },
-                            'UploadProgress': function (up, file) {
+                            'UploadProgress': function (up: any, file: any) {
                                 // 每个文件上传时，处理相关的事情
                             },
-                            'FileUploaded': function (up, file, info) {
+                            'FileUploaded': function (up: any, file: any, info: any) {
                                 let domain = up.getOption('domain');
                                 let data = info.json();
                                 let sourceLink = domain +"/"+ data.key;
                                 console.log(sourceLink);
                             },
-                            'Error': function (up, err, errTip) {
+                            'Error': function (up: any, err: any, errTip: any) {
                                 console.log(err)
                                 //上传出错时，处理相关的事情
                             },
                             'UploadComplete': function () {
                                 //队列文件处理完毕后，处理相关的事情
                             },
-                            'Key': function (up, file) {
+                            'Key': function (up: any, file: any) {
                                 let key = '';
                                 $.ajax({
                                     url: `${Constants.Urls['getKey']}`,
@@ -70,7 +70,7 @@ export class UploadService {
                                     data: {
                                         name: file.name
                                     },
-                                    success: function (data) {
+                                    success: function (data: any) {
                                         key = data.name;
                                     },
                                     cache: false

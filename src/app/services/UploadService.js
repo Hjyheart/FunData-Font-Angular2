@@ -18,7 +18,7 @@ var UploadService = (function () {
     }
     UploadService.prototype.upload = function (type, sub_type) {
         var _this = this;
-        var headers = new Headers();
+        var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Observable_1.Observable(function (observer) {
             _this.http.post("" + Constants_1.Constants.Urls['getToken'], '', { headers: headers, withCredentials: true })
@@ -27,7 +27,7 @@ var UploadService = (function () {
                 var loader = {
                     runtimes: 'html5,flash,html4',
                     browse_button: 'upload',
-                    uptoken: res["uptoken"],
+                    uptoken_url: "" + Constants_1.Constants.Urls['getToken'],
                     get_new_uptoken: false,
                     domain: 'ooyqe04dh.bkt.clouddn.com',
                     container: 'upload-form',
