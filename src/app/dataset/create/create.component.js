@@ -17,12 +17,15 @@ var Dataset_1 = require("../../models/Dataset");
 var Column_1 = require("../../models/Column");
 var DatasetService_1 = require("../../services/DatasetService");
 var router_1 = require("@angular/router");
+var UploadService_1 = require("../../services/UploadService");
 var DatasetCreateComponent = (function () {
-    function DatasetCreateComponent(currentPage, datasetService, router) {
+    function DatasetCreateComponent(currentPage, datasetService, uploadService, router) {
         this.currentPage = currentPage;
         this.datasetService = datasetService;
+        this.uploadService = uploadService;
         this.router = router;
         this.keys = new Array();
+        this.uploader = null;
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
         this.datasetName = '';
@@ -36,10 +39,19 @@ var DatasetCreateComponent = (function () {
         this.loaderText = '等待中。。。';
         this.currentPage.currentPage = 'dataset';
     };
+    DatasetCreateComponent.prototype.uploadCover = function () {
+        var _this = this;
+        this.uploadService.upload(1, 1)
+            .subscribe(function (uploader) {
+            _this.uploader = uploader;
+        });
+    };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
         var _this = this;
         console.log(form.value);
         console.log(this.keys);
+        this.uploader.start();
+        this.uploader = null;
         var dataset = new Dataset_1.Dataset();
         dataset.name = this.datasetName;
         dataset.dsDescription = this.datasetDes;
@@ -95,7 +107,7 @@ var DatasetCreateComponent = (function () {
             templateUrl: 'create.component.html',
             styleUrls: ['../../main.css', 'create.component.css']
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, router_1.Router])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, UploadService_1.UploadService, router_1.Router])
     ], DatasetCreateComponent);
     return DatasetCreateComponent;
 }());
