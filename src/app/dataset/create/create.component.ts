@@ -8,6 +8,7 @@ import {Dataset} from "../../models/Dataset";
 import {Column} from "../../models/Column";
 import {DatasetService} from "../../services/DatasetService";
 import {Router} from "@angular/router";
+import {UploadService} from "../../services/UploadService";
 
 declare  var $:any;
 
@@ -32,10 +33,11 @@ export class DatasetCreateComponent implements OnInit{
 
   private loaderClass:string;
   private loaderText:string;
-
+    private uploader = null;
   constructor(
     private currentPage: CurrentPageService,
     private datasetService: DatasetService,
+    private uploadService: UploadService,
     private router: Router
   ){}
 
@@ -53,10 +55,19 @@ export class DatasetCreateComponent implements OnInit{
     this.currentPage.currentPage = 'dataset';
   }
 
+  public uploadCover() {
+
+      this.uploadService.upload(1, 1)
+          .subscribe((uploader) => {
+          this.uploader = uploader;
+          });
+  }
+
   onSubmit(form: NgForm) {
     console.log(form.value);
     console.log(this.keys);
-
+    this.uploader.start();
+      this.uploader = null;
     let dataset = new Dataset();
     dataset.name = this.datasetName;
     dataset.dsDescription = this.datasetDes;

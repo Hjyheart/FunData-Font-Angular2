@@ -13,6 +13,7 @@ import {HeaderComponent} from "../header/header.component";
 import {DatasetCreateComponent} from "./create/create.component";
 import {CommonModule} from "@angular/common";
 import {DatasetService} from "../services/DatasetService";
+import {UploadService} from "../services/UploadService";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {DatasetService} from "../services/DatasetService";
     DatasetCreateComponent
   ],
   providers: [
-    DatasetService
+    DatasetService,
+      UploadService
   ]
 })
 

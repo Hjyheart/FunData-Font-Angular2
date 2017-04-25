@@ -22,6 +22,7 @@ var ng2_bootstrap_1 = require("ng2-bootstrap");
 var create_component_1 = require("./create/create.component");
 var common_1 = require("@angular/common");
 var DatasetService_1 = require("../services/DatasetService");
+var UploadService_1 = require("../services/UploadService");
 var DatasetModule = (function () {
     function DatasetModule() {
     }
@@ -42,7 +43,8 @@ var DatasetModule = (function () {
                 create_component_1.DatasetCreateComponent
             ],
             providers: [
-                DatasetService_1.DatasetService
+                DatasetService_1.DatasetService,
+                UploadService_1.UploadService
             ]
         }), 
         __metadata('design:paramtypes', [])
