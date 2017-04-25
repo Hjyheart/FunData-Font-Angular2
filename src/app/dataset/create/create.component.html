@@ -1,4 +1,4 @@
-<div [class]="loaderClass" data-text></div>
+<div [class]="loaderClass" [attr.data-text]="[loaderText]"></div>
 <form id="dataset-create" class="create-section" (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
   <div class="form-horizontal create-table">
     <div class="form-group">
@@ -27,7 +27,7 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th *ngFor="let key of keys">{{key.key_name}}({{key.key_type}})</th>
+              <th *ngFor="let key of keys">{{key.colName}}({{key.keyType}})</th>
             </tr>
           </thead>
         </table>
@@ -54,6 +54,12 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cover" class="col-sm-2 control-label">上传封面</label>
+      <div class="col-sm-10">
+        <input type="file" id="cover" name="cover" [(ngModel)]="cover">
       </div>
     </div>
   </div>
@@ -96,39 +102,3 @@
     </div>
   </div>
 </div>
-
-
-<!--创建数据集弹框-->
-<!--<div bsModal #createLimitedModal="bs-modal" class="modal fade" style="top: 20%;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">-->
-  <!--<div class="modal-dialog modal-sm">-->
-    <!--<div class="modal-content">-->
-      <!--<div class="modal-header">-->
-        <!--<h4 class="modal-title pull-left">创建限制</h4>-->
-        <!--<butcolTypetype="button" class="close pull-right" (click)="createLimitedModal.hide()" aria-label="Close">-->
-          <!--<span aria-hidden="true">&times;</span>-->
-        <!--</button>-->
-      <!--</div>-->
-      <!--<div class="modal-body">-->
-        <!--<div class="form-group">-->
-          <!--<label for="limitName">种类</label>-->
-          <!--<select class="form-control" id="limitName">-->
-            <!--<option value="1">平均值</option>-->
-            <!--<option value="2">方差</option>-->
-          <!--</select>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-          <!--<label for="limitValue-low">最小值</label>-->
-          <!--<incolTypetype="text" class="form-control" id="limitValue-low">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-          <!--<label for="limitValue-high">最大值</label>-->
-          <!--<incolTypetype="text" class="form-control" id="limitValue-high">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="modal-footer">-->
-        <!--<button class="btn btn-primacolTypetype="submit" (click)="createLimitedModal.hide()">确定</button>-->
-        <!--<button class="btn btn-danger" (click)="createLimitedModal.hide()">取消</button>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->

@@ -7,6 +7,9 @@ import {CurrentPageService} from "../../services/CurrentPageService";
 import {Dataset} from "../../models/Dataset";
 import {Column} from "../../models/Column";
 import {DatasetService} from "../../services/DatasetService";
+import {Router} from "@angular/router";
+
+declare  var $:any;
 
 @Component({
   moduleId: module.id,
@@ -21,16 +24,19 @@ export class DatasetCreateComponent implements OnInit{
   datasetDes: string;
   formatDes: string;
   attrFlag: boolean;
+  cover: any;
 
   keys = new Array();
   private keyName:string;
   private keyType:number;
 
   private loaderClass:string;
+  private loaderText:string;
 
   constructor(
     private currentPage: CurrentPageService,
-    private datasetService: DatasetService
+    private datasetService: DatasetService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -42,6 +48,7 @@ export class DatasetCreateComponent implements OnInit{
     this.keyName = '';
     this.keyType = 0;
     this.loaderClass = 'loader loader-default';
+    this.loaderText = '等待中。。。';
 
     this.currentPage.currentPage = 'dataset';
   }
@@ -62,9 +69,18 @@ export class DatasetCreateComponent implements OnInit{
       .subscribe(
         res => {
           if (res === '200'){
-            this.loaderClass = 'loader loader-default';
+            this.loaderClass = 'loader loader-success';
+            this.loaderText = '创建成功';
+            setTimeout(function () {
+              this.router.navigate(['/dataset/list']);
+            }, 1000);
           }else if(res === '-1'){
-            this.loaderClass = 'loader loader-default';
+            this.loaderClass = 'loader loader-fail';
+            this.loaderText = '创建失败';
+            setTimeout(function () {
+              this.loaderClass = 'loader loader-default';
+              this.loaderText = '等待中。。。';
+            }, 1000);
           }
         }
       );

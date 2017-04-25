@@ -14,18 +14,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AuthorizeService_1 = require("../services/AuthorizeService");
 var router_1 = require("@angular/router");
+var CurrentPageService_1 = require("../services/CurrentPageService");
 var RegisterComponent = (function () {
-    function RegisterComponent(authorizeService, router) {
+    function RegisterComponent(authorizeService, router, currentPageService) {
         this.authorizeService = authorizeService;
         this.router = router;
+        this.currentPageService = currentPageService;
         this.nameEmpty = false;
         this.emailEmpty = false;
         this.pwdEmpty = false;
         this.repwdEmpty = false;
         this.pwdEqual = true;
+        this.normal = 'form-group';
+        this.error = 'form-group has-error has-feedback';
     }
+    RegisterComponent.prototype.ngOnInit = function () {
+        this.currentPageService.currentPage = 'register';
+        this.nameState = this.normal;
+        this.emailState = this.normal;
+        this.pwdState = this.normal;
+        this.pwdConState = this.normal;
+    };
     RegisterComponent.prototype.register = function () {
         var _this = this;
+        if (this.name == '' || this.name == undefined) {
+            this.nameState = this.error;
+            return;
+        }
+        if (this.email == '' || this.email == undefined) {
+            this.emailState = this.error;
+            return;
+        }
+        if (this.pwd == '' || this.pwd == undefined) {
+            this.pwdState = this.error;
+            return;
+        }
+        if (this.pwd != this.repwd) {
+            this.pwdState = this.error;
+            return;
+        }
         this.nameEmpty = this.name == '';
         this.emailEmpty = this.email == '';
         this.pwdEmpty = this.pwd == '';
@@ -41,6 +68,18 @@ var RegisterComponent = (function () {
             }
         });
     };
+    RegisterComponent.prototype.clearNameState = function () {
+        this.nameState = this.normal;
+    };
+    RegisterComponent.prototype.clearEmailState = function () {
+        this.emailState = this.normal;
+    };
+    RegisterComponent.prototype.clearPwdState = function () {
+        this.pwdState = this.normal;
+    };
+    RegisterComponent.prototype.clearPwdConState = function () {
+        this.pwdConState = this.normal;
+    };
     RegisterComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -48,7 +87,7 @@ var RegisterComponent = (function () {
             templateUrl: 'register.component.html',
             styleUrls: ['register.component.css']
         }), 
-        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router])
+        __metadata('design:paramtypes', [AuthorizeService_1.AuthorizeService, router_1.Router, CurrentPageService_1.CurrentPageService])
     ], RegisterComponent);
     return RegisterComponent;
 }());

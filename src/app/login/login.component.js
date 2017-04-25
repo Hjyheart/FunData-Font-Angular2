@@ -20,18 +20,35 @@ var LoginComponent = (function () {
         this.authorizeService = authorizeService;
         this.router = router;
         this.currentPageService = currentPageService;
+        this.normal = 'form-group';
+        this.error = 'form-group has-error has-feedback';
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.currentPageService.currentPage = 'login';
+        this.emailState = this.normal;
+        this.pwdState = this.normal;
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
+        if (this.email == '' || this.email == undefined) {
+            this.emailState = this.error;
+            return;
+        }
         this.authorizeService.login(this.email, this.pwd)
             .subscribe(function (status) {
             if (status === '200') {
                 _this.router.navigate(['/']);
             }
+            else {
+                _this.pwdState = _this.error;
+            }
         });
+    };
+    LoginComponent.prototype.clearPwdState = function () {
+        this.pwdState = this.normal;
+    };
+    LoginComponent.prototype.clearEmailState = function () {
+        this.emailState = this.normal;
     };
     LoginComponent = __decorate([
         core_1.Component({

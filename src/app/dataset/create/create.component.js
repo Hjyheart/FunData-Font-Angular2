@@ -16,10 +16,12 @@ var CurrentPageService_1 = require("../../services/CurrentPageService");
 var Dataset_1 = require("../../models/Dataset");
 var Column_1 = require("../../models/Column");
 var DatasetService_1 = require("../../services/DatasetService");
+var router_1 = require("@angular/router");
 var DatasetCreateComponent = (function () {
-    function DatasetCreateComponent(currentPage, datasetService) {
+    function DatasetCreateComponent(currentPage, datasetService, router) {
         this.currentPage = currentPage;
         this.datasetService = datasetService;
+        this.router = router;
         this.keys = new Array();
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
@@ -31,6 +33,7 @@ var DatasetCreateComponent = (function () {
         this.keyName = '';
         this.keyType = 0;
         this.loaderClass = 'loader loader-default';
+        this.loaderText = '等待中。。。';
         this.currentPage.currentPage = 'dataset';
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
@@ -46,10 +49,19 @@ var DatasetCreateComponent = (function () {
         this.datasetService.createDataset(dataset)
             .subscribe(function (res) {
             if (res === '200') {
-                _this.loaderClass = 'loader loader-default';
+                _this.loaderClass = 'loader loader-success';
+                _this.loaderText = '创建成功';
+                setTimeout(function () {
+                    this.router.navigate(['/dataset/list']);
+                }, 1000);
             }
             else if (res === '-1') {
-                _this.loaderClass = 'loader loader-default';
+                _this.loaderClass = 'loader loader-fail';
+                _this.loaderText = '创建失败';
+                setTimeout(function () {
+                    this.loaderClass = 'loader loader-default';
+                    this.loaderText = '等待中。。。';
+                }, 1000);
             }
         });
     };
@@ -83,7 +95,7 @@ var DatasetCreateComponent = (function () {
             templateUrl: 'create.component.html',
             styleUrls: ['../../main.css', 'create.component.css']
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, router_1.Router])
     ], DatasetCreateComponent);
     return DatasetCreateComponent;
 }());

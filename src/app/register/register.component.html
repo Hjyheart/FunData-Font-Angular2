@@ -1,23 +1,35 @@
 <div id="register-page">
   <div class="container">
 
-    <form class="form-login" action="index.html">
-      <h2 class="form-login-heading">注册</h2>
+    <form class="form-regiter" action="index.html">
+      <h2 class="form-register-heading">注册</h2>
       <div class="login-wrap">
-        <input name="name" type="text" class="form-control" [(ngModel)]="colName" (focus)="nameEmpty = false" placeholder="用户名" autofocus>
-        <span *ngIf="nameEmpty">用户名不能为空</span>
-        <br>
-        <input name="email" type="email" class="form-control" [(ngModel)]="email" (focus)="emailEmpty = false" placeholder="邮箱" autofocus>
-        <span *ngIf="emailEmpty">邮箱不能为空</span>
-        <br>
-        <input name="pwd" type="password" class="form-control" [(ngModel)]="pwd" (focus)="pwdEmpty = false; pwdEqual = true" placeholder="密码">
-        <span *ngIf="pwdEmpty">密码不能为空</span>
-        <br>
-        <input name="repwd" type="password" class="form-control" [(ngModel)]="repwd" (focus)="repwdEmpty = false; pwdEqual = true" placeholder="确认密码">
-        <span *ngIf="repwdEmpty">请确认密码</span>
-        <span *ngIf="!pwdEqual">两次密码输入不一致</span>
-        <br>
-        <button class="btn btn-theme btn-block" (click)="register()" ><i class="fa fa-upload" aria-hidden="true"></i> 确认提交</button>
+        <div [class]="nameState">
+          <input name="name" type="text" class="form-control" [(ngModel)]="name" (focus)="nameEmpty = false;clearNameState()" placeholder="用户名" aria-describedby="nameErrorStatus" autofocus>
+          <span *ngIf="nameEmpty">用户名不能为空</span>
+          <span *ngIf="nameState != normal" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+          <span id="nameErrorStatus" class="sr-only">(error)</span>
+        </div>
+        <div [class]="emailState">
+          <input name="email" type="email" class="form-control" [(ngModel)]="email" (focus)="emailEmpty = false;clearEmailState()" placeholder="邮箱" aria-describedby="emailErrorStatus" autofocus>
+          <span *ngIf="emailEmpty">邮箱不能为空</span>
+          <span *ngIf="emailState != normal" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+          <span id="emailErrorStatus" class="sr-only">(error)</span>
+        </div>
+        <div [class]="pwdState">
+          <input name="pwd" type="password" class="form-control" [(ngModel)]="pwd" (focus)="pwdEmpty = false; pwdEqual = true;clearPwdState()" aria-describedby="pwdErrorStatus" placeholder="密码">
+          <span *ngIf="pwdEmpty">密码不能为空</span>
+          <span *ngIf="pwdState != normal" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+          <span id="pwdErrorStatus" class="sr-only">(error)</span>
+        </div>
+        <div [class]="pwdConState">
+          <input name="repwd" type="password" class="form-control" [(ngModel)]="repwd" (focus)="repwdEmpty = false; pwdEqual = true;clearPwdConState()" aria-describedby="repwdErrorStatus" placeholder="确认密码">
+          <span *ngIf="repwdEmpty">请确认密码</span>
+          <span *ngIf="!pwdEqual">两次密码输入不一致</span>
+          <span *ngIf="pwdConState != normal" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+          <span id="repwdErrorStatus" class="sr-only">(error)</span>
+        </div>
+        <button class="btn btn-primary btn-block" (click)="register()" ><i class="fa fa-upload" aria-hidden="true"></i> 确认提交</button>
         <button class="btn btn-danger btn-block" [routerLink]="['/introduction']"><i class="fa fa-chevron-left" aria-hidden="true"></i> 取消</button>
         <hr>
         <div class="registration">

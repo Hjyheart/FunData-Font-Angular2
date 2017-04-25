@@ -18,8 +18,16 @@ export class LoginComponent implements OnInit{
   public email: String;
   public pwd: String;
 
+  private emailState:string;
+  private pwdState:string;
+
+  public normal:string = 'form-group';
+  public error:string = 'form-group has-error has-feedback';
+
   ngOnInit(): void {
     this.currentPageService.currentPage = 'login';
+    this.emailState = this.normal;
+    this.pwdState = this.normal;
   }
 
   constructor(private authorizeService: AuthorizeService,
@@ -27,11 +35,25 @@ export class LoginComponent implements OnInit{
               private currentPageService: CurrentPageService){}
 
   public login() {
+    if (this.email == '' || this.email == undefined){
+      this.emailState = this.error;
+      return;
+    }
     this.authorizeService.login(this.email, this.pwd)
         .subscribe((status: String) => {
             if(status === '200') {
                 this.router.navigate(['/'])
+            }else{
+              this.pwdState = this.error;
             }
         })
+  }
+
+  clearPwdState(){
+    this.pwdState = this.normal;
+  }
+
+  clearEmailState(){
+    this.emailState = this.normal;
   }
 }

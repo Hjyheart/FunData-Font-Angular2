@@ -1,0 +1,19 @@
+/* css for register */
+.container {
+    position: fixed;
+    top: 10%;
+    right: 36%;
+    left: 34%;
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.form-register-heading {
+    text-align: center;
+}
+
+.registration {
+    text-align: center;
+    margin-bottom: 20px;
+}
