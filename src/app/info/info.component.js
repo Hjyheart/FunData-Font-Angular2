@@ -22,6 +22,8 @@ var InfoComponent = (function () {
     };
     InfoComponent.prototype.edit = function () {
     };
+    InfoComponent.prototype.edit = function () {
+    };
     InfoComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

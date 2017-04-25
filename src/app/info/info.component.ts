@@ -23,7 +23,9 @@ export class InfoComponent implements OnInit{
     private currentPageService: CurrentPageService
   ){}
 
+
   edit(){
+
 
   }
 }
