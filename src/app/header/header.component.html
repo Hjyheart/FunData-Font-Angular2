@@ -30,10 +30,10 @@
         </ul><!--//nav-->
         <!--profile center div-->
         <ul *ngIf="authorizeService.isLogin" class="my-div" [style.display]="navDiv">
-          <li>我的个人资料</li>
-          <li>我的数据集</li>
-          <li>我的数据比赛</li>
-          <li>我的课程</li>
+          <li><a [routerLink]="['/myinfo/overview']">我的个人资料</a></li>
+          <li><a [routerLink]="['/myinfo/datasets']">我的数据集</a></li>
+          <li><a [routerLink]="['/myinfo/competitions']">我的数据比赛</a></li>
+          <li><a [routerLink]="['/myinfo/courses']">我的课程</a></li>
           <li (click)="logout()">登出</li>
         </ul>
       </div><!--//navabr-collapse-->

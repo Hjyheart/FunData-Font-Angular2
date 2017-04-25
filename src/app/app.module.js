@@ -29,6 +29,7 @@ var shop_module_1 = require("./shop/shop.module");
 var header_component_1 = require("./header/header.component");
 var common_1 = require("@angular/common");
 var CurrentPageService_1 = require("./services/CurrentPageService");
+var info_module_1 = require("./info/info.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -45,6 +46,7 @@ var AppModule = (function () {
                 mooc_module_1.MoocModule,
                 com_module_1.ComModule,
                 shop_module_1.ShopModule,
+                info_module_1.InfoModule,
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [
