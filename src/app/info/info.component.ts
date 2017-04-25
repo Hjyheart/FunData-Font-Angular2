@@ -11,10 +11,19 @@ import {CurrentPageService} from "../services/CurrentPageService";
 })
 
 export class InfoComponent implements OnInit{
+
+  private nikename:string;
+  private headImg:any;
+
   ngOnInit(): void {
+    this.nikename = '';
   }
 
   constructor(
     private currentPageService: CurrentPageService
   ){}
+
+  edit(){
+
+  }
 }

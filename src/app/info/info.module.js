@@ -20,6 +20,7 @@ var info_datasets_component_1 = require("./datasets/info.datasets.component");
 var info_com_component_1 = require("./competitions/info.com.component");
 var info_courses_component_1 = require("./courses/info.courses.component");
 var info_routing_module_1 = require("./info.routing.module");
+var ng2_bootstrap_1 = require("ng2-bootstrap");
 var InfoModule = (function () {
     function InfoModule() {
     }
@@ -29,7 +30,8 @@ var InfoModule = (function () {
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 common_1.CommonModule,
-                info_routing_module_1.InfoRoutingModule
+                info_routing_module_1.InfoRoutingModule,
+                ng2_bootstrap_1.ModalModule.forRoot()
             ],
             declarations: [
                 info_component_1.InfoComponent,

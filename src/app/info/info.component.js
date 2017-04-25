@@ -18,6 +18,9 @@ var InfoComponent = (function () {
         this.currentPageService = currentPageService;
     }
     InfoComponent.prototype.ngOnInit = function () {
+        this.nikename = '';
+    };
+    InfoComponent.prototype.edit = function () {
     };
     InfoComponent = __decorate([
         core_1.Component({
