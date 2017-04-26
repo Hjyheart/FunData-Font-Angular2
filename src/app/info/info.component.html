@@ -6,7 +6,9 @@
         <div>
           <h2>姓名</h2>
           <h5>123456@qq.com</h5>
-          <i class="fa fa-edit" (click)="edit()"></i>
+
+          <i class="fa fa-edit" (click)="editAttrModal.show()"></i>
+
         </div>
       </div>
       <ul>
@@ -34,3 +36,31 @@
     </small>
   </div><!--//container-->
 </footer><!--//footer-->
+
+<!--修改属性弹窗-->
+<div bsModal #editAttrModal="bs-modal" class="modal fade" style="top: 20%" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">修改属性</h4>
+        <button type="button" class="close pull-right" (click)="editAttrModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="nike-name">昵称</label>
+          <input type="text" class="form-control" id="nike-name" [(ngModel)]="nikename">
+        </div>
+        <div class="form-group">
+          <label for="head-img">上传新头像</label>
+          <input type="file" class="form-control" id="head-img" [(ngModel)]="headImg">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" (click)="edit(); editAttrModal.hide();">确定</button>
+        <button class="btn btn-danger"  type="button" (click)="editAttrModal.hide()">取消</button>
+      </div>
+    </div>
+  </div>
+</div>

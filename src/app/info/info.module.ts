@@ -10,13 +10,15 @@ import {InfoDatasetsComponent} from "./datasets/info.datasets.component";
 import {InfoComComponent} from "./competitions/info.com.component";
 import {InfoCoursesComponent} from "./courses/info.courses.component";
 import {InfoRoutingModule} from "./info.routing.module";
+import {ModalModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
     FormsModule,
     HttpModule,
     CommonModule,
-    InfoRoutingModule
+    InfoRoutingModule,
+    ModalModule.forRoot()
   ],
   declarations: [
     InfoComponent,
