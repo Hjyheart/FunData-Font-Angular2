@@ -10,42 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var ng2_file_upload_1 = require('ng2-file-upload');
+var Constants_1 = require("../util/Constants");
 var Observable_1 = require("rxjs/Observable");
-var UploadService = (function () {
-    function UploadService(http) {
+/**
+ * Created by huang on 17-4-25.
+ */
+var DatasetService = (function () {
+    function DatasetService(http) {
         this.http = http;
-        this.uploader = null;
     }
-    UploadService.prototype.getUploader = function (url) {
-        this.uploader = new ng2_file_upload_1.FileUploader({
-            url: url,
-            method: "POST",
-            removeAfterUpload: true
-        });
-        return this.uploader;
-    };
-    UploadService.prototype.upload = function () {
+    DatasetService.prototype.changeName = function (name) {
         var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Observable_1.Observable(function (observer) {
-            if (_this.uploader.queue.length !== 0) {
-                _this.uploader.queue[0].onSuccess = function (res, status) {
-                    if (status == 200) {
-                        observer.next(JSON.parse(res)['url']);
-                    }
-                };
-                _this.uploader.queue[0].upload();
-            }
-            else {
-                observer.next('');
-            }
+            _this.http.post(Constants_1.Constants.ServerHost + "/dataer/editinfo", "name=" + name, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body.code);
+            }, function (err) {
+                console.log('AuthorizeService->register', err);
+                observer.next('-1');
+            });
         });
     };
-    UploadService = __decorate([
+    DatasetService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], UploadService);
-    return UploadService;
+    ], DatasetService);
+    return DatasetService;
 }());
-exports.UploadService = UploadService;
-//# sourceMappingURL=UploadService.js.map
+exports.DatasetService = DatasetService;
+//# sourceMappingURL=UserService.js.map

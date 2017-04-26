@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
+import {FileItem, FileUploader} from 'ng2-file-upload';
 import {Constants} from "../util/Constants";
 import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
@@ -12,81 +13,36 @@ declare const plupload: any;
 
 @Injectable()
 export class UploadService {
+    private uploader: any = null;
     constructor(private http: Http,) {
     }
 
-    public upload(type: Number, sub_type: any) {
-        let headers: Headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return new Observable((observer: Observer<any>) => {
-            this.http.post(`${Constants.Urls['getToken']}`, '', {headers: headers, withCredentials: true})
-                .map(res => res.json())
-                .subscribe((res) => {
-                    let loader = {
-                        runtimes: 'html5,flash,html4',      // 上传模式，依次退化
-                        browse_button: 'upload',         // 上传选择的点选按钮，必需
-                        uptoken_url: `${Constants.Urls['getToken']}`,
-                        get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的uptoken
-                        domain: 'ooyqe04dh.bkt.clouddn.com',     // bucket域名，下载资源时用到，必需
-                        container: 'upload-form',             // 上传区域DOM ID，默认是browser_button的父元素
-                        max_file_size: '100mb',             // 最大文件体积限制
-                        max_retries: 3,                     // 上传失败最大重试次数
-                        dragdrop: true,
-                        drop_element: 'upload-form',          // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-                        chunk_size: '4mb',                  // 分块上传时，每块的体积s
-                        auto_start: true,
+    public getUploader(url: string) {
+        this.uploader = new FileUploader({
+            url: url,
+            method: "POST",
+            removeAfterUpload: true
+        });
+        return this.uploader;
+    }
 
-                        init: {
-                            'FilesAdded': function (up: any, files: any) {
-                                plupload.each(files, function (file: any) {
-                                    console.log(file);
-                                });
-                            },
-                            'BeforeUpload': function (up: any, file: any) {
-                                // 每个文件上传前，处理相关的事情
-                            },
-                            'UploadProgress': function (up: any, file: any) {
-                                // 每个文件上传时，处理相关的事情
-                            },
-                            'FileUploaded': function (up: any, file: any, info: any) {
-                                let domain = up.getOption('domain');
-                                let data = info.json();
-                                let sourceLink = domain +"/"+ data.key;
-                                console.log(sourceLink);
-                            },
-                            'Error': function (up: any, err: any, errTip: any) {
-                                console.log(err)
-                                //上传出错时，处理相关的事情
-                            },
-                            'UploadComplete': function () {
-                                //队列文件处理完毕后，处理相关的事情
-                            },
-                            'Key': function (up: any, file: any) {
-                                let key = '';
-                                $.ajax({
-                                    url: `${Constants.Urls['getKey']}`,
-                                    type: 'POST',
-                                    async: false,//这里应设置为同步的方式
-                                    data: {
-                                        name: file.name
-                                    },
-                                    success: function (data: any) {
-                                        key = data.name;
-                                    },
-                                    cache: false
-                                });
-                                return key;
-                            }
-                        }
-                    };
-
-                    observer.next(Qiniu.uploader(loader));
-                }, err => {
-                    console.log(err);
-                    observer.next(null);
-                });
+    public upload() {
+        return new Observable((observer: Observer<string>) =>{
+            if (this.uploader.queue.length !== 0) {
+                this.uploader.queue[0].onSuccess = (res: string, status: number) => {
+                    if (status == 200) {
+                        observer.next(JSON.parse(res)['url']);
+                    }
+                };
+                this.uploader.queue[0].upload();
+            }
+            else {
+                observer.next('');
+            }
         });
     }
+
+
 
 
 }

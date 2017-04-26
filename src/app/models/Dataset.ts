@@ -7,6 +7,7 @@ export class Dataset {
     public name: String;
     public ownerName: String;
     public ownerUrl: String;
+    public coverUrl: String;
     public dsDescription: String;
     public formatDescription: String;
     public createTime: String;

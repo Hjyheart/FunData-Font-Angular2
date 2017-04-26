@@ -9,6 +9,8 @@ import {Column} from "../../models/Column";
 import {DatasetService} from "../../services/DatasetService";
 import {Router} from "@angular/router";
 import {UploadService} from "../../services/UploadService";
+import {Constants} from "../../util/Constants";
+
 
 declare  var $:any;
 
@@ -40,10 +42,7 @@ export class DatasetCreateComponent implements OnInit{
     private uploadService: UploadService,
     private router: Router
   ){
-    this.uploadService.upload(1, 1)
-        .subscribe((uploader) => {
-          this.uploader = uploader;
-        });
+    this.uploader = uploadService.getUploader(Constants.Urls["uploadCover"]);
   }
 
   ngOnInit(): void {
@@ -62,41 +61,42 @@ export class DatasetCreateComponent implements OnInit{
 
   public uploadCover() {
 
-
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
-    console.log(this.keys);
-    this.uploader.start();
-      this.uploader = null;
-    let dataset = new Dataset();
-    dataset.name = this.datasetName;
-    dataset.dsDescription = this.datasetDes;
-    dataset.formatDescription = this.formatDes;
-    dataset.columns = this.keys;
+      let dataset = new Dataset();
+      dataset.name = this.datasetName;
+      dataset.dsDescription = this.datasetDes;
+      dataset.formatDescription = this.formatDes;
+      dataset.columns = this.keys;
+
+
 
     this.loaderClass = 'loader loader-default is-active';
+    this.uploadService.upload()
+        .subscribe((res: String) => {
+        dataset.coverUrl = res;
+          this.datasetService.createDataset(dataset)
+              .subscribe(
+                  res => {
+                    if (res === '200'){
+                      this.loaderClass = 'loader loader-success';
+                      this.loaderText = '创建成功';
+                      setTimeout( () => {
+                        this.router.navigate(['/dataset/list']);
+                      }, 1000);
+                    }else if(res === '-1'){
+                      this.loaderClass = 'loader loader-fail';
+                      this.loaderText = '创建失败';
+                      setTimeout(() => {
+                        this.loaderClass = 'loader loader-default';
+                        this.loaderText = '等待中。。。';
+                      }, 1000);
+                    }
+                  }
+              );
+        });
 
-    this.datasetService.createDataset(dataset)
-      .subscribe(
-        res => {
-          if (res === '200'){
-            this.loaderClass = 'loader loader-success';
-            this.loaderText = '创建成功';
-            setTimeout(function () {
-              this.router.navigate(['/dataset/list']);
-            }, 1000);
-          }else if(res === '-1'){
-            this.loaderClass = 'loader loader-fail';
-            this.loaderText = '创建失败';
-            setTimeout(function () {
-              this.loaderClass = 'loader loader-default';
-              this.loaderText = '等待中。。。';
-            }, 1000);
-          }
-        }
-      );
 
   }
 

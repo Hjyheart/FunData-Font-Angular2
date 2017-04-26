@@ -14,6 +14,7 @@ import {DatasetCreateComponent} from "./create/create.component";
 import {CommonModule} from "@angular/common";
 import {DatasetService} from "../services/DatasetService";
 import {UploadService} from "../services/UploadService";
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {UploadService} from "../services/UploadService";
     DatasetRoutingModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
+      FileUploadModule,
   ],
   declarations: [
     DatasetComponent,
