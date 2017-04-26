@@ -21,7 +21,7 @@ export class DatasetService {
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
           JSON.stringify(dataset);
-          this.http.post(`${Constants.ServerHost}/dataset/createDataset`,`ds_name=${dataset.name}&ds_desc=${dataset.dsDescription}&format_desc=${dataset.formatDescription}&columns=${JSON.stringify(dataset.columns)}` , {headers: headers, withCredentials: true})
+          this.http.post(`${Constants.ServerHost}/dataset/createDataset`,`ds_name=${dataset.name}&ds_desc=${dataset.dsDescription}&format_desc=${dataset.formatDescription}&cover_url=${dataset.coverUrl}&columns=${JSON.stringify(dataset.columns)}` , {headers: headers, withCredentials: true})
               .map(res => res.json())
               .subscribe((body) => {
                       observer.next(body.code)

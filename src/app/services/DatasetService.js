@@ -27,7 +27,7 @@ var DatasetService = (function () {
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             JSON.stringify(dataset);
-            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.dsDescription + "&format_desc=" + dataset.formatDescription + "&columns=" + JSON.stringify(dataset.columns), { headers: headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.dsDescription + "&format_desc=" + dataset.formatDescription + "&cover_url=" + dataset.coverUrl + "&columns=" + JSON.stringify(dataset.columns), { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);

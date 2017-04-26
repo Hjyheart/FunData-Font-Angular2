@@ -18,19 +18,16 @@ var Column_1 = require("../../models/Column");
 var DatasetService_1 = require("../../services/DatasetService");
 var router_1 = require("@angular/router");
 var UploadService_1 = require("../../services/UploadService");
+var Constants_1 = require("../../util/Constants");
 var DatasetCreateComponent = (function () {
     function DatasetCreateComponent(currentPage, datasetService, uploadService, router) {
-        var _this = this;
         this.currentPage = currentPage;
         this.datasetService = datasetService;
         this.uploadService = uploadService;
         this.router = router;
         this.keys = new Array();
         this.uploader = null;
-        this.uploadService.upload(1, 1)
-            .subscribe(function (uploader) {
-            _this.uploader = uploader;
-        });
+        this.uploader = uploadService.getUploader(Constants_1.Constants.Urls["uploadCover"]);
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
         this.datasetName = '';
@@ -48,33 +45,33 @@ var DatasetCreateComponent = (function () {
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
         var _this = this;
-        console.log(form.value);
-        console.log(this.keys);
-        this.uploader.start();
-        this.uploader = null;
         var dataset = new Dataset_1.Dataset();
         dataset.name = this.datasetName;
         dataset.dsDescription = this.datasetDes;
         dataset.formatDescription = this.formatDes;
         dataset.columns = this.keys;
         this.loaderClass = 'loader loader-default is-active';
-        this.datasetService.createDataset(dataset)
+        this.uploadService.upload()
             .subscribe(function (res) {
-            if (res === '200') {
-                _this.loaderClass = 'loader loader-success';
-                _this.loaderText = '创建成功';
-                setTimeout(function () {
-                    this.router.navigate(['/dataset/list']);
-                }, 1000);
-            }
-            else if (res === '-1') {
-                _this.loaderClass = 'loader loader-fail';
-                _this.loaderText = '创建失败';
-                setTimeout(function () {
-                    this.loaderClass = 'loader loader-default';
-                    this.loaderText = '等待中。。。';
-                }, 1000);
-            }
+            dataset.coverUrl = res;
+            _this.datasetService.createDataset(dataset)
+                .subscribe(function (res) {
+                if (res === '200') {
+                    _this.loaderClass = 'loader loader-success';
+                    _this.loaderText = '创建成功';
+                    setTimeout(function () {
+                        _this.router.navigate(['/dataset/list']);
+                    }, 1000);
+                }
+                else if (res === '-1') {
+                    _this.loaderClass = 'loader loader-fail';
+                    _this.loaderText = '创建失败';
+                    setTimeout(function () {
+                        _this.loaderClass = 'loader loader-default';
+                        _this.loaderText = '等待中。。。';
+                    }, 1000);
+                }
+            });
         });
     };
     DatasetCreateComponent.prototype.addKey = function () {

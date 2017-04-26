@@ -27,6 +27,7 @@ var Constants = (function () {
             return {
                 getToken: this.ServerHost + "/file/getToken",
                 getKey: this.ServerHost + "/file/getKey",
+                uploadCover: this.ServerHost + "/dataset/uploadcover",
                 checkUpload: this.ServerHost + "/dataset/checkUpload",
                 createDataset: this.ServerHost + "/dataset/createDataset",
                 downloadUrl: this.ServerHost + "/dataset/downloadUrl",
