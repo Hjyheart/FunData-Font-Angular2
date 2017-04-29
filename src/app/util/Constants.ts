@@ -17,7 +17,7 @@ export class Constants {
             getToken: `${this.ServerHost}/file/getToken`,
             getKey: `${this.ServerHost}/file/getKey`,
 
-            uploadCover: `${this.ServerHost}/dataset/uploadcover`,
+            uploadCover: `${this.ServerHost}/dataset/uploadCover`,
             checkUpload: `${this.ServerHost}/dataset/checkUpload`,
             createDataset: `${this.ServerHost}/dataset/createDataset`,
             downloadUrl: `${this.ServerHost}/dataset/downloadUrl`,
