@@ -20,6 +20,14 @@ var DatasetService = (function () {
     function DatasetService(http) {
         this.http = http;
     }
+    DatasetService.convertUrl = function (res) {
+        res = res.json();
+        for (var _i = 0, _a = res.datasets; _i < _a.length; _i++) {
+            var dataset = _a[_i];
+            dataset.coverUrl = Constants_1.Constants.ServerHost + '/' + dataset.coverUrl;
+        }
+        return res;
+    };
     DatasetService.prototype.createDataset = function (dataset) {
         var _this = this;
         var headers = new http_1.Headers();
@@ -44,7 +52,7 @@ var DatasetService = (function () {
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             _this.http.get(Constants_1.Constants.Urls['getMyDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
-                .map(function (res) { return res.json(); })
+                .map(function (res) { return DatasetService.convertUrl(res); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
@@ -60,7 +68,7 @@ var DatasetService = (function () {
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             _this.http.get(Constants_1.Constants.Urls['getAllDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
-                .map(function (res) { return res.json(); })
+                .map(function (res) { return DatasetService.convertUrl(res); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
