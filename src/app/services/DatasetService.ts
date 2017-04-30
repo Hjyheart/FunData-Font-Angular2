@@ -15,6 +15,14 @@ export class DatasetService {
     constructor(private http: Http,) {
     }
 
+    private static convertUrl(res: any) {
+        res = res.json();
+        for (let dataset of res.datasets) {
+            dataset.coverUrl = Constants.ServerHost+'/'+dataset.coverUrl;
+        }
+        return res;
+    }
+
     public createDataset(dataset: Dataset) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -39,7 +47,7 @@ export class DatasetService {
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
             this.http.get(`${Constants.Urls['getMyDatasets']}?curPage=${curPage}`, {headers: headers, withCredentials: true})
-                .map(res => res.json())
+                .map(res => DatasetService.convertUrl(res))
                 .subscribe((body) => {
                         observer.next(body)
                     },
@@ -55,7 +63,7 @@ export class DatasetService {
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
             this.http.get(`${Constants.Urls['getAllDatasets']}?curPage=${curPage}`, {headers: headers, withCredentials: true})
-                .map(res => res.json())
+                .map(res => DatasetService.convertUrl(res))
                 .subscribe((body) => {
                         observer.next(body)
                     },
