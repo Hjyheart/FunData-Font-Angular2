@@ -6,8 +6,8 @@ import {CurrentPageService} from "../../services/CurrentPageService";
 import {DatasetService} from "../../services/DatasetService";
 import {Dataset} from "../../models/Dataset";
 import {PageableBaseClass} from "../../baseclasses/PageableBaseClass";
-import {Constants} from "../../util/Constants";
 import {Router, RouterLinkActive} from "@angular/router";
+
 
 
 @Component({
@@ -21,17 +21,12 @@ import {Router, RouterLinkActive} from "@angular/router";
 
 export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
 
-  get Constants(){
-    return Constants
-  }
-
   get datasets(): Dataset[] {
     return this.data;
   }
 
   ngOnInit(): void {
     this.currentPageService.currentPage = 'infoDatasets';
-    console.log(Constants.ServerHost)
   }
 
 

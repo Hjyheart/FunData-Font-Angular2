@@ -8,12 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-/**
- * Created by hongjiayong on 2017/4/30.
- */
-/**
- * Created by hongjiayong on 2017/4/17.
- */
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Constants_1 = require("../util/Constants");
@@ -23,7 +17,15 @@ var PullRequestService = (function () {
     function PullRequestService(http) {
         this.http = http;
     }
-    PullRequestService.prototype.createDataset = function (dataset) {
+    PullRequestService.convertUrl = function (res) {
+        res = res.json();
+        for (var _i = 0, _a = res.datasets; _i < _a.length; _i++) {
+            var dataset = _a[_i];
+            dataset.coverUrl = Constants_1.Constants.ServerHost + '/' + dataset.coverUrl;
+        }
+        return res;
+    };
+    PullRequestService.prototype.createPullRequest = function (dataset) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -40,14 +42,14 @@ var PullRequestService = (function () {
             });
         });
     };
-    PullRequestService.prototype.getUserDatasets = function (curPage) {
+    PullRequestService.prototype.getUserPullRequests = function (curPage) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             _this.http.get(Constants_1.Constants.Urls['getMyDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
-                .map(function (res) { return res.json(); })
+                .map(function (res) { return PullRequestService.convertUrl(res); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
@@ -56,14 +58,14 @@ var PullRequestService = (function () {
             });
         });
     };
-    PullRequestService.prototype.getAllDatasets = function (curPage) {
+    PullRequestService.prototype.getAllPullRequests = function (curPage) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             _this.http.get(Constants_1.Constants.Urls['getAllDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
-                .map(function (res) { return res.json(); })
+                .map(function (res) { return PullRequestService.convertUrl(res); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
