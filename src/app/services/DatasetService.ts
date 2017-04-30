@@ -33,18 +33,34 @@ export class DatasetService {
       });
     }
 
-    public getUserDataset(curPage: Number) {
+    public getUserDatasets(curPage: Number) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
-            this.http.get(`${Constants.ServerHost}/dataset/getMyDataset?curPage=${curPage}`, {headers: headers, withCredentials: true})
+            this.http.get(`${Constants.Urls['getMyDatasets']}?curPage=${curPage}`, {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
                         observer.next(body)
                     },
                     err => {
-                        console.log('DatasetService->createDataset', err);
+                        console.log('DatasetService->getUserDatasets', err);
+                        observer.next('-1');
+                    });
+        });
+    }
+    public getAllDatasets(curPage: Number) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', Cookie.get('authorization'));
+        return new Observable((observer: Observer<String>) => {
+            this.http.get(`${Constants.Urls['getAllDatasets']}?curPage=${curPage}`, {headers: headers, withCredentials: true})
+                .map(res => res.json())
+                .subscribe((body) => {
+                        observer.next(body)
+                    },
+                    err => {
+                        console.log('DatasetService->getAllDatasets', err);
                         observer.next('-1');
                     });
         });

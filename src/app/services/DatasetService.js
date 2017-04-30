@@ -37,18 +37,34 @@ var DatasetService = (function () {
             });
         });
     };
-    DatasetService.prototype.getUserDataset = function (curPage) {
+    DatasetService.prototype.getUserDatasets = function (curPage) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
-            _this.http.get(Constants_1.Constants.ServerHost + "/dataset/getMyDataset?curPage=" + curPage, { headers: headers, withCredentials: true })
+            _this.http.get(Constants_1.Constants.Urls['getMyDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
-                console.log('DatasetService->createDataset', err);
+                console.log('DatasetService->getUserDatasets', err);
+                observer.next('-1');
+            });
+        });
+    };
+    DatasetService.prototype.getAllDatasets = function (curPage) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.get(Constants_1.Constants.Urls['getAllDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body);
+            }, function (err) {
+                console.log('DatasetService->getAllDatasets', err);
                 observer.next('-1');
             });
         });

@@ -3,6 +3,9 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {CurrentPageService} from "../../services/CurrentPageService";
+import {DatasetService} from "../../services/DatasetService";
+import {Dataset} from "../../models/Dataset";
+import {PageableBaseClass} from "../../baseclasses/PageableBaseClass";
 
 @Component({
   moduleId: module.id,
@@ -10,12 +13,17 @@ import {CurrentPageService} from "../../services/CurrentPageService";
   styleUrls: ['../../main.css', 'info.datasets.component.css']
 })
 
-export class InfoDatasetsComponent implements OnInit{
+export class InfoDatasetsComponent extends PageableBaseClass implements OnInit{
+
+  public datasets: Dataset[] = null;
+
   ngOnInit(): void {
     this.currentPageService.currentPage = 'infoDatasets';
   }
 
   constructor(
-    private currentPageService: CurrentPageService
-  ){}
+    private currentPageService: CurrentPageService,
+    private datasetService: DatasetService){
+      super(datasetService.getUserDatasets, 'datasets', datasetService)
+  }
 }
