@@ -1,6 +1,7 @@
 <div class="my-dataset-container">
   <div *ngFor="let dataset of data">
     <div class="dataset-list-item">
+<<<<<<< HEAD
       <div class="dataset-list-item-intro">
         <div class="dataset-list-img"><img src="{{dataset.ownerUrl}}"></div>
         <div>
@@ -8,6 +9,20 @@
           <p>数据集描述：{{dataset.dsDescription}}</p>
           <p>格式描述：{{dataset.dsDescription}}</p>
           <p><a>{{dataset.ownerName}}</a>&nbsp;<time>{{dataset.createTime}}</time></p>
+=======
+        <div class="dataset-list-item-intro">
+            <div class="dataset-list-img"><img [src]="dataset.coverUrl"></div>
+            <div>
+                <h3><a [routerLink]="['/dataset/detail/'+dataset.id]">{{dataset.name}}</a></h3>
+                <p>数据集描述：{{dataset.dsDescription}}</p>
+                <p>格式描述：{{dataset.dsDescription}}</p>
+                <p><a>{{dataset.ownerName}}</a>&nbsp;<time>{{dataset.createTime}}</time></p>
+            </div>
+        </div>
+        <div class="dataset-list-item-right">
+            <p>{{dataset.contributeNum}} 贡献者</p>
+            <p>下载所需金币</p>
+>>>>>>> 9c9791f6eb2a031498f53a14f49710998980c0cc
         </div>
       </div>
     </div>

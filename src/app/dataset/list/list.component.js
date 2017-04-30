@@ -27,13 +27,20 @@ var DatasetListComponent = (function (_super) {
         this.currentPageService = currentPageService;
         this.datasetService = datasetService;
     }
+    Object.defineProperty(DatasetListComponent.prototype, "datasets", {
+        get: function () {
+            return this.data;
+        },
+        enumerable: true,
+        configurable: true
+    });
     DatasetListComponent.prototype.ngOnInit = function () {
-        this.hrWidth = '0px';
+        this._hrWidth = '0px';
         this.currentPageService.currentPage = 'dataset';
     };
     DatasetListComponent.prototype.transition = function () {
         if (scrollY > 400) {
-            this.hrWidth = '200px';
+            this._hrWidth = '200px';
         }
     };
     __decorate([

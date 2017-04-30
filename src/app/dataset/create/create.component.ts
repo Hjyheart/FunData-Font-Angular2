@@ -74,7 +74,7 @@ export class DatasetCreateComponent implements OnInit{
 
     this.loaderClass = 'loader loader-default is-active';
     this.uploadService.upload()
-        .subscribe((res: String) => {
+        .subscribe((res: string) => {
         dataset.coverUrl = res;
           this.datasetService.createDataset(dataset)
               .subscribe(
