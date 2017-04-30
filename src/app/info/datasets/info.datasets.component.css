@@ -1,0 +1,87 @@
+/* css for my dataset */
+.my-dataset-container {
+    margin: 10px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+
+.dataset-list {
+    padding: 40px 0;
+    background: #f5f5f5;
+}
+
+.dataset-list .title {
+    color: #074f66;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+dataset-list-img > img {
+    width: 120px;
+    height: 120px;
+    margin-right: 30px;
+    border-radius: 50%;
+}
+
+.dataset-list a {
+    text-decoration: none;
+}
+
+.dataset-list hr {
+    border: 0;
+    border-top: 1px solid black;
+    height: 1px;
+    max-width: 200px;
+    transition: width 2s;
+}
+
+.dataset-list .dataset-list-inner {
+    max-width: 900px;
+    background: #FFF;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 4px;
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+}
+
+.dataset-list-item {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-flow: row nowrap;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    margin-top: 10px;
+}
+
+.dataset-list-item-intro {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-flow: row nowrap;
+    max-width: 575px;
+}
+
+/*换页栏*/
+.page-change {
+    position: relative;
+    left: 20%;
+}
+
+.page-change-pull {
+    position: relative;
+    left: 1%;
+}
+
+/* pull request */
+.my-dataset-pullrequest {
+
+}
+
+accordion-group {
+    margin: 10px;
+}

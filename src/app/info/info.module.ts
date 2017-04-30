@@ -10,7 +10,7 @@ import {InfoDatasetsComponent} from "./datasets/info.datasets.component";
 import {InfoComComponent} from "./competitions/info.com.component";
 import {InfoCoursesComponent} from "./courses/info.courses.component";
 import {InfoRoutingModule} from "./info.routing.module";
-import {ModalModule, PaginationModule} from "ng2-bootstrap";
+import {ModalModule, PaginationModule, AccordionModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
@@ -20,6 +20,7 @@ import {ModalModule, PaginationModule} from "ng2-bootstrap";
     InfoRoutingModule,
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   declarations: [
     InfoComponent,
