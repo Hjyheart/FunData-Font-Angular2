@@ -17,22 +17,27 @@ import {PageableBaseClass} from "../../baseclasses/PageableBaseClass";
 
 export class DatasetListComponent extends PageableBaseClass implements OnInit {
 
-  private hrWidth: string;
+    private _hrWidth: string;
 
-  constructor(
+
+    get datasets(): Dataset[] {
+        return this.data;
+    }
+
+    constructor(
     private currentPageService: CurrentPageService,
     private datasetService: DatasetService){
     super(datasetService.getAllDatasets, 'datasets', datasetService)
   }
 
   ngOnInit(): void {
-    this.hrWidth = '0px';
+    this._hrWidth = '0px';
     this.currentPageService.currentPage = 'dataset';
   }
 
   @HostListener('window:scroll') transition(){
     if (scrollY > 400){
-      this.hrWidth = '200px';
+      this._hrWidth = '200px';
     }
   }
 }
