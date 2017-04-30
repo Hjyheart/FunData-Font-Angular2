@@ -4,13 +4,15 @@
 import {CommonModule} from "@angular/common";
 import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
-import {NgModule} from "@angular/core";
+import {NgModule, ElementRef} from "@angular/core";
 import {InfoComponent} from "./info.component";
 import {InfoDatasetsComponent} from "./datasets/info.datasets.component";
 import {InfoComComponent} from "./competitions/info.com.component";
 import {InfoCoursesComponent} from "./courses/info.courses.component";
 import {InfoRoutingModule} from "./info.routing.module";
 import {ModalModule, PaginationModule, AccordionModule} from "ng2-bootstrap";
+import {PullComponent} from "./datasets/pull/info.dataset.pull.component";
+import {RouterLinkActive} from "@angular/router";
 
 @NgModule({
   imports: [
@@ -26,10 +28,12 @@ import {ModalModule, PaginationModule, AccordionModule} from "ng2-bootstrap";
     InfoComponent,
     InfoDatasetsComponent,
     InfoComComponent,
-    InfoCoursesComponent
+    InfoCoursesComponent,
+    PullComponent
   ],
   providers: [
-
+    // RouterLinkActive,
+    // ElementRef
   ]
 })
 

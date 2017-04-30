@@ -1,0 +1,22 @@
+.page-change-pull {
+    position: relative;
+    left: 1%;
+}
+
+/* pull request */
+.my-dataset-pull-request {
+
+}
+
+accordion-group {
+    margin: 10px;
+}
+
+/* buttons */
+.buttons {
+    float: right;
+}
+.buttons > button {
+    margin: 5px;
+    float: left;
+}

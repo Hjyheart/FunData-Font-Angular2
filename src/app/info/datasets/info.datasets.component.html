@@ -16,20 +16,11 @@
         </div>
     </div>
     <hr/>
-    <div class="my-dataset-pullrequest">
-      <accordion>
-        <accordion-group heading="某某人 时间">
-          <p>提交描述</p>
-        </accordion-group>
-        <accordion-group heading="某某人 时间">
-          <p>提交描述</p>
-        </accordion-group>
-      </accordion>
-      <div class="page-change-pull">
-        <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
-                    [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
-      </div>
-    </div>
+    <accordion>
+      <accordion-group heading="合并请求">
+        <my-info-dataset-pull [id]="dataset.id"></my-info-dataset-pull>
+      </accordion-group>
+    </accordion>
   </div>
   <!--换页栏-->
   <div class="page-change">

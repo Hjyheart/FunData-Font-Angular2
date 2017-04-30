@@ -3,6 +3,7 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {CurrentPageService} from "../services/CurrentPageService";
+import {RouterLinkActive} from "@angular/router";
 
 @Component({
   moduleId: module.id,
@@ -20,7 +21,7 @@ export class InfoComponent implements OnInit{
   }
 
   constructor(
-    private currentPageService: CurrentPageService
+    private currentPageService: CurrentPageService,
   ){}
 
 

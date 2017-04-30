@@ -1,0 +1,22 @@
+<div class="my-dataset-pull-request">
+  <accordion>
+    <accordion-group heading="某某人 时间">
+      <div class="pull-des">
+        <p>提交的描述</p>
+        {{id}}
+      </div>
+      <div class="buttons">
+        <button class="btn btn-cta-primary">查看</button>
+        <button class="btn btn-cta-secondary">同意</button>
+        <button class="btn btn-danger">拒绝</button>
+      </div>
+    </accordion-group>
+    <accordion-group heading="某某人 时间">
+      <p>提交描述</p>
+    </accordion-group>
+  </accordion>
+  <div class="page-change-pull">
+    <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
+                [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+  </div>
+</div>
