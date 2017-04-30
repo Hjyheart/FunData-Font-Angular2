@@ -31,7 +31,8 @@ var InfoModule = (function () {
                 http_1.HttpModule,
                 common_1.CommonModule,
                 info_routing_module_1.InfoRoutingModule,
-                ng2_bootstrap_1.ModalModule.forRoot()
+                ng2_bootstrap_1.ModalModule.forRoot(),
+                ng2_bootstrap_1.PaginationModule.forRoot(),
             ],
             declarations: [
                 info_component_1.InfoComponent,

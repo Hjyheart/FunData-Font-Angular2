@@ -1,0 +1,22 @@
+<div *ngFor="let dataset of data">
+    <div class="dataset-list-item">
+        <div class="dataset-list-item-intro">
+            <div class="dataset-list-img"><img src="{{dataset.ownerUrl}}"></div>
+            <div>
+                <h3><a [routerLink]="['/dataset/detail/1']">{{dataset.name}}</a></h3>
+                <p>数据集描述：{{dataset.dsDescription}}</p>
+                <p>格式描述：{{dataset.dsDescription}}</p>
+                <p><a>{{dataset.ownerName}}</a>&nbsp;<time>{{dataset.createTime}}</time></p>
+            </div>
+        </div>
+        <div class="dataset-list-item-right">
+            <p>1289 贡献者</p>
+            <p>下载所需金币</p>
+        </div>
+    </div>
+</div>
+<!--换页栏-->
+<div class="page-change">
+    <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
+                [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+</div>

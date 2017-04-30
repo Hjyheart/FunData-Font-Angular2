@@ -21,6 +21,8 @@ export class Constants {
             checkUpload: `${this.ServerHost}/dataset/checkUpload`,
             createDataset: `${this.ServerHost}/dataset/createDataset`,
             downloadUrl: `${this.ServerHost}/dataset/downloadUrl`,
+            getMyDatasets: `${this.ServerHost}/dataset/getMyDatasets`,
+            getAllDatasets: `${this.ServerHost}/dataset/getAllDatasets`,
             // mooc
             addMooc: `${this.ServerHost}/course/add`,
             addStep: `${this.ServerHost}/course/addstep`,
