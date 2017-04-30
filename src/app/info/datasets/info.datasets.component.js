@@ -20,7 +20,6 @@ var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetService_1 = require("../../services/DatasetService");
 var PageableBaseClass_1 = require("../../baseclasses/PageableBaseClass");
-var Constants_1 = require("../../util/Constants");
 var InfoDatasetsComponent = (function (_super) {
     __extends(InfoDatasetsComponent, _super);
     function InfoDatasetsComponent(currentPageService, datasetService) {
@@ -28,13 +27,6 @@ var InfoDatasetsComponent = (function (_super) {
         this.currentPageService = currentPageService;
         this.datasetService = datasetService;
     }
-    Object.defineProperty(InfoDatasetsComponent.prototype, "Constants", {
-        get: function () {
-            return Constants_1.Constants;
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(InfoDatasetsComponent.prototype, "datasets", {
         get: function () {
             return this.data;
@@ -44,7 +36,6 @@ var InfoDatasetsComponent = (function (_super) {
     });
     InfoDatasetsComponent.prototype.ngOnInit = function () {
         this.currentPageService.currentPage = 'infoDatasets';
-        console.log(Constants_1.Constants.ServerHost);
     };
     InfoDatasetsComponent = __decorate([
         core_1.Component({

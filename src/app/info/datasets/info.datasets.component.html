@@ -2,7 +2,7 @@
   <div *ngFor="let dataset of data">
     <div class="dataset-list-item">
         <div class="dataset-list-item-intro">
-            <div class="dataset-list-img"><img [src]="Constants.ServerHost + '/' + dataset.coverUrl"></div>
+            <div class="dataset-list-img"><img [src]="dataset.coverUrl"></div>
             <div>
                 <h3><a [routerLink]="['/dataset/detail/'+dataset.id]">{{dataset.name}}</a></h3>
                 <p>数据集描述：{{dataset.dsDescription}}</p>
