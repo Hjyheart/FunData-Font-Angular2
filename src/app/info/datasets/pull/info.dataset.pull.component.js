@@ -26,6 +26,23 @@ var PullComponent = (function (_super) {
         this.pullService = pullService;
     }
     PullComponent.prototype.ngOnInit = function () {
+        this.selectId = -1;
+        this.tagValue = 0;
+        this.newTag = '';
+        this.newTagFlag = false;
+    };
+    // TODO: 选中某个 pull request
+    PullComponent.prototype.chosePullRequest = function (id) {
+        this.selectId = id;
+    };
+    // TODO: 拒绝这个数据集
+    PullComponent.prototype.reject = function () {
+    };
+    // TODO: 同意合并这个数据集，需要提供一个tag
+    PullComponent.prototype.agree = function (tag) {
+    };
+    PullComponent.prototype.showNewTag = function () {
+        this.newTagFlag = true;
     };
     __decorate([
         core_1.Input(), 

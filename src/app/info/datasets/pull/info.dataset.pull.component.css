@@ -20,3 +20,8 @@ accordion-group {
     margin: 5px;
     float: left;
 }
+
+/* lables */
+.form-group > h4, p {
+    color: black;
+}
