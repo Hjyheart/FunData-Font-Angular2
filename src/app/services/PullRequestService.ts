@@ -1,6 +1,4 @@
-/**
- * Created by hongjiayong on 2017/4/17.
- */
+
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Dataset} from "../models/Dataset";
@@ -73,6 +71,5 @@ export class PullRequestService {
                     });
         });
     }
-
 }
 

@@ -20,12 +20,15 @@ var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetService_1 = require("../../services/DatasetService");
 var PageableBaseClass_1 = require("../../baseclasses/PageableBaseClass");
+var router_1 = require("@angular/router");
 var InfoDatasetsComponent = (function (_super) {
     __extends(InfoDatasetsComponent, _super);
-    function InfoDatasetsComponent(currentPageService, datasetService) {
+    function InfoDatasetsComponent(currentPageService, datasetService, routerActive, router) {
         _super.call(this, datasetService.getUserDatasets, 'datasets', datasetService);
         this.currentPageService = currentPageService;
         this.datasetService = datasetService;
+        this.routerActive = routerActive;
+        this.router = router;
     }
     Object.defineProperty(InfoDatasetsComponent.prototype, "datasets", {
         get: function () {
@@ -40,10 +43,12 @@ var InfoDatasetsComponent = (function (_super) {
     InfoDatasetsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
+            selector: 'my-info-datasets',
             templateUrl: 'info.datasets.component.html',
-            styleUrls: ['../../main.css', 'info.datasets.component.css']
+            styleUrls: ['../../main.css', 'info.datasets.component.css'],
+            providers: [router_1.RouterLinkActive]
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, router_1.RouterLinkActive, router_1.Router])
     ], InfoDatasetsComponent);
     return InfoDatasetsComponent;
 }(PageableBaseClass_1.PageableBaseClass));

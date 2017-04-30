@@ -72,16 +72,3 @@ dataset-list-img > img {
     left: 20%;
 }
 
-.page-change-pull {
-    position: relative;
-    left: 1%;
-}
-
-/* pull request */
-.my-dataset-pullrequest {
-
-}
-
-accordion-group {
-    margin: 10px;
-}
