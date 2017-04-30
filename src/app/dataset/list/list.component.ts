@@ -7,6 +7,7 @@ import {Dataset} from "../../models/Dataset";
 import {DatasetService} from "../../services/DatasetService";
 import {totalmem} from "os";
 import {PageableBaseClass} from "../../baseclasses/PageableBaseClass";
+import {Constants} from "../../util/Constants";
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,9 @@ import {PageableBaseClass} from "../../baseclasses/PageableBaseClass";
 export class DatasetListComponent extends PageableBaseClass implements OnInit {
 
     private _hrWidth: string;
-
+    get Constants(){
+      return Constants
+    }
 
     get datasets(): Dataset[] {
         return this.data;

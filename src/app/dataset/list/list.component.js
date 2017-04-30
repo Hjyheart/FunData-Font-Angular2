@@ -20,6 +20,7 @@ var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetService_1 = require("../../services/DatasetService");
 var PageableBaseClass_1 = require("../../baseclasses/PageableBaseClass");
+var Constants_1 = require("../../util/Constants");
 var DatasetListComponent = (function (_super) {
     __extends(DatasetListComponent, _super);
     function DatasetListComponent(currentPageService, datasetService) {
@@ -27,6 +28,13 @@ var DatasetListComponent = (function (_super) {
         this.currentPageService = currentPageService;
         this.datasetService = datasetService;
     }
+    Object.defineProperty(DatasetListComponent.prototype, "Constants", {
+        get: function () {
+            return Constants_1.Constants;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(DatasetListComponent.prototype, "datasets", {
         get: function () {
             return this.data;
