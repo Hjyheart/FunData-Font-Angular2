@@ -26,7 +26,6 @@ export class DatasetDetailComponent implements OnInit{
   ngOnInit(): void {
     this.id =+this.route.snapshot.params['id'];
     console.log(this.id);
-
     this.currentPage.currentPage = 'dataset';
   }
 
