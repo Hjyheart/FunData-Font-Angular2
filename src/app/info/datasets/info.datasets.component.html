@@ -1,7 +1,8 @@
-<div *ngFor="let dataset of data">
+<div class="my-dataset-container">
+  <div *ngFor="let dataset of data">
     <div class="dataset-list-item">
         <div class="dataset-list-item-intro">
-            <div class="dataset-list-img"><img [src]="dataset.coverUrl"></div>
+            <div class="dataset-list-img"><img [src]="Constants.ServerHost + '/' + dataset.coverUrl"></div>
             <div>
                 <h3><a [routerLink]="['/dataset/detail/'+dataset.id]">{{dataset.name}}</a></h3>
                 <p>数据集描述：{{dataset.dsDescription}}</p>
@@ -14,9 +15,25 @@
             <p>下载所需金币</p>
         </div>
     </div>
-</div>
-<!--换页栏-->
-<div class="page-change">
+    <hr/>
+    <div class="my-dataset-pullrequest">
+      <accordion>
+        <accordion-group heading="某某人 时间">
+          <p>提交描述</p>
+        </accordion-group>
+        <accordion-group heading="某某人 时间">
+          <p>提交描述</p>
+        </accordion-group>
+      </accordion>
+      <div class="page-change-pull">
+        <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
+                    [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+      </div>
+    </div>
+  </div>
+  <!--换页栏-->
+  <div class="page-change">
     <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
                 [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+  </div>
 </div>

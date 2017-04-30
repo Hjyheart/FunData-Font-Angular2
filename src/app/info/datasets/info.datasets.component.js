@@ -28,6 +28,13 @@ var InfoDatasetsComponent = (function (_super) {
         this.currentPageService = currentPageService;
         this.datasetService = datasetService;
     }
+    Object.defineProperty(InfoDatasetsComponent.prototype, "Constants", {
+        get: function () {
+            return Constants_1.Constants;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(InfoDatasetsComponent.prototype, "datasets", {
         get: function () {
             return this.data;

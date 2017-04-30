@@ -33,6 +33,7 @@ var InfoModule = (function () {
                 info_routing_module_1.InfoRoutingModule,
                 ng2_bootstrap_1.ModalModule.forRoot(),
                 ng2_bootstrap_1.PaginationModule.forRoot(),
+                ng2_bootstrap_1.AccordionModule.forRoot()
             ],
             declarations: [
                 info_component_1.InfoComponent,

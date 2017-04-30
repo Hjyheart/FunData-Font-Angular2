@@ -13,10 +13,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
+var Constants_1 = require("../../util/Constants");
 var InfoComComponent = (function () {
     function InfoComComponent(currentPageService) {
         this.currentPageService = currentPageService;
     }
+    Object.defineProperty(InfoComComponent.prototype, "Constants", {
+        get: function () {
+            return Constants_1.Constants;
+        },
+        enumerable: true,
+        configurable: true
+    });
     InfoComComponent.prototype.ngOnInit = function () {
         this.currentPageService.currentPage = 'infoCom';
     };

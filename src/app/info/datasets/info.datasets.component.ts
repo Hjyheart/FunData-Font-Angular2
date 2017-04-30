@@ -18,6 +18,10 @@ import {Constants} from "../../util/Constants";
 
 export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
 
+  get Constants(){
+    return Constants
+  }
+
   get datasets(): Dataset[] {
     return this.data;
   }

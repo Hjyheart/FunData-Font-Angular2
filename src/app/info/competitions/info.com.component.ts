@@ -3,6 +3,7 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {CurrentPageService} from "../../services/CurrentPageService";
+import {Constants} from "../../util/Constants";
 
 @Component({
   moduleId: module.id,
@@ -11,6 +12,10 @@ import {CurrentPageService} from "../../services/CurrentPageService";
 })
 
 export class InfoComComponent implements OnInit{
+  get Constants(){
+    return Constants
+  }
+
   ngOnInit(): void {
     this.currentPageService.currentPage = 'infoCom';
   }
