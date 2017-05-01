@@ -18,16 +18,30 @@ var Column_1 = require("../../models/Column");
 var DatasetService_1 = require("../../services/DatasetService");
 var router_1 = require("@angular/router");
 var UploadService_1 = require("../../services/UploadService");
-var Constants_1 = require("../../util/Constants");
+var QiniuUploadService_1 = require("../../services/QiniuUploadService");
 var DatasetCreateComponent = (function () {
-    function DatasetCreateComponent(currentPage, datasetService, uploadService, router) {
+    function DatasetCreateComponent(currentPage, datasetService, uploadService, qiniuUploadService, router) {
+        var _this = this;
         this.currentPage = currentPage;
         this.datasetService = datasetService;
         this.uploadService = uploadService;
+        this.qiniuUploadService = qiniuUploadService;
         this.router = router;
+        this.uploadProgress = 0;
+        this.uploadInProgress = false;
+        this.uploadSizeLimit = 3000000;
+        // 输出事件
+        this.pictureChange = new core_1.EventEmitter();
+        this.onUpload = new core_1.EventEmitter();
+        this.onUploadCompleted = new core_1.EventEmitter();
+        this.picture = '';
         this.keys = new Array();
-        this.uploader = null;
-        this.uploader = uploadService.getUploader(Constants_1.Constants.Urls["uploadCover"]);
+        this.qiniuUploader = null;
+        //this.uploader = uploadService.getUploader(Constants.Urls["uploadCover"]);
+        qiniuUploadService.getUploader()
+            .subscribe(function (uploader) {
+            _this.qiniuUploader = uploader;
+        });
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
         this.datasetName = '';
@@ -44,35 +58,36 @@ var DatasetCreateComponent = (function () {
     DatasetCreateComponent.prototype.uploadCover = function () {
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
-        var _this = this;
         var dataset = new Dataset_1.Dataset();
         dataset.name = this.datasetName;
         dataset.dsDescription = this.datasetDes;
         dataset.formatDescription = this.formatDes;
         dataset.columns = this.keys;
-        this.loaderClass = 'loader loader-default is-active';
-        this.uploadService.upload()
-            .subscribe(function (res) {
-            dataset.coverUrl = res;
-            _this.datasetService.createDataset(dataset)
-                .subscribe(function (res) {
-                if (res === '200') {
-                    _this.loaderClass = 'loader loader-success';
-                    _this.loaderText = '创建成功';
-                    setTimeout(function () {
-                        _this.router.navigate(['/dataset/list']);
-                    }, 1000);
-                }
-                else if (res === '-1') {
-                    _this.loaderClass = 'loader loader-fail';
-                    _this.loaderText = '创建失败';
-                    setTimeout(function () {
-                        _this.loaderClass = 'loader loader-default';
-                        _this.loaderText = '等待中。。。';
-                    }, 1000);
-                }
-            });
-        });
+        this.qiniuUploader.start();
+        // this.loaderClass = 'loader loader-default is-active';
+        // this.uploadService.upload()
+        //     .subscribe((res: string) => {
+        //     dataset.coverUrl = res;
+        //       this.datasetService.createDataset(dataset)
+        //           .subscribe(
+        //               res => {
+        //                 if (res === '200'){
+        //                   this.loaderClass = 'loader loader-success';
+        //                   this.loaderText = '创建成功';
+        //                   setTimeout( () => {
+        //                     this.router.navigate(['/dataset/list']);
+        //                   }, 1000);
+        //                 }else if(res === '-1'){
+        //                   this.loaderClass = 'loader loader-fail';
+        //                   this.loaderText = '创建失败';
+        //                   setTimeout(() => {
+        //                     this.loaderClass = 'loader loader-default';
+        //                     this.loaderText = '等待中。。。';
+        //                   }, 1000);
+        //                 }
+        //               }
+        //           );
+        //     });
     };
     DatasetCreateComponent.prototype.addKey = function () {
         var type;
@@ -97,6 +112,26 @@ var DatasetCreateComponent = (function () {
         console.log(this.keys);
         // this.keyModal.nativeElement;
     };
+    __decorate([
+        core_1.ViewChild('fileUpload'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], DatasetCreateComponent.prototype, "_fileUpload", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatasetCreateComponent.prototype, "uploadSizeLimit", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatasetCreateComponent.prototype, "pictureChange", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatasetCreateComponent.prototype, "onUpload", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatasetCreateComponent.prototype, "onUploadCompleted", void 0);
     DatasetCreateComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -104,7 +139,7 @@ var DatasetCreateComponent = (function () {
             templateUrl: 'create.component.html',
             styleUrls: ['../../main.css', 'create.component.css']
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, UploadService_1.UploadService, router_1.Router])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, UploadService_1.UploadService, QiniuUploadService_1.QiniuUploadService, router_1.Router])
     ], DatasetCreateComponent);
     return DatasetCreateComponent;
 }());
