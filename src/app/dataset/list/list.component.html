@@ -18,7 +18,7 @@
               <h3><a [routerLink]="['/dataset/detail/'+dataset.id]">{{dataset.name}}</a></h3>
               <p>数据集描述：{{dataset.dsDescription}}</p>
               <p>格式描述：{{dataset.dsDescription}}</p>
-              <p><a>{{dataset.ownerName}}</a>&nbsp;<time>{{dataset.createTime}}</time></p>
+              <p><a [routerLink]="['/others', 'test']">{{dataset.ownerName}}</a>&nbsp;<time>{{dataset.createTime}}</time></p>
             </div>
           </div>
           <div class="dataset-list-item-right">
