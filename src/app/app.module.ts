@@ -20,6 +20,7 @@ import {HeaderComponent} from "./header/header.component";
 import {CommonModule} from "@angular/common";
 import {CurrentPageService} from "./services/CurrentPageService";
 import {InfoModule} from "./info/info.module";
+import {OthersComponent} from "./others/others.component";
 
 @NgModule({
   imports:      [
@@ -42,7 +43,8 @@ import {InfoModule} from "./info/info.module";
     RegisterComponent,
     ErrorComponent,
     TestComponent,
-    HeaderComponent
+    HeaderComponent,
+    OthersComponent
   ],
   providers: [
     AuthorizeService,
