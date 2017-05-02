@@ -24,6 +24,7 @@ var common_1 = require("@angular/common");
 var DatasetService_1 = require("../services/DatasetService");
 var UploadService_1 = require("../services/UploadService");
 var ng2_file_upload_1 = require('ng2-file-upload');
+var QiniuUploadService_1 = require("../services/QiniuUploadService");
 var DatasetModule = (function () {
     function DatasetModule() {
     }
@@ -46,7 +47,8 @@ var DatasetModule = (function () {
             ],
             providers: [
                 DatasetService_1.DatasetService,
-                UploadService_1.UploadService
+                UploadService_1.UploadService,
+                QiniuUploadService_1.QiniuUploadService
             ]
         }), 
         __metadata('design:paramtypes', [])

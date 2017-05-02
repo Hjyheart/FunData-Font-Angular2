@@ -15,6 +15,7 @@ import {CommonModule} from "@angular/common";
 import {DatasetService} from "../services/DatasetService";
 import {UploadService} from "../services/UploadService";
 import { FileUploadModule } from 'ng2-file-upload';
+import {QiniuUploadService} from "../services/QiniuUploadService";
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { FileUploadModule } from 'ng2-file-upload';
   ],
   providers: [
     DatasetService,
-      UploadService
+      UploadService,
+      QiniuUploadService
   ]
 })
 

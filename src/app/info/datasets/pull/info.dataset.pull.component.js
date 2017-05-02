@@ -22,7 +22,7 @@ var PullRequestService_1 = require("../../../services/PullRequestService");
 var PullComponent = (function (_super) {
     __extends(PullComponent, _super);
     function PullComponent(pullService) {
-        _super.call(this, pullService.getAllDatasets, 'pullrequests', pullService);
+        _super.call(this, pullService.getAllPullRequests, 'pullrequests', pullService);
         this.pullService = pullService;
     }
     PullComponent.prototype.ngOnInit = function () {

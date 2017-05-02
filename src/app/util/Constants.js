@@ -25,7 +25,7 @@ var Constants = (function () {
     Object.defineProperty(Constants, "Urls", {
         get: function () {
             return {
-                getToken: this.ServerHost + "/file/getToken",
+                getPubToken: this.ServerHost + "/file/getPubToken",
                 getKey: this.ServerHost + "/file/getKey",
                 uploadCover: this.ServerHost + "/dataset/uploadCover",
                 checkUpload: this.ServerHost + "/dataset/checkUpload",

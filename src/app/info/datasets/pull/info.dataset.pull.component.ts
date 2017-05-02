@@ -34,7 +34,7 @@ export class PullComponent extends PageableBaseClass implements OnInit {
   constructor(
     private pullService: PullRequestService
   ){
-    super(pullService.getAllDatasets, 'pullrequests', pullService);
+    super(pullService.getAllPullRequests, 'pullrequests', pullService);
   }
 
   // TODO: 选中某个 pull request
