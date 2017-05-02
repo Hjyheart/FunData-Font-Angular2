@@ -20,28 +20,20 @@ var router_1 = require("@angular/router");
 var UploadService_1 = require("../../services/UploadService");
 var QiniuUploadService_1 = require("../../services/QiniuUploadService");
 var DatasetCreateComponent = (function () {
-    function DatasetCreateComponent(currentPage, datasetService, uploadService, qiniuUploadService, router) {
-        var _this = this;
+    function DatasetCreateComponent(renderer, currentPage, datasetService, uploadService, qiniuUploadService, router) {
+        // this.qiniuUploader = qiniuUploadService.getStaticUploader();
+        //   qiniuUploadService.getStaticUploader()
+        //       .subscribe((uploader: any) => {
+        //             this.qiniuUploader = uploader;
+        //           })
+        this.renderer = renderer;
         this.currentPage = currentPage;
         this.datasetService = datasetService;
         this.uploadService = uploadService;
         this.qiniuUploadService = qiniuUploadService;
         this.router = router;
-        this.uploadProgress = 0;
-        this.uploadInProgress = false;
-        this.uploadSizeLimit = 3000000;
-        // 输出事件
-        this.pictureChange = new core_1.EventEmitter();
-        this.onUpload = new core_1.EventEmitter();
-        this.onUploadCompleted = new core_1.EventEmitter();
-        this.picture = '';
         this.keys = new Array();
         this.qiniuUploader = null;
-        //this.uploader = uploadService.getUploader(Constants.Urls["uploadCover"]);
-        qiniuUploadService.getUploader()
-            .subscribe(function (uploader) {
-            _this.qiniuUploader = uploader;
-        });
     }
     DatasetCreateComponent.prototype.ngOnInit = function () {
         this.datasetName = '';
@@ -56,13 +48,24 @@ var DatasetCreateComponent = (function () {
         this.currentPage.currentPage = 'dataset';
     };
     DatasetCreateComponent.prototype.uploadCover = function () {
-    };
-    DatasetCreateComponent.prototype.onSubmit = function (form) {
+        var _this = this;
         var dataset = new Dataset_1.Dataset();
         dataset.name = this.datasetName;
         dataset.dsDescription = this.datasetDes;
         dataset.formatDescription = this.formatDes;
         dataset.columns = this.keys;
+        this.qiniuUploadService.getStaticUploader(dataset)
+            .subscribe(function (uploader) {
+            _this.qiniuUploader = uploader;
+        });
+        this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
+        return false;
+    };
+    DatasetCreateComponent.prototype.onFiles = function () {
+        var file = this._fileUpload.nativeElement.files[0];
+        this.qiniuUploader.addFile(file);
+    };
+    DatasetCreateComponent.prototype.onSubmit = function (form) {
         this.qiniuUploader.start();
         // this.loaderClass = 'loader loader-default is-active';
         // this.uploadService.upload()
@@ -113,25 +116,9 @@ var DatasetCreateComponent = (function () {
         // this.keyModal.nativeElement;
     };
     __decorate([
-        core_1.ViewChild('fileUpload'), 
+        core_1.ViewChild('upfile'), 
         __metadata('design:type', core_1.ElementRef)
     ], DatasetCreateComponent.prototype, "_fileUpload", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], DatasetCreateComponent.prototype, "uploadSizeLimit", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DatasetCreateComponent.prototype, "pictureChange", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DatasetCreateComponent.prototype, "onUpload", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DatasetCreateComponent.prototype, "onUploadCompleted", void 0);
     DatasetCreateComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -139,7 +126,7 @@ var DatasetCreateComponent = (function () {
             templateUrl: 'create.component.html',
             styleUrls: ['../../main.css', 'create.component.css']
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, UploadService_1.UploadService, QiniuUploadService_1.QiniuUploadService, router_1.Router])
+        __metadata('design:paramtypes', [core_1.Renderer, CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, UploadService_1.UploadService, QiniuUploadService_1.QiniuUploadService, router_1.Router])
     ], DatasetCreateComponent);
     return DatasetCreateComponent;
 }());

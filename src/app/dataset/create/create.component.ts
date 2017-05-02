@@ -28,16 +28,8 @@ declare var plupload:any;
 })
 
 export class DatasetCreateComponent implements OnInit{
-    private uploadProgress:number = 0;
-    public  uploadInProgress:boolean = false;
-    @ViewChild('fileUpload') protected _fileUpload:ElementRef;
-    @Input() uploadSizeLimit: number = 3000000;
-    // 输出事件
-    @Output() pictureChange:EventEmitter<any> = new EventEmitter();
-    @Output() onUpload:EventEmitter<any> = new EventEmitter();
-    @Output() onUploadCompleted:EventEmitter<any> = new EventEmitter();
+    @ViewChild('upfile') protected _fileUpload:ElementRef;
 
-    public  picture:string = '';
 
   datasetName: string;
   datasetDes: string;
@@ -50,7 +42,8 @@ export class DatasetCreateComponent implements OnInit{
   private loaderClass:string;
   private loaderText:string;
     private qiniuUploader:any = null;
-  constructor(private currentPage: CurrentPageService,
+  constructor(private renderer:Renderer,
+              private currentPage: CurrentPageService,
                 private datasetService: DatasetService,
                 private uploadService: UploadService,
                 private qiniuUploadService: QiniuUploadService,
@@ -58,11 +51,11 @@ export class DatasetCreateComponent implements OnInit{
   ){
 
 
-    //this.uploader = uploadService.getUploader(Constants.Urls["uploadCover"]);
-      qiniuUploadService.getUploader()
-          .subscribe((uploader: any) => {
-                this.qiniuUploader = uploader;
-              })
+    // this.qiniuUploader = qiniuUploadService.getStaticUploader();
+    //   qiniuUploadService.getStaticUploader()
+    //       .subscribe((uploader: any) => {
+    //             this.qiniuUploader = uploader;
+    //           })
 
   }
 
@@ -82,16 +75,27 @@ export class DatasetCreateComponent implements OnInit{
   }
 
   public uploadCover() {
-
-  }
-
-  onSubmit(form: NgForm) {
       let dataset = new Dataset();
       dataset.name = this.datasetName;
       dataset.dsDescription = this.datasetDes;
       dataset.formatDescription = this.formatDes;
       dataset.columns = this.keys;
-    this.qiniuUploader.start();
+      this.qiniuUploadService.getStaticUploader(dataset)
+          .subscribe((uploader: any) => {
+              this.qiniuUploader = uploader;
+          });
+      this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
+      return false;
+  }
+
+    public onFiles():any {
+        const file = this._fileUpload.nativeElement.files[0];
+        this.qiniuUploader.addFile(file);
+    }
+
+  onSubmit(form: NgForm) {
+
+      this.qiniuUploader.start();
 
     // this.loaderClass = 'loader loader-default is-active';
     // this.uploadService.upload()
