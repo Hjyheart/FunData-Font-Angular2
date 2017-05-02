@@ -9,29 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 /**
- * Created by hongjiayong on 2017/4/25.
+ * Created by hongjiayong on 2017/5/2.
  */
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../services/CurrentPageService");
-var InfoComponent = (function () {
-    function InfoComponent(currentPageService) {
+var router_1 = require("@angular/router");
+var OthersComponent = (function () {
+    function OthersComponent(route, router, currentPageService) {
+        this.route = route;
+        this.router = router;
         this.currentPageService = currentPageService;
     }
-    InfoComponent.prototype.ngOnInit = function () {
-        this.nikename = '';
-        this.currentPageService.currentPage = 'info';
+    OthersComponent.prototype.ngOnInit = function () {
+        this.id = +this.route.snapshot.params['id'];
+        console.log(this.id);
+        this.currentPageService.currentPage = 'others';
     };
-    InfoComponent.prototype.edit = function () {
-    };
-    InfoComponent = __decorate([
+    OthersComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: 'info.component.html',
-            styleUrls: ['../main.css', 'info.component.css']
+            selector: 'others-info',
+            templateUrl: 'others.component.html',
+            styleUrls: ['../main.css', 'others.component.css']
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService])
-    ], InfoComponent);
-    return InfoComponent;
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, CurrentPageService_1.CurrentPageService])
+    ], OthersComponent);
+    return OthersComponent;
 }());
-exports.InfoComponent = InfoComponent;
-//# sourceMappingURL=info.component.js.map
+exports.OthersComponent = OthersComponent;
+//# sourceMappingURL=others.component.js.map

@@ -30,6 +30,7 @@ var header_component_1 = require("./header/header.component");
 var common_1 = require("@angular/common");
 var CurrentPageService_1 = require("./services/CurrentPageService");
 var info_module_1 = require("./info/info.module");
+var others_component_1 = require("./others/others.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -55,7 +56,8 @@ var AppModule = (function () {
                 register_component_1.RegisterComponent,
                 error_componnet_1.ErrorComponent,
                 test_component_1.TestComponent,
-                header_component_1.HeaderComponent
+                header_component_1.HeaderComponent,
+                others_component_1.OthersComponent
             ],
             providers: [
                 AuthorizeService_1.AuthorizeService,

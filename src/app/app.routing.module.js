@@ -17,10 +17,12 @@ var error_componnet_1 = require("./error/error.componnet");
 var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
 var test_component_1 = require("./test/test.component");
+var others_component_1 = require("./others/others.component");
 var routes = [
     { path: '', redirectTo: '/introduction', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: register_component_1.RegisterComponent },
+    { path: 'others/:id', component: others_component_1.OthersComponent },
     { path: 'test', component: test_component_1.TestComponent },
     { path: '**', component: error_componnet_1.ErrorComponent }
 ];
