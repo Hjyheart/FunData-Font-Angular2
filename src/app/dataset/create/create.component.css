@@ -79,6 +79,13 @@
     outline: none;
 }
 
+#upbtn {
+    margin-left: 29px;
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+}
+
 /* 表格 */
 .table {
     margin-top: 15px;
