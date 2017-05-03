@@ -52,7 +52,7 @@ var DatasetService = (function () {
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             _this.http.get(Constants_1.Constants.Urls['getMyDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
-                .map(function (res) { return DatasetService.convertUrl(res); })
+                .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
