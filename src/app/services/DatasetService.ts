@@ -47,7 +47,8 @@ export class DatasetService {
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
             this.http.get(`${Constants.Urls['getMyDatasets']}?curPage=${curPage}`, {headers: headers, withCredentials: true})
-                .map(res => DatasetService.convertUrl(res))
+                // .map(res => DatasetService.convertUrl(res))
+                .map(res => res.json())
                 .subscribe((body) => {
                         observer.next(body)
                     },

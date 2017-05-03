@@ -13,13 +13,11 @@ var Constants_1 = require("../util/Constants");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 var Dataset_1 = require("../models/Dataset");
-var DatasetService_1 = require("./DatasetService");
 var QiniuUploadService = (function () {
-    function QiniuUploadService(http, dataService) {
+    function QiniuUploadService(http) {
         this.http = http;
-        this.dataService = dataService;
     }
-    QiniuUploadService.prototype.getStaticUploader = function (form_data) {
+    QiniuUploadService.prototype.getStaticUploader = function (service, func, form_data, comp, loader_func) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -62,8 +60,8 @@ var QiniuUploadService = (function () {
                             if (form_data instanceof Dataset_1.Dataset) {
                                 form_data.coverUrl = "" + domain + res.key;
                             }
-                            _this.dataService.createDataset(form_data)
-                                .subscribe();
+                            func.bind(service)(form_data)
+                                .subscribe(loader_func.bind(comp));
                             // let domain = up.getOption('domain');
                             // let res = eval('(' + info + ')');
                             // if ( form_data instanceof Dataset) {
@@ -229,7 +227,7 @@ var QiniuUploadService = (function () {
     };
     QiniuUploadService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, DatasetService_1.DatasetService])
+        __metadata('design:paramtypes', [http_1.Http])
     ], QiniuUploadService);
     return QiniuUploadService;
 }());

@@ -14,7 +14,7 @@ declare const plupload: any;
 @Injectable()
 export class QiniuUploadService {
 
-    public getStaticUploader(form_data: any) {
+    public getStaticUploader(service: any, func: Function, form_data: any, comp: any, loader_func: Function) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Observable((observer: Observer<any>) => {
@@ -58,8 +58,8 @@ export class QiniuUploadService {
                                 if ( form_data instanceof Dataset) {
                                     form_data.coverUrl = `${domain}${res.key}`;
                                 }
-                                this.dataService.createDataset(form_data)
-                                    .subscribe()
+                                func.bind(service)(form_data)
+                                    .subscribe(loader_func.bind(comp))
                                 // let domain = up.getOption('domain');
                                 // let res = eval('(' + info + ')');
                                 // if ( form_data instanceof Dataset) {
@@ -228,7 +228,7 @@ export class QiniuUploadService {
     }
 
     constructor(private http: Http,
-                private dataService: DatasetService) {
+                ) {
 
     }
 }

@@ -35,6 +35,24 @@ var DatasetCreateComponent = (function () {
         this.keys = new Array();
         this.qiniuUploader = null;
     }
+    DatasetCreateComponent.prototype.loaderControl = function (res) {
+        var _this = this;
+        if (res === '200') {
+            this.loaderClass = 'loader loader-success';
+            this.loaderText = '创建成功';
+            setTimeout(function () {
+                _this.router.navigate(['/dataset/list']);
+            }, 10);
+        }
+        else if (res === '-1') {
+            this.loaderClass = 'loader loader-fail';
+            this.loaderText = '创建失败';
+            setTimeout(function () {
+                _this.loaderClass = 'loader loader-default';
+                _this.loaderText = '等待中。。。';
+            }, 10);
+        }
+    };
     DatasetCreateComponent.prototype.ngOnInit = function () {
         this.datasetName = '';
         this.datasetDes = '';
@@ -54,7 +72,7 @@ var DatasetCreateComponent = (function () {
         dataset.dsDescription = this.datasetDes;
         dataset.formatDescription = this.formatDes;
         dataset.columns = this.keys;
-        this.qiniuUploadService.getStaticUploader(dataset)
+        this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, dataset, this, this.loaderControl)
             .subscribe(function (uploader) {
             _this.qiniuUploader = uploader;
         });
@@ -66,28 +84,13 @@ var DatasetCreateComponent = (function () {
         this.qiniuUploader.addFile(file);
     };
     DatasetCreateComponent.prototype.onSubmit = function (form) {
+        this.loaderClass = 'loader loader-default is-active';
         this.qiniuUploader.start();
-        // this.loaderClass = 'loader loader-default is-active';
         // this.uploadService.upload()
         //     .subscribe((res: string) => {
         //     dataset.coverUrl = res;
         //       this.datasetService.createDataset(dataset)
         //           .subscribe(
-        //               res => {
-        //                 if (res === '200'){
-        //                   this.loaderClass = 'loader loader-success';
-        //                   this.loaderText = '创建成功';
-        //                   setTimeout( () => {
-        //                     this.router.navigate(['/dataset/list']);
-        //                   }, 1000);
-        //                 }else if(res === '-1'){
-        //                   this.loaderClass = 'loader loader-fail';
-        //                   this.loaderText = '创建失败';
-        //                   setTimeout(() => {
-        //                     this.loaderClass = 'loader loader-default';
-        //                     this.loaderText = '等待中。。。';
-        //                   }, 1000);
-        //                 }
         //               }
         //           );
         //     });

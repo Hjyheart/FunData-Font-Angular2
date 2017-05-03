@@ -60,6 +60,24 @@ export class DatasetCreateComponent implements OnInit{
   }
 
 
+  public loaderControl(res: string) {
+      if (res === '200') {
+          this.loaderClass = 'loader loader-success';
+          this.loaderText = '创建成功';
+          setTimeout( () => {
+              this.router.navigate(['/dataset/list']);
+          }, 10);
+      }
+      else if(res === '-1') {
+          this.loaderClass = 'loader loader-fail';
+          this.loaderText = '创建失败';
+          setTimeout(() => {
+              this.loaderClass = 'loader loader-default';
+              this.loaderText = '等待中。。。';
+          }, 10);
+      }
+  }
+
   ngOnInit(): void {
     this.datasetName = '';
     this.datasetDes = '';
@@ -80,7 +98,7 @@ export class DatasetCreateComponent implements OnInit{
       dataset.dsDescription = this.datasetDes;
       dataset.formatDescription = this.formatDes;
       dataset.columns = this.keys;
-      this.qiniuUploadService.getStaticUploader(dataset)
+      this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, dataset, this, this.loaderControl)
           .subscribe((uploader: any) => {
               this.qiniuUploader = uploader;
           });
@@ -94,30 +112,15 @@ export class DatasetCreateComponent implements OnInit{
     }
 
   onSubmit(form: NgForm) {
-
+      this.loaderClass = 'loader loader-default is-active';
       this.qiniuUploader.start();
 
-    // this.loaderClass = 'loader loader-default is-active';
     // this.uploadService.upload()
     //     .subscribe((res: string) => {
     //     dataset.coverUrl = res;
     //       this.datasetService.createDataset(dataset)
     //           .subscribe(
-    //               res => {
-    //                 if (res === '200'){
-    //                   this.loaderClass = 'loader loader-success';
-    //                   this.loaderText = '创建成功';
-    //                   setTimeout( () => {
-    //                     this.router.navigate(['/dataset/list']);
-    //                   }, 1000);
-    //                 }else if(res === '-1'){
-    //                   this.loaderClass = 'loader loader-fail';
-    //                   this.loaderText = '创建失败';
-    //                   setTimeout(() => {
-    //                     this.loaderClass = 'loader loader-default';
-    //                     this.loaderText = '等待中。。。';
-    //                   }, 1000);
-    //                 }
+
     //               }
     //           );
     //     });
