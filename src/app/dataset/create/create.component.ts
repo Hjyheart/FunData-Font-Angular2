@@ -1,14 +1,14 @@
 /**
  * Created by hongjiayong on 2017/4/12.
  */
-import {Component, OnInit, ViewChild, ElementRef, Renderer} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {Component, OnInit, Renderer} from '@angular/core';
 import {CurrentPageService} from "../../services/CurrentPageService";
 import {Dataset} from "../../models/Dataset";
 import {Column} from "../../models/Column";
 import {DatasetService} from "../../services/DatasetService";
 import {Router} from "@angular/router";
 import {QiniuUploadService} from "../../services/QiniuUploadService";
+import {UploadBaseClass} from "../../baseclasses/UploadBaseClass";
 
 
 
@@ -22,24 +22,23 @@ declare const $:any;
   styleUrls: ['../../main.css', 'create.component.css']
 })
 
-export class DatasetCreateComponent implements OnInit{
-    @ViewChild('upfile') protected _fileUpload:ElementRef;
-
+export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
     public dataset: Dataset = new Dataset();
 
-  attrFlag: boolean;
+  public attrFlag: boolean;
   cover: any;
   private keyName:string;
   private keyType:number;
   private loaderClass:string;
   private loaderText:string;
-    private qiniuUploader:any = null;
   constructor(private renderer:Renderer,
               private currentPage: CurrentPageService,
                 private datasetService: DatasetService,
                 private qiniuUploadService: QiniuUploadService,
                 private router: Router
-  ){}
+  ){
+      super();
+  }
 
 
   public loaderControl(res: string) {
@@ -70,24 +69,16 @@ export class DatasetCreateComponent implements OnInit{
   }
 
   public upload() {
-      // this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl)
-      //     .subscribe((uploader: any) => {
-      //         this.qiniuUploader = uploader;
-      //     });
       this.qiniuUploader = this.qiniuUploadService.getStaticUploader(this.datasetService,
-                                                  this.datasetService.createDataset,
-                                                  this.dataset, this,
-                                                  this.loaderControl);
+                                                                      this.datasetService.createDataset,
+                                                                      this.dataset,
+                                                                        this,
+                                                                      this.loaderControl);
       this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
       return false;
   }
 
-    public onFiles():any {
-        const file = this._fileUpload.nativeElement.files[0];
-        this.qiniuUploader.addFile(file);
-    }
-
-  onSubmit(form: NgForm) {
+  public createDataset() {
       this.loaderClass = 'loader loader-default is-active';
       if (this._fileUpload.nativeElement.files[0] === undefined) {
           this.datasetService.createDataset(this.dataset)

@@ -58,6 +58,8 @@
     </div>
     <div class="buttons">
       <button class="btn-cta-primary" (click)="upload()">上传</button>
+        <!--TODO edit confirm upload file btn-->
+        <button class="btn-cta-primary" (click)="newPullRequest()">确认</button>
         <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
       <button class="btn-cta-secondary" (click)="download()">下载</button>
     </div>

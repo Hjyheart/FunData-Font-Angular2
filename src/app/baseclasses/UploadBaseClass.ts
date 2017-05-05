@@ -4,11 +4,12 @@ import {ElementRef, ViewChild} from "@angular/core";
  * Created by huang on 17-5-5.
  */
 
-export class PageableBaseClass {
-    private qiniuUploader:any = null;
+export class UploadBaseClass {
+    protected qiniuUploader:any = null;
+
     @ViewChild('upfile') protected _fileUpload: ElementRef;
 
-    constructor(private qiniuUploadService: QiniuUploadService,){}
+    constructor(){}
 
     public onFiles():any {
         const file = this._fileUpload.nativeElement.files[0];
