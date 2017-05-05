@@ -76,5 +76,22 @@ export class DatasetService {
         });
     }
 
+    public getDatasetDetail(id: number) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', Cookie.get('authorization'));
+        return new Observable((observer: Observer<String>) => {
+            this.http.get(`${Constants.Urls['getDatasetDetail']}?datasetId=${id}`, {headers: headers, withCredentials: true})
+                .map(res => res.json())
+                .subscribe((body) => {
+                        observer.next(body)
+                    },
+                    err => {
+                        console.log('DatasetService->getDatasetDetail', err);
+                        observer.next('-1');
+                    });
+        });
+    }
+
 }
 

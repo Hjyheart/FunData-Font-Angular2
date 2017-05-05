@@ -15,6 +15,8 @@ export class Dataset {
     public createTime: string;
     public contributeNum: number;
     public columns: Column[];
-
+    constructor() {
+        this.columns = [];
+    }
 
 }
