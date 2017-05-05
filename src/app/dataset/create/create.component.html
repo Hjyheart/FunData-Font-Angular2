@@ -57,7 +57,8 @@
       </div>
     </div>
     <div class="form-group" id="upload-form">
-      <button (click)="upload()">上传文件</button>
+      <label for="upbtn">上传封面</label>
+      <button (click)="upload()" class="btn-cta-secondary" id="upbtn">上传</button>
       <div class="col-sm-10">
         <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
       </div>
