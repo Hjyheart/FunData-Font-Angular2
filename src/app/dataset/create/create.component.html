@@ -57,12 +57,11 @@
       </div>
     </div>
     <div class="form-group" id="upload-form">
-      <button (click)="uploadCover()">上传文件</button>
+      <button (click)="upload()">上传文件</button>
       <!--<label for="upload" class="col-sm-2 control-label">上传封面</label>-->
       <div class="col-sm-10">
-        <!--<input type="file" id="upload" name="cover" ng2FileSelect [uploader]="uploader" (change)="uploadCover($event)" />-->
+        <!--<input type="file" id="uplouploadover" ng2FileSelect [uploader]="uploader" (change)="uploadCover($event)" />-->
         <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
-        <button id="uploadFileBtn" style="display: none"></button>
       </div>
 
 

@@ -24,6 +24,10 @@ var DatasetDetailComponent = (function () {
         this.currentPage = currentPage;
         this.dataset = new Dataset_1.Dataset();
     }
+    DatasetDetailComponent.prototype.upload = function () {
+    };
+    DatasetDetailComponent.prototype.download = function () {
+    };
     DatasetDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         var dataset_id = +this.route.snapshot.params['id'];

@@ -12,9 +12,8 @@ import {QiniuUploadService} from "../../services/QiniuUploadService";
 
 
 
-declare  var $:any;
-declare const Qiniu: any;
-declare var plupload:any;
+declare const $:any;
+
 
 @Component({
   moduleId: module.id,
@@ -70,11 +69,15 @@ export class DatasetCreateComponent implements OnInit{
     this.currentPage.currentPage = 'dataset';
   }
 
-  public uploadCover() {
-      this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl)
-          .subscribe((uploader: any) => {
-              this.qiniuUploader = uploader;
-          });
+  public upload() {
+      // this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl)
+      //     .subscribe((uploader: any) => {
+      //         this.qiniuUploader = uploader;
+      //     });
+      this.qiniuUploader = this.qiniuUploadService.getStaticUploader(this.datasetService,
+                                                  this.datasetService.createDataset,
+                                                  this.dataset, this,
+                                                  this.loaderControl);
       this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
       return false;
   }

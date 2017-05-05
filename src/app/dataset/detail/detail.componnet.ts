@@ -27,6 +27,13 @@ export class DatasetDetailComponent implements OnInit{
       this.dataset = new Dataset();
   }
 
+  public upload() {
+
+  }
+
+  public download() {
+
+  }
 
   ngOnInit(): void {
       let dataset_id = +this.route.snapshot.params['id'];

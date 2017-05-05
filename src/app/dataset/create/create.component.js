@@ -54,12 +54,12 @@ var DatasetCreateComponent = (function () {
         this.loaderText = '等待中。。。';
         this.currentPage.currentPage = 'dataset';
     };
-    DatasetCreateComponent.prototype.uploadCover = function () {
-        var _this = this;
-        this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl)
-            .subscribe(function (uploader) {
-            _this.qiniuUploader = uploader;
-        });
+    DatasetCreateComponent.prototype.upload = function () {
+        // this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl)
+        //     .subscribe((uploader: any) => {
+        //         this.qiniuUploader = uploader;
+        //     });
+        this.qiniuUploader = this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl);
         this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
         return false;
     };
