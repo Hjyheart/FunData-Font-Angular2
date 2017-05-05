@@ -12,21 +12,18 @@
           <button class="tag2">tag2</button>
         </div>
         <h2>详情</h2>
-        <p>详情</p>
+        <p>{{dataset.dsDescription}}</p>
         <h2>格式说明</h2>
-        <p>格式说明</p>
+        <p>{{dataset.formatDescription}}</p>
       </article>
     </div>
     <div class="dataset-detail-content-follow">
       <table class="table table-striped">
         <thead>
-        <tr>
-          <th>#</th>
-          <th *ngFor="let column of dataset.columns">{{column.colName}}</th>
-          <th>Last Name</th>
-          <th>Username</th>
-          <th>Username</th>
-        </tr>
+            <tr>
+              <th>#</th>
+              <th *ngFor="let column of dataset.columns">{{column.colName}}</th>
+            </tr>
         </thead>
         <tbody>
         <tr>
@@ -60,8 +57,11 @@
       </table>
     </div>
     <div class="buttons">
-      <button class="btn-cta-primary">上传</button>
-      <button class="btn-cta-secondary">下载</button>
+      <button class="btn-cta-primary" (click)="upload()">上传</button>
+        <!--TODO edit confirm upload file btn-->
+        <button class="btn-cta-primary" (click)="newPullRequest()">确认</button>
+        <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
+      <button class="btn-cta-secondary" (click)="download()">下载</button>
     </div>
   </div>
   <div id="dataset-detail-side">

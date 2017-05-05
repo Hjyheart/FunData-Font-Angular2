@@ -9,4 +9,5 @@ export class PullRequest {
     public dataerUrl: string;
     public pullDescription: string;
     public createTime: string;
+    public fileUrl: string;
 }

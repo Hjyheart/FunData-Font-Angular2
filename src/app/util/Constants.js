@@ -26,6 +26,7 @@ var Constants = (function () {
         get: function () {
             return {
                 getPubToken: this.ServerHost + "/file/getPubToken",
+                getPriToken: this.ServerHost + "/file/getPriToken",
                 getKey: this.ServerHost + "/file/getKey",
                 uploadCover: this.ServerHost + "/dataset/uploadCover",
                 checkUpload: this.ServerHost + "/dataset/checkUpload",
