@@ -23,19 +23,18 @@ export class DatasetDetailComponent implements OnInit{
     private router: Router,
     private datasetService: DatasetService,
     private currentPage: CurrentPageService
-  ) {}
+  ) {
+      this.dataset = new Dataset();
+  }
 
 
   ngOnInit(): void {
-      this.route.parent.params.subscribe(params => {
-          let dataset_id = +params["id"];
-          this.datasetService.getDatasetDetail(dataset_id)
-              .subscribe((res: any) => {
-                  this.dataset = res.detail.datasetInfo;
-                  this.dataset.columns = res.detail.columns;
-              });
-      });
-
-    this.currentPage.currentPage = 'dataset';
+      let dataset_id = +this.route.snapshot.params['id'];
+      this.datasetService.getDatasetDetail(dataset_id)
+          .subscribe((res: any) => {
+              this.dataset = res.detail.datasetInfo;
+              this.dataset.columns = res.detail.columns;
+          });
+      this.currentPage.currentPage = 'dataset';
   }
 }

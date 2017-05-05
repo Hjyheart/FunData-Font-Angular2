@@ -15,22 +15,22 @@ var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetService_1 = require("../../services/DatasetService");
+var Dataset_1 = require("../../models/Dataset");
 var DatasetDetailComponent = (function () {
     function DatasetDetailComponent(route, router, datasetService, currentPage) {
         this.route = route;
         this.router = router;
         this.datasetService = datasetService;
         this.currentPage = currentPage;
+        this.dataset = new Dataset_1.Dataset();
     }
     DatasetDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.parent.params.subscribe(function (params) {
-            var dataset_id = +params["id"];
-            _this.datasetService.getDatasetDetail(dataset_id)
-                .subscribe(function (res) {
-                _this.dataset = res.detail.datasetInfo;
-                _this.dataset.columns = res.detail.columns;
-            });
+        var dataset_id = +this.route.snapshot.params['id'];
+        this.datasetService.getDatasetDetail(dataset_id)
+            .subscribe(function (res) {
+            _this.dataset = res.detail.datasetInfo;
+            _this.dataset.columns = res.detail.columns;
         });
         this.currentPage.currentPage = 'dataset';
     };
