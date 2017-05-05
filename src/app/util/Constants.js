@@ -33,6 +33,7 @@ var Constants = (function () {
                 downloadUrl: this.ServerHost + "/dataset/downloadUrl",
                 getMyDatasets: this.ServerHost + "/dataset/getMyDatasets",
                 getAllDatasets: this.ServerHost + "/dataset/getAllDatasets",
+                getDatasetDetail: this.ServerHost + "/dataset/getDatasetDetail",
                 // mooc
                 addMooc: this.ServerHost + "/course/add",
                 addStep: this.ServerHost + "/course/addstep",

@@ -4,19 +4,19 @@
     <div class="form-group">
       <label for="dataset-name" class="col-sm-2 control-label">数据集名称</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="dataset-name" name="dataset-name" [(ngModel)]="datasetName" placeholder="数据集名称">
+        <input type="text" class="form-control" id="dataset-name" name="dataset-name" [(ngModel)]="dataset.name" placeholder="数据集名称">
       </div>
     </div>
     <div class="form-group">
       <label for="description" class="col-sm-2 control-label">数据集相关描述</label>
       <div class="col-sm-10">
-        <textarea class="form-control" id="description" name="dataset-des" [(ngModel)]="datasetDes" placeholder="数据集相关描述"></textarea>
+        <textarea class="form-control" id="description" name="dataset-des" [(ngModel)]="dataset.dsDescription" placeholder="数据集相关描述"></textarea>
       </div>
     </div>
     <div class="form-group">
       <label for="format-des" class="col-sm-2 control-label">格式说明</label>
       <div class="col-sm-10">
-        <textarea class="form-control" id="format-des" name="dataset-des" [(ngModel)]="formatDes" placeholder="格式相关描述"></textarea>
+        <textarea class="form-control" id="format-des" name="dataset-des" [(ngModel)]="dataset.formatDescription" placeholder="格式相关描述"></textarea>
       </div>
     </div>
     <div class="form-group">
@@ -27,7 +27,7 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th *ngFor="let key of keys">{{key.colName}}({{key.colType}})</th>
+              <th *ngFor="let key of dataset.columns">{{key.colName}}({{key.colType}})</th>
             </tr>
           </thead>
         </table>
@@ -41,7 +41,7 @@
           <!--<butcolTypetype="button" class="btn-cta-secondary" id="add-attr-button" (click)="createLimitedModal.show()">添加</button>-->
           <table class="table table-bordered">
             <tbody>
-              <tr *ngFor="let key of keys">
+              <tr *ngFor="let key of dataset.columns">
                 <th>{{key.colName}}({{key.colType}})</th>
                 <th>
                   <select name="limited" id="limited" multiple="multiple" class="form-control" [(ngModel)]="key.limits">

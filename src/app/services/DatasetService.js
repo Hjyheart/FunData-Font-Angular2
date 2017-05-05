@@ -77,6 +77,22 @@ var DatasetService = (function () {
             });
         });
     };
+    DatasetService.prototype.getDatasetDetail = function (id) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.get(Constants_1.Constants.Urls['getDatasetDetail'] + "?datasetId=" + id, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body);
+            }, function (err) {
+                console.log('DatasetService->getDatasetDetail', err);
+                observer.next('-1');
+            });
+        });
+    };
     DatasetService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

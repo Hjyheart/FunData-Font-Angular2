@@ -13,7 +13,6 @@ import {HeaderComponent} from "../header/header.component";
 import {DatasetCreateComponent} from "./create/create.component";
 import {CommonModule} from "@angular/common";
 import {DatasetService} from "../services/DatasetService";
-import {UploadService} from "../services/UploadService";
 import { FileUploadModule } from 'ng2-file-upload';
 import {QiniuUploadService} from "../services/QiniuUploadService";
 
@@ -35,7 +34,6 @@ import {QiniuUploadService} from "../services/QiniuUploadService";
   ],
   providers: [
     DatasetService,
-      UploadService,
       QiniuUploadService
   ]
 })

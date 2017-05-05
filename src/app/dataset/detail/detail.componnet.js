@@ -14,15 +14,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var CurrentPageService_1 = require("../../services/CurrentPageService");
+var DatasetService_1 = require("../../services/DatasetService");
 var DatasetDetailComponent = (function () {
-    function DatasetDetailComponent(route, router, currentPage) {
+    function DatasetDetailComponent(route, router, datasetService, currentPage) {
         this.route = route;
         this.router = router;
+        this.datasetService = datasetService;
         this.currentPage = currentPage;
     }
     DatasetDetailComponent.prototype.ngOnInit = function () {
-        this.id = +this.route.snapshot.params['id'];
-        console.log(this.id);
+        var _this = this;
+        this.route.parent.params.subscribe(function (params) {
+            var dataset_id = +params["id"];
+            _this.datasetService.getDatasetDetail(dataset_id)
+                .subscribe(function (res) {
+                _this.dataset = res.detail.datasetInfo;
+                _this.dataset.columns = res.detail.columns;
+            });
+        });
         this.currentPage.currentPage = 'dataset';
     };
     DatasetDetailComponent = __decorate([
@@ -32,7 +41,7 @@ var DatasetDetailComponent = (function () {
             templateUrl: 'detail.component.html',
             styleUrls: ['detail.component.css', '../../main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, CurrentPageService_1.CurrentPageService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, DatasetService_1.DatasetService, CurrentPageService_1.CurrentPageService])
     ], DatasetDetailComponent);
     return DatasetDetailComponent;
 }());

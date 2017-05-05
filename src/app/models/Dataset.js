@@ -4,6 +4,7 @@
  */
 var Dataset = (function () {
     function Dataset() {
+        this.columns = [];
     }
     return Dataset;
 }());

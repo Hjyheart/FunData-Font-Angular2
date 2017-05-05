@@ -4,6 +4,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CurrentPageService} from "../../services/CurrentPageService";
+import {DatasetService} from "../../services/DatasetService";
+import {Dataset} from "../../models/Dataset";
 
 @Component({
   moduleId: module.id,
@@ -14,19 +16,26 @@ import {CurrentPageService} from "../../services/CurrentPageService";
 
 export class DatasetDetailComponent implements OnInit{
 
-  private id:number;
+  public dataset: Dataset;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private datasetService: DatasetService,
     private currentPage: CurrentPageService
   ) {}
 
 
   ngOnInit(): void {
-    this.id =+this.route.snapshot.params['id'];
-    console.log(this.id);
+      this.route.parent.params.subscribe(params => {
+          let dataset_id = +params["id"];
+          this.datasetService.getDatasetDetail(dataset_id)
+              .subscribe((res: any) => {
+                  this.dataset = res.detail.datasetInfo;
+                  this.dataset.columns = res.detail.columns;
+              });
+      });
+
     this.currentPage.currentPage = 'dataset';
   }
-
 }
