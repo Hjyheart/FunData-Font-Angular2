@@ -29,7 +29,7 @@
           <li *ngIf="authorizeService.isLogin" class="nav-item last nav-login-icon">
             <i class="fa fa-user"><a style="color:  #eebf3f" (mouseover)="showNav()">Hong Jiayong</a></i>
             <ul *ngIf="authorizeService.isLogin" class="dropdown-menu" (mouseleave)="hideNav()">
-              <li><a [routerLink]="['/myinfo/competitions']">我的个人资料</a></li>
+              <li><a [routerLink]="['/myinfo/datasets']">我的个人资料</a></li>
               <li><a [routerLink]="['/myinfo/datasets']">我的数据集</a></li>
               <li><a [routerLink]="['/myinfo/competitions']">我的数据比赛</a></li>
               <li><a [routerLink]="['/myinfo/courses']">我的课程</a></li>
