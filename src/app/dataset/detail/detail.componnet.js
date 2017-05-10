@@ -24,6 +24,7 @@ var DatasetDetailComponent = (function () {
     }
     DatasetDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // console.log(this.route.snapshot.params['id']);
         this.route.parent.params.subscribe(function (params) {
             var dataset_id = +params["id"];
             _this.datasetService.getDatasetDetail(dataset_id)

@@ -27,6 +27,7 @@ export class DatasetDetailComponent implements OnInit{
 
 
   ngOnInit(): void {
+    // console.log(this.route.snapshot.params['id']);
       this.route.parent.params.subscribe(params => {
           let dataset_id = +params["id"];
           this.datasetService.getDatasetDetail(dataset_id)
