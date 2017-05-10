@@ -13,6 +13,7 @@ import {InfoRoutingModule} from "./info.routing.module";
 import {ModalModule, PaginationModule, AccordionModule} from "ng2-bootstrap";
 import {PullComponent} from "./datasets/pull/info.dataset.pull.component";
 import {RouterLinkActive} from "@angular/router";
+import {PullRequestService} from "../services/PullRequestService";
 
 @NgModule({
   imports: [
@@ -32,8 +33,8 @@ import {RouterLinkActive} from "@angular/router";
     PullComponent
   ],
   providers: [
-    // RouterLinkActive,
-    // ElementRef
+    PullRequestService
+
   ]
 })
 
