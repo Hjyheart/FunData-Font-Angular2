@@ -17,7 +17,7 @@
     margin-bottom: 30px;
 }
 
-dataset-list-img > img {
+.dataset-list-img > img {
     width: 120px;
     height: 120px;
     margin-right: 30px;
@@ -64,6 +64,18 @@ dataset-list-img > img {
     -webkit-box-direction: normal;
     flex-flow: row nowrap;
     max-width: 575px;
+}
+
+.dataset-list-item-right {
+    display: flex;
+    align-self: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-flow: column nowrap;
+    font-size: 12px;
+    margin-left: auto;
+    min-width: 125px;
+    margin-top: 9px;
 }
 
 /*换页栏*/

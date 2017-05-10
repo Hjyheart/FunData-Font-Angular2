@@ -7,6 +7,7 @@ import {Constants} from "../util/Constants";
 export class Dataset {
 
     public id: number;
+    public url: string;
     public name: string;
     public ownerName: string;
     public coverUrl: string;

@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15,23 +20,40 @@ var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetService_1 = require("../../services/DatasetService");
-var DatasetDetailComponent = (function () {
-    function DatasetDetailComponent(route, router, datasetService, currentPage) {
+var Dataset_1 = require("../../models/Dataset");
+var UploadBaseClass_1 = require("../../baseclasses/UploadBaseClass");
+var QiniuUploadService_1 = require("../../services/QiniuUploadService");
+var DatasetDetailComponent = (function (_super) {
+    __extends(DatasetDetailComponent, _super);
+    function DatasetDetailComponent(route, router, renderer, qiniuUploadService, datasetService, currentPage) {
+        _super.call(this);
         this.route = route;
         this.router = router;
+        this.renderer = renderer;
+        this.qiniuUploadService = qiniuUploadService;
         this.datasetService = datasetService;
         this.currentPage = currentPage;
+        this.dataset = new Dataset_1.Dataset();
     }
+    DatasetDetailComponent.prototype.loaderControl = function () {
+        //TODO add upload wait sign
+    };
+    DatasetDetailComponent.prototype.newPullRequest = function () {
+        this.qiniuUploader.start();
+    };
+    DatasetDetailComponent.prototype.upload = function () {
+        this.qiniuUploader = this.qiniuUploadService.getDataUploader();
+        this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
+    };
+    DatasetDetailComponent.prototype.download = function () {
+    };
     DatasetDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // console.log(this.route.snapshot.params['id']);
-        this.route.parent.params.subscribe(function (params) {
-            var dataset_id = +params["id"];
-            _this.datasetService.getDatasetDetail(dataset_id)
-                .subscribe(function (res) {
-                _this.dataset = res.detail.datasetInfo;
-                _this.dataset.columns = res.detail.columns;
-            });
+        var dataset_id = +this.route.snapshot.params['id'];
+        this.datasetService.getDatasetDetail(dataset_id)
+            .subscribe(function (res) {
+            _this.dataset = res.detail.datasetInfo;
+            _this.dataset.columns = res.detail.columns;
         });
         this.currentPage.currentPage = 'dataset';
     };
@@ -42,9 +64,9 @@ var DatasetDetailComponent = (function () {
             templateUrl: 'detail.component.html',
             styleUrls: ['detail.component.css', '../../main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, DatasetService_1.DatasetService, CurrentPageService_1.CurrentPageService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, core_1.Renderer, QiniuUploadService_1.QiniuUploadService, DatasetService_1.DatasetService, CurrentPageService_1.CurrentPageService])
     ], DatasetDetailComponent);
     return DatasetDetailComponent;
-}());
+}(UploadBaseClass_1.UploadBaseClass));
 exports.DatasetDetailComponent = DatasetDetailComponent;
 //# sourceMappingURL=detail.componnet.js.map

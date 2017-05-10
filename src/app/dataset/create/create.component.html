@@ -56,20 +56,17 @@
         </div>
       </div>
     </div>
-    <div class="form-group" id="upload-form" style="left: 6%">
-      <label for="upbtn">上传头像</label>
-      <button (click)="uploadCover()"  class="btn-cta-secondary" id="upbtn">上传</button>
-      <!--<label for="upload" class="col-sm-2 control-label">上传封面</label>-->
-        <!--<input type="file" id="upload" name="cover" ng2FileSelect [uploader]="uploader" (change)="uploadCover($event)" />-->
-      <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
-      <button id="uploadFileBtn" style="display: none"></button>
-
-
+    <div class="form-group" id="upload-form">
+      <label for="upbtn">上传封面</label>
+      <button (click)="upload()" class="btn-cta-secondary" id="upbtn">上传</button>
+      <div class="col-sm-10">
+        <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
+      </div>
     </div>
   </div>
   <div class="buttons">
     <button type="button" class="btn-cta-primary">取消</button>
-    <button type="submit" class="btn-cta-secondary">提交</button>
+    <button type="button" class="btn-cta-secondary" (click)="createDataset()">提交</button>
   </div>
 </form>
 

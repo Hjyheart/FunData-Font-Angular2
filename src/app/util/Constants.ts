@@ -15,6 +15,7 @@ export class Constants {
     public static get Urls(): {} {
         return {
             getPubToken: `${this.ServerHost}/file/getPubToken`,
+            getPriToken: `${this.ServerHost}/file/getPriToken`,
             getKey: `${this.ServerHost}/file/getKey`,
 
             uploadCover: `${this.ServerHost}/dataset/uploadCover`,

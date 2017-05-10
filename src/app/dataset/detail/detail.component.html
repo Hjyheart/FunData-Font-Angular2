@@ -1,0 +1,111 @@
+<section id="dataset-detail" class="detail-section">
+  <div id="dataset-detail-content">
+    <div class="dataset-detail-content-main">
+      <div class="back">
+        <i class="fa fa-chevron-left"></i>
+        <a [routerLink]="['../../list']">back</a>
+      </div>
+      <article>
+        <h1>{{dataset.name}}</h1>
+        <div class="tags">
+          <button class="tag1">tag1</button>
+          <button class="tag2">tag2</button>
+        </div>
+        <h2>详情</h2>
+        <p>{{dataset.dsDescription}}</p>
+        <h2>格式说明</h2>
+        <p>{{dataset.formatDescription}}</p>
+      </article>
+    </div>
+    <div class="dataset-detail-content-follow">
+      <table class="table table-striped">
+        <thead>
+            <tr>
+              <th>#</th>
+              <th *ngFor="let column of dataset.columns">{{column.colName}}</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <th>Username</th>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <th>Username</th>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+          <th>Username</th>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+          <th>Username</th>
+        </tbody>
+      </table>
+    </div>
+    <div class="buttons">
+      <button class="btn-cta-primary" (click)="upload()">上传</button>
+        <!--TODO edit confirm upload file btn-->
+        <button class="btn-cta-primary" (click)="newPullRequest()">确认</button>
+        <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
+      <button class="btn-cta-secondary" (click)="download()">下载</button>
+    </div>
+  </div>
+  <div id="dataset-detail-side">
+    <div class="user-block">
+      <div class="user-head">
+        <img src="../../../assets/img/friends/fr-01.jpg" alt="头像">
+        <h2>用户名</h2>
+        <p>个性签名</p>
+        <button class="btn-cta-secondary">详情 <i class="fa fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="links">
+      <table class="table table-striped">
+        <thead>
+          <th>相关比赛</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>比赛1</th>
+          </tr>
+          <tr>
+            <th>比赛2</th>
+          </tr>
+          <tr>
+            <th>比赛3</th>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+        <thead>
+        <th>相关课程</th>
+        </thead>
+        <tbody>
+        <tr>
+          <th>课程1</th>
+        </tr>
+        <tr>
+          <th>课程2</th>
+        </tr>
+        <tr>
+          <th>课程3</th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
