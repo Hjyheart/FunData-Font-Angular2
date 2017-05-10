@@ -6,6 +6,7 @@ import {Constants} from "../util/Constants";
 import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
 import {Cookie} from 'ng2-cookies/ng2-cookies';
+import {PullRequest} from "../models/PullRequest";
 
 @Injectable()
 export class PullRequestService {
@@ -21,19 +22,18 @@ export class PullRequestService {
         return res;
     }
 
-    public createPullRequest(dataset: Dataset) {
+    public createPullRequest(pullRequest: PullRequest) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
-          JSON.stringify(dataset);
-          this.http.post(`${Constants.ServerHost}/dataset/createDataset`,`ds_name=${dataset.name}&ds_desc=${dataset.dsDescription}&format_desc=${dataset.formatDescription}&cover_url=${dataset.coverUrl}&columns=${JSON.stringify(dataset.columns)}` , {headers: headers, withCredentials: true})
+          this.http.post(`${Constants.ServerHost}/pullrequest/newPullRequest`,`datasetId=${pullRequest.datasetId}&fileUrl=${pullRequest.fileUrl}&description=${pullRequest.pullDescription}`, {headers: headers, withCredentials: true})
               .map(res => res.json())
               .subscribe((body) => {
                       observer.next(body.code)
                   },
                   err => {
-                      console.log('DatasetService->createDataset', err);
+                      console.log('PullRequestService->createPullRequest', err);
                       observer.next('-1');
                   });
       });

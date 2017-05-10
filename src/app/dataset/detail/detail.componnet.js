@@ -23,9 +23,11 @@ var DatasetService_1 = require("../../services/DatasetService");
 var Dataset_1 = require("../../models/Dataset");
 var UploadBaseClass_1 = require("../../baseclasses/UploadBaseClass");
 var QiniuUploadService_1 = require("../../services/QiniuUploadService");
+var PullRequestService_1 = require("../../services/PullRequestService");
+var PullRequest_1 = require("../../models/PullRequest");
 var DatasetDetailComponent = (function (_super) {
     __extends(DatasetDetailComponent, _super);
-    function DatasetDetailComponent(route, router, renderer, qiniuUploadService, datasetService, currentPage) {
+    function DatasetDetailComponent(route, router, renderer, qiniuUploadService, datasetService, currentPage, pullRequestService) {
         _super.call(this);
         this.route = route;
         this.router = router;
@@ -33,7 +35,9 @@ var DatasetDetailComponent = (function (_super) {
         this.qiniuUploadService = qiniuUploadService;
         this.datasetService = datasetService;
         this.currentPage = currentPage;
+        this.pullRequestService = pullRequestService;
         this.dataset = new Dataset_1.Dataset();
+        this.pullRequest = new PullRequest_1.PullRequest();
     }
     DatasetDetailComponent.prototype.loaderControl = function () {
         //TODO add upload wait sign
@@ -42,10 +46,12 @@ var DatasetDetailComponent = (function (_super) {
         this.qiniuUploader.start();
     };
     DatasetDetailComponent.prototype.upload = function () {
-        this.qiniuUploader = this.qiniuUploadService.getDataUploader();
+        this.pullRequest.datasetId = this.dataset.id;
+        this.qiniuUploader = this.qiniuUploadService.getDataUploader(this.pullRequestService, this.pullRequestService.createPullRequest, this.pullRequest, this, this.loaderControl);
         this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
     };
     DatasetDetailComponent.prototype.download = function () {
+        window.location.href = this.dataset.url;
     };
     DatasetDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -54,6 +60,7 @@ var DatasetDetailComponent = (function (_super) {
             .subscribe(function (res) {
             _this.dataset = res.detail.datasetInfo;
             _this.dataset.columns = res.detail.columns;
+            _this.dataset.url = res.detail.url;
         });
         this.currentPage.currentPage = 'dataset';
     };
@@ -64,7 +71,7 @@ var DatasetDetailComponent = (function (_super) {
             templateUrl: 'detail.component.html',
             styleUrls: ['detail.component.css', '../../main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, core_1.Renderer, QiniuUploadService_1.QiniuUploadService, DatasetService_1.DatasetService, CurrentPageService_1.CurrentPageService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, core_1.Renderer, QiniuUploadService_1.QiniuUploadService, DatasetService_1.DatasetService, CurrentPageService_1.CurrentPageService, PullRequestService_1.PullRequestService])
     ], DatasetDetailComponent);
     return DatasetDetailComponent;
 }(UploadBaseClass_1.UploadBaseClass));

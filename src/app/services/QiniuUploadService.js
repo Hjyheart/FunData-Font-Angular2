@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var Constants_1 = require("../util/Constants");
 var http_1 = require("@angular/http");
 var Dataset_1 = require("../models/Dataset");
+var PullRequest_1 = require("../models/PullRequest");
 var QiniuUploadService = (function () {
     function QiniuUploadService(http) {
         this.http = http;
@@ -75,7 +76,7 @@ var QiniuUploadService = (function () {
         };
         return Qiniu.uploader(options);
     };
-    QiniuUploadService.prototype.getDataUploader = function () {
+    QiniuUploadService.prototype.getDataUploader = function (service, func, form_data, comp, loader_func) {
         var options = {
             runtimes: 'html5,flash,html4',
             browse_button: 'upload',
@@ -105,16 +106,13 @@ var QiniuUploadService = (function () {
                     //do something
                 },
                 'FileUploaded': function (up, file, info) {
-                    //每个文件上传成功后,处理相关的事情
-                    //其中 info 是文件上传成功后，服务端返回的json，形式如
-                    //{
-                    //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                    //  "key": "gogopher.jpg"
-                    //}
                     var domain = up.getOption('domain');
                     var res = eval('(' + info + ')');
-                    var sourceLink = domain + res.key; //获取上传文件的链接地址
-                    //do something
+                    if (form_data instanceof PullRequest_1.PullRequest) {
+                        form_data.fileUrl = "" + domain + res.key;
+                    }
+                    func.bind(service)(form_data)
+                        .subscribe(loader_func.bind(comp));
                 },
                 'Error': function (up, err, errTip) {
                     alert(errTip);

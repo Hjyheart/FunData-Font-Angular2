@@ -8,6 +8,8 @@ import {DatasetService} from "../../services/DatasetService";
 import {Dataset} from "../../models/Dataset";
 import {UploadBaseClass} from "../../baseclasses/UploadBaseClass";
 import {QiniuUploadService} from "../../services/QiniuUploadService";
+import {PullRequestService} from "../../services/PullRequestService";
+import {PullRequest} from "../../models/PullRequest";
 
 @Component({
   moduleId: module.id,
@@ -19,6 +21,7 @@ import {QiniuUploadService} from "../../services/QiniuUploadService";
 export class DatasetDetailComponent extends UploadBaseClass implements OnInit{
 
   public dataset: Dataset = new Dataset();
+    public pullRequest: PullRequest = new PullRequest();
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +29,8 @@ export class DatasetDetailComponent extends UploadBaseClass implements OnInit{
     private renderer:Renderer,
     private qiniuUploadService: QiniuUploadService,
     private datasetService: DatasetService,
-    private currentPage: CurrentPageService
+    private currentPage: CurrentPageService,
+    private pullRequestService: PullRequestService,
   ) {
       super();
   }
@@ -40,12 +44,17 @@ export class DatasetDetailComponent extends UploadBaseClass implements OnInit{
   }
 
   public upload() {
-      this.qiniuUploader = this.qiniuUploadService.getDataUploader();
+      this.pullRequest.datasetId = this.dataset.id;
+      this.qiniuUploader = this.qiniuUploadService.getDataUploader(this.pullRequestService,
+                                                                    this.pullRequestService.createPullRequest,
+                                                                    this.pullRequest,
+                                                                    this,
+                                                                    this.loaderControl);
       this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
   }
 
   public download() {
-
+        window.location.href = this.dataset.url;
   }
 
   ngOnInit(): void {
@@ -54,6 +63,7 @@ export class DatasetDetailComponent extends UploadBaseClass implements OnInit{
           .subscribe((res: any) => {
               this.dataset = res.detail.datasetInfo;
               this.dataset.columns = res.detail.columns;
+              this.dataset.url = res.detail.url;
           });
       this.currentPage.currentPage = 'dataset';
   }

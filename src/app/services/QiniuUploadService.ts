@@ -5,6 +5,7 @@ import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
 import {Dataset} from "../models/Dataset";
 import {DatasetService} from "./DatasetService";
+import {PullRequest} from "../models/PullRequest";
 /**
  * Created by huang on 17-4-30.
  */
@@ -75,7 +76,7 @@ export class QiniuUploadService {
         return Qiniu.uploader(options);
     }
 
-    public getDataUploader() {
+    public getDataUploader(service: any, func: Function, form_data: any, comp: any, loader_func: Function) {
         let options = {
             runtimes: 'html5,flash,html4',
             browse_button: 'upload',//上传按钮的ID
@@ -106,16 +107,13 @@ export class QiniuUploadService {
                     //do something
                 },
                 'FileUploaded': (up: any, file: any, info: any) => {
-                    //每个文件上传成功后,处理相关的事情
-                    //其中 info 是文件上传成功后，服务端返回的json，形式如
-                    //{
-                    //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                    //  "key": "gogopher.jpg"
-                    //}
                     let domain = up.getOption('domain');
                     let res = eval('(' + info + ')');
-                    let sourceLink = domain + res.key;//获取上传文件的链接地址
-                    //do something
+                    if ( form_data instanceof PullRequest) {
+                        form_data.fileUrl = `${domain}${res.key}`;
+                    }
+                    func.bind(service)(form_data)
+                        .subscribe(loader_func.bind(comp))
                 },
                 'Error': (up: any, err: any, errTip: any) => {
                     alert(errTip);
