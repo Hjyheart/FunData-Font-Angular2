@@ -27,7 +27,9 @@ export class PullRequestService {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
-          this.http.post(`${Constants.ServerHost}/pullrequest/newPullRequest`,`datasetId=${pullRequest.datasetId}&fileUrl=${pullRequest.fileUrl}&description=${pullRequest.pullDescription}`, {headers: headers, withCredentials: true})
+          this.http.post(`${Constants.ServerHost}/pullrequest/newPullRequest`,
+              `datasetId=${pullRequest.datasetId}&fileUrl=${pullRequest.fileUrl}&description=${pullRequest.pullDescription}`,
+              {headers: headers, withCredentials: true})
               .map(res => res.json())
               .subscribe((body) => {
                       observer.next(body.code)
