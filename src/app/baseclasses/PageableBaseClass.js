@@ -14,18 +14,20 @@ var core_1 = require("@angular/core");
  */
 var PageableBaseClass = (function () {
     function PageableBaseClass(getDataFunc, dataName, service) {
-        var _this = this;
         this.getDataFunc = getDataFunc;
         this.dataName = dataName;
         this.service = service;
         this.totalItems = 0;
         this.currentPage = 0;
-        getDataFunc.bind(service)(0, this.param)
+    }
+    PageableBaseClass.prototype.ngOnInit = function () {
+        var _this = this;
+        this.getDataFunc.bind(this.service)(0, this.id)
             .subscribe(function (res) {
             _this.data = res[_this.dataName];
             _this.totalItems = res.total;
         });
-    }
+    };
     PageableBaseClass.prototype.setPage = function (curPage) {
         this.currentPage = curPage;
     };
@@ -33,20 +35,16 @@ var PageableBaseClass = (function () {
         var _this = this;
         console.log('Page changed to: ' + event.page);
         console.log('Number items per page: ' + event.itemsPerPage);
-        this.getDataFunc.bind(this.service)(event.page - 1, this.param)
+        this.getDataFunc.bind(this.service)(event.page - 1, this.id)
             .subscribe(function (res) {
             _this.data = res[_this.dataName];
             _this.currentPage = event.page;
         });
     };
     __decorate([
-        core_1.Input, 
+        core_1.Input(), 
         __metadata('design:type', Number)
-    ], PageableBaseClass.prototype, "param", void 0);
-    PageableBaseClass = __decorate([
-        core_1.Component, 
-        __metadata('design:paramtypes', [Function, String, Object])
-    ], PageableBaseClass);
+    ], PageableBaseClass.prototype, "id", void 0);
     return PageableBaseClass;
 }());
 exports.PageableBaseClass = PageableBaseClass;

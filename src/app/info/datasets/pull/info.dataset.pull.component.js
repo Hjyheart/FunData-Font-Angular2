@@ -33,6 +33,7 @@ var PullComponent = (function (_super) {
         configurable: true
     });
     PullComponent.prototype.ngOnInit = function () {
+        _super.prototype.ngOnInit.call(this);
         this.selectId = -1;
         this.tagValue = 0;
         this.newTag = '';

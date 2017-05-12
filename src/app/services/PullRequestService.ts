@@ -14,14 +14,6 @@ export class PullRequestService {
     constructor(private http: Http,) {
     }
 
-    private static convertUrl(res: any) {
-        res = res.json();
-        for (let dataset of res.datasets) {
-            dataset.coverUrl = Constants.ServerHost+'/'+dataset.coverUrl;
-        }
-        return res;
-    }
-
     public createPullRequest(pullRequest: PullRequest) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -47,7 +39,7 @@ export class PullRequestService {
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
             this.http.get(`${Constants.Urls['getAllPullRequests']}?datasetId=${datasetId}&curPage=${curPage}`, {headers: headers, withCredentials: true})
-                .map(res => PullRequestService.convertUrl(res))
+                .map(res => res.json())
                 .subscribe((body) => {
                         observer.next(body)
                     },
@@ -63,7 +55,7 @@ export class PullRequestService {
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
             this.http.get(`${Constants.Urls['getAllPullRequests']}?datasetId=${datasetId}&curPage=${curPage}`, {headers: headers, withCredentials: true})
-                .map(res => PullRequestService.convertUrl(res))
+                .map(res => res.json())
                 .subscribe((body) => {
                         observer.next(body)
                     },

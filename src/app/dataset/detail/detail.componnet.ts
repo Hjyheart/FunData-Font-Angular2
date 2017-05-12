@@ -18,7 +18,7 @@ import {PullRequest} from "../../models/PullRequest";
   styleUrls: ['detail.component.css', '../../main.css']
 })
 
-export class DatasetDetailComponent extends UploadBaseClass implements OnInit{
+export class DatasetDetailComponent extends UploadBaseClass implements OnInit {
 
   public dataset: Dataset = new Dataset();
     public pullRequest: PullRequest = new PullRequest();

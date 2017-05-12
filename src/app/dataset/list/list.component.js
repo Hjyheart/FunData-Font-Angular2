@@ -35,6 +35,7 @@ var DatasetListComponent = (function (_super) {
         configurable: true
     });
     DatasetListComponent.prototype.ngOnInit = function () {
+        _super.prototype.ngOnInit.call(this);
         this._hrWidth = '0px';
         this.currentPageService.currentPage = 'dataset';
     };

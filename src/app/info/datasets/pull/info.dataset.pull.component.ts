@@ -6,6 +6,7 @@ import {PageableBaseClass} from "../../../baseclasses/PageableBaseClass";
 import {Router, RouterLinkActive} from "@angular/router";
 import {PullRequestService} from "../../../services/PullRequestService";
 import {PullRequest} from "../../../models/PullRequest";
+import {Constants} from "../../../util/Constants";
 
 @Component({
   moduleId: module.id,
@@ -25,6 +26,7 @@ export class PullComponent extends PageableBaseClass implements OnInit {
         private pullRequestService: PullRequestService){
         super(pullRequestService.getAllPullRequests, 'pullrequests', pullRequestService);
     }
+    public pullRequest;
   // 被选中的pull request的id
   private selectId:number;
   private tagValue:number;
@@ -32,6 +34,7 @@ export class PullComponent extends PageableBaseClass implements OnInit {
   private newTagFlag:boolean;
 
   ngOnInit(): void {
+      super.ngOnInit();
     this.selectId = -1;
     this.tagValue = 0;
     this.newTag = '';
@@ -47,7 +50,6 @@ export class PullComponent extends PageableBaseClass implements OnInit {
 
   // TODO: 拒绝这个数据集
   reject(){
-
   }
 
   // TODO: 同意合并这个数据集，需要提供一个tag

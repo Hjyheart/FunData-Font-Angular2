@@ -1,13 +1,13 @@
 <div class="my-dataset-pull-request">
   <accordion>
-    <accordion-group *ngFor="let pull of pullRequests" heading="某某人 时间" (click)="chosePullRequest(1)" >
+    <accordion-group *ngFor="let pull of pullRequests" heading="{{pull.dataerName}} {{pull.updateTime}}" (click)="chosePullRequest(1)" >
       <div class="pull-des">
         <p>{{pull.pullDescription}}</p>
       </div>
       <div class="buttons">
-        <button class="btn btn-cta-primary" (click)="chosePullRequest(1);detailModal.show()">查看</button>
-        <button class="btn btn-cta-secondary" (click)="chosePullRequest(1);agreeModal.show()">同意</button>
-        <button class="btn btn-danger" (click)="chosePullRequest(1);deleteModal.show()">拒绝</button>
+        <button class="btn btn-cta-primary" (click)="chosePullRequest(pull.id);detailModal.show()">查看</button>
+        <button class="btn btn-cta-secondary" (click)="chosePullRequest(pull.id);agreeModal.show()">同意</button>
+        <button class="btn btn-danger" (click)="chosePullRequest(pull.id);deleteModal.show()">拒绝</button>
       </div>
     </accordion-group>
   </accordion>
@@ -49,97 +49,17 @@
         </button>
       </div>
       <div class="modal-body" style=" height: 400px;overflow-y: auto;">
-        <div class="form-group">
-          <h4>age(number)</h4>
+        <div class="form-group" *ngFor="let limit of pullRequest.limits; let i = index">
+          <h4>{{pullRequest.columns[i].colName}}({{pullRequest.columns[i].colType}})</h4>
           <table class="table">
             <thead>
             <tr>
-              <th>平均值</th>
-              <th>方差</th>
-              <th>分布</th>
+              <th *ngFor="let v of limit.entries()">{{v.key}}</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="form-group">
-          <h4>name(string)</h4>
-          <table class="table">
-            <thead>
-            <tr>
-              <th>平均值</th>
-              <th>方差</th>
-              <th>分布</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="form-group">
-          <h4>test(string)</h4>
-          <table class="table">
-            <thead>
-            <tr>
-              <th>平均值</th>
-              <th>方差</th>
-              <th>分布</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="form-group">
-          <h4>test2(string)</h4>
-          <table class="table">
-            <thead>
-            <tr>
-              <th>平均值</th>
-              <th>方差</th>
-              <th>分布</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="form-group">
-          <h4>test3(string)</h4>
-          <table class="table">
-            <thead>
-            <tr>
-              <th>平均值</th>
-              <th>方差</th>
-              <th>分布</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
+              <th *ngFor="let v of limit.entries()">{{v.value}}</th>
             </tr>
             </tbody>
           </table>

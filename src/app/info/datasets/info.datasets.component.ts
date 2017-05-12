@@ -16,16 +16,14 @@ import {Router, RouterLinkActive} from "@angular/router";
   styleUrls: ['../../main.css', 'info.datasets.component.css'],
   providers:[RouterLinkActive]
 })
-
-
 export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
 
-    @Input id: number;
   get datasets(): Dataset[] {
     return this.data;
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.currentPageService.currentPage = 'infoDatasets';
   }
 

@@ -45,9 +45,9 @@
                 <th>{{key.colName}}({{key.colType}})</th>
                 <th>
                   <select name="limited" id="limited" multiple="multiple" class="form-control" [(ngModel)]="key.limits">
-                    <option [ngValue]="1">平均值</option>
-                    <option [ngValue]="2">方差</option>
-                    <option [ngValue]="3">标准差</option>
+                    <option [ngValue]="0">平均值</option>
+                    <option [ngValue]="1">方差</option>
+                    <option [ngValue]="2">标准差</option>
                   </select>
                 </th>
               </tr>

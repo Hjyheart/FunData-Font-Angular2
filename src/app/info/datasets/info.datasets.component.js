@@ -21,18 +21,13 @@ var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetService_1 = require("../../services/DatasetService");
 var PageableBaseClass_1 = require("../../baseclasses/PageableBaseClass");
 var router_1 = require("@angular/router");
-var info_dataset_pull_component_1 = require("./pull/info.dataset.pull.component");
-var PullRequestService_1 = require("../../services/PullRequestService");
 var InfoDatasetsComponent = (function (_super) {
     __extends(InfoDatasetsComponent, _super);
-    function InfoDatasetsComponent(currentPageService, datasetService, pullRequestService, routerActive, componentFactoryResolver, viewContainerRef, router) {
+    function InfoDatasetsComponent(currentPageService, datasetService, routerActive, router) {
         _super.call(this, datasetService.getUserDatasets, 'datasets', datasetService);
         this.currentPageService = currentPageService;
         this.datasetService = datasetService;
-        this.pullRequestService = pullRequestService;
         this.routerActive = routerActive;
-        this.componentFactoryResolver = componentFactoryResolver;
-        this.viewContainerRef = viewContainerRef;
         this.router = router;
     }
     Object.defineProperty(InfoDatasetsComponent.prototype, "datasets", {
@@ -43,12 +38,8 @@ var InfoDatasetsComponent = (function (_super) {
         configurable: true
     });
     InfoDatasetsComponent.prototype.ngOnInit = function () {
+        _super.prototype.ngOnInit.call(this);
         this.currentPageService.currentPage = 'infoDatasets';
-    };
-    InfoDatasetsComponent.prototype.show = function (id) {
-        var factory = this.componentFactoryResolver.resolveComponentFactory(info_dataset_pull_component_1.PullComponent);
-        var instance = this.viewContainerRef.createComponent(factory).instance;
-        instance.constructor.bind(this)(this.pullRequestService, id);
     };
     InfoDatasetsComponent = __decorate([
         core_1.Component({
@@ -58,7 +49,7 @@ var InfoDatasetsComponent = (function (_super) {
             styleUrls: ['../../main.css', 'info.datasets.component.css'],
             providers: [router_1.RouterLinkActive]
         }), 
-        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, PullRequestService_1.PullRequestService, router_1.RouterLinkActive, core_1.ComponentFactoryResolver, core_1.ViewContainerRef, router_1.Router])
+        __metadata('design:paramtypes', [CurrentPageService_1.CurrentPageService, DatasetService_1.DatasetService, router_1.RouterLinkActive, router_1.Router])
     ], InfoDatasetsComponent);
     return InfoDatasetsComponent;
 }(PageableBaseClass_1.PageableBaseClass));
