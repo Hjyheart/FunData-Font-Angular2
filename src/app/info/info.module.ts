@@ -16,9 +16,6 @@ import {RouterLinkActive} from "@angular/router";
 import {PullRequestService} from "../services/PullRequestService";
 
 @NgModule({
-  entryComponents: [
-      PullComponent
-  ],
   imports: [
     FormsModule,
     HttpModule,
