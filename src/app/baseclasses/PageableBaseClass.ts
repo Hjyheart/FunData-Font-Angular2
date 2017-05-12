@@ -1,5 +1,3 @@
-import {OnInit, Type} from "@angular/core";
-import {Http} from "@angular/http";
 /**
  * Created by huang on 17-4-29.
  */
@@ -11,8 +9,9 @@ export class PageableBaseClass {
     public data: any[];
     constructor(private getDataFunc: Function,
                 private dataName: string,
-                private service: any){
-        getDataFunc.bind(service)(0)
+                private service: any,
+                private param: any = ""){
+        getDataFunc.bind(service)(0, this.param)
             .subscribe((res: any) => {
                 this.data = res[this.dataName];
                 this.totalItems = res.total;
@@ -26,7 +25,7 @@ export class PageableBaseClass {
     public pageChanged(event: any): void {
         console.log('Page changed to: ' + event.page);
         console.log('Number items per page: ' + event.itemsPerPage);
-        this.getDataFunc.bind(this.service)(event.page-1)
+        this.getDataFunc.bind(this.service)(event.page-1, this.param)
             .subscribe((res: any) => {
                 this.data = res[this.dataName];
                 this.currentPage = event.page;

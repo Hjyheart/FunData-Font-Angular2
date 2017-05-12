@@ -45,7 +45,7 @@ var DatasetService = (function () {
             });
         });
     };
-    DatasetService.prototype.getUserDatasets = function (curPage) {
+    DatasetService.prototype.getUserDatasets = function (curPage, params) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -61,7 +61,7 @@ var DatasetService = (function () {
             });
         });
     };
-    DatasetService.prototype.getAllDatasets = function (curPage) {
+    DatasetService.prototype.getAllDatasets = function (curPage, params) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');

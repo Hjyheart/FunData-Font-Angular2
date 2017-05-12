@@ -41,7 +41,7 @@ export class DatasetService {
       });
     }
 
-    public getUserDatasets(curPage: Number) {
+    public getUserDatasets(curPage: Number, params: string) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
@@ -58,7 +58,7 @@ export class DatasetService {
                     });
         });
     }
-    public getAllDatasets(curPage: Number) {
+    public getAllDatasets(curPage: Number, params: string) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));

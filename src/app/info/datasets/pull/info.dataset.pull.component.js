@@ -21,10 +21,17 @@ var PageableBaseClass_1 = require("../../../baseclasses/PageableBaseClass");
 var PullRequestService_1 = require("../../../services/PullRequestService");
 var PullComponent = (function (_super) {
     __extends(PullComponent, _super);
-    function PullComponent(pullService) {
-        _super.call(this, pullService.getAllPullRequests, 'pullrequests', pullService);
-        this.pullService = pullService;
+    function PullComponent(pullRequestService) {
+        _super.call(this, pullRequestService.getAllPullRequests, 'pullrequests', pullRequestService);
+        this.pullRequestService = pullRequestService;
     }
+    Object.defineProperty(PullComponent.prototype, "pullRequests", {
+        get: function () {
+            return this.data;
+        },
+        enumerable: true,
+        configurable: true
+    });
     PullComponent.prototype.ngOnInit = function () {
         this.selectId = -1;
         this.tagValue = 0;
@@ -44,10 +51,6 @@ var PullComponent = (function (_super) {
     PullComponent.prototype.showNewTag = function () {
         this.newTagFlag = true;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], PullComponent.prototype, "id", void 0);
     PullComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

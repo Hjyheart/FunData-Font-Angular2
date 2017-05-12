@@ -28,6 +28,9 @@ var InfoModule = (function () {
     }
     InfoModule = __decorate([
         core_1.NgModule({
+            entryComponents: [
+                info_dataset_pull_component_1.PullComponent
+            ],
             imports: [
                 forms_1.FormsModule,
                 http_1.HttpModule,

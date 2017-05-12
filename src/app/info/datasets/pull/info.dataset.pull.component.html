@@ -1,18 +1,14 @@
 <div class="my-dataset-pull-request">
   <accordion>
-    <accordion-group heading="某某人 时间" (click)="chosePullRequest(1)" >
+    <accordion-group *ngFor="let pull of pullRequests" heading="某某人 时间" (click)="chosePullRequest(1)" >
       <div class="pull-des">
-        <p>提交的描述</p>
-        {{id}}
+        <p>{{pull.pullDescription}}</p>
       </div>
       <div class="buttons">
         <button class="btn btn-cta-primary" (click)="chosePullRequest(1);detailModal.show()">查看</button>
         <button class="btn btn-cta-secondary" (click)="chosePullRequest(1);agreeModal.show()">同意</button>
         <button class="btn btn-danger" (click)="chosePullRequest(1);deleteModal.show()">拒绝</button>
       </div>
-    </accordion-group>
-    <accordion-group heading="某某人 时间">
-      <p>提交描述</p>
     </accordion-group>
   </accordion>
   <div class="page-change-pull">

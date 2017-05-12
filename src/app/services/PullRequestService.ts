@@ -41,34 +41,34 @@ export class PullRequestService {
       });
     }
 
-    public getUserPullRequests(curPage: Number) {
+    public getUserPullRequests(curPage: Number, datasetId: number) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
-            this.http.get(`${Constants.Urls['getMyDatasets']}?curPage=${curPage}`, {headers: headers, withCredentials: true})
+            this.http.get(`${Constants.Urls['getAllPullRequests']}?datasetId=${datasetId}&curPage=${curPage}`, {headers: headers, withCredentials: true})
                 .map(res => PullRequestService.convertUrl(res))
                 .subscribe((body) => {
                         observer.next(body)
                     },
                     err => {
-                        console.log('DatasetService->getUserDatasets', err);
+                        console.log('PullRequestService->getUserDatasets', err);
                         observer.next('-1');
                     });
         });
     }
-    public getAllPullRequests(curPage: Number) {
+    public getAllPullRequests(curPage: Number, datasetId: number) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
-            this.http.get(`${Constants.Urls['getAllDatasets']}?curPage=${curPage}`, {headers: headers, withCredentials: true})
+            this.http.get(`${Constants.Urls['getAllPullRequests']}?datasetId=${datasetId}&curPage=${curPage}`, {headers: headers, withCredentials: true})
                 .map(res => PullRequestService.convertUrl(res))
                 .subscribe((body) => {
                         observer.next(body)
                     },
                     err => {
-                        console.log('DatasetService->getAllDatasets', err);
+                        console.log('PullRequestService->getAllPullRequests', err);
                         observer.next('-1');
                     });
         });

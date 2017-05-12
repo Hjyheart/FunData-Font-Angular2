@@ -1,10 +1,11 @@
 /**
  * Created by hongjiayong on 2017/4/30.
  */
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Attribute} from '@angular/core';
 import {PageableBaseClass} from "../../../baseclasses/PageableBaseClass";
 import {Router, RouterLinkActive} from "@angular/router";
 import {PullRequestService} from "../../../services/PullRequestService";
+import {PullRequest} from "../../../models/PullRequest";
 
 @Component({
   moduleId: module.id,
@@ -16,8 +17,14 @@ import {PullRequestService} from "../../../services/PullRequestService";
 
 export class PullComponent extends PageableBaseClass implements OnInit {
 
-  @Input() id:number;
+    get pullRequests(): PullRequest[] {
+        return this.data;
+    }
 
+    constructor(
+        private pullRequestService: PullRequestService){
+        super(pullRequestService.getAllPullRequests, 'pullrequests', pullRequestService);
+    }
   // 被选中的pull request的id
   private selectId:number;
   private tagValue:number;
@@ -31,11 +38,7 @@ export class PullComponent extends PageableBaseClass implements OnInit {
     this.newTagFlag = false;
   }
 
-  constructor(
-    private pullService: PullRequestService
-  ){
-    super(pullService.getAllPullRequests, 'pullrequests', pullService);
-  }
+
 
   // TODO: 选中某个 pull request
   chosePullRequest(id: number){

@@ -41,34 +41,34 @@ var PullRequestService = (function () {
             });
         });
     };
-    PullRequestService.prototype.getUserPullRequests = function (curPage) {
+    PullRequestService.prototype.getUserPullRequests = function (curPage, datasetId) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
-            _this.http.get(Constants_1.Constants.Urls['getMyDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
+            _this.http.get(Constants_1.Constants.Urls['getAllPullRequests'] + "?datasetId=" + datasetId + "&curPage=" + curPage, { headers: headers, withCredentials: true })
                 .map(function (res) { return PullRequestService.convertUrl(res); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
-                console.log('DatasetService->getUserDatasets', err);
+                console.log('PullRequestService->getUserDatasets', err);
                 observer.next('-1');
             });
         });
     };
-    PullRequestService.prototype.getAllPullRequests = function (curPage) {
+    PullRequestService.prototype.getAllPullRequests = function (curPage, datasetId) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
-            _this.http.get(Constants_1.Constants.Urls['getAllDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
+            _this.http.get(Constants_1.Constants.Urls['getAllPullRequests'] + "?datasetId=" + datasetId + "&curPage=" + curPage, { headers: headers, withCredentials: true })
                 .map(function (res) { return PullRequestService.convertUrl(res); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
-                console.log('DatasetService->getAllDatasets', err);
+                console.log('PullRequestService->getAllPullRequests', err);
                 observer.next('-1');
             });
         });
