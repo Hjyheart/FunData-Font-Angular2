@@ -5,6 +5,6 @@ import {Column} from "./Column";
 
 export class PullRequestDetail {
     public columns: Column[];
-    public limits: Array<Map<String, Number>>;
+    public limits: Array<Map<string, number>>;
 
 }

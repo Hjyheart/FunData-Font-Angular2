@@ -54,12 +54,12 @@
           <table class="table">
             <thead>
             <tr>
-              <th *ngFor="let v of limit.entries()">{{v.key}}</th>
+              <th *ngFor="let k of limit | keys">{{k}}</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <th *ngFor="let v of limit.entries()">{{v.value}}</th>
+              <th *ngFor="let k of limit | keys">{{limit[k]}}</th>
             </tr>
             </tbody>
           </table>

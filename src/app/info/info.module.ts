@@ -14,6 +14,7 @@ import {ModalModule, PaginationModule, AccordionModule} from "ng2-bootstrap";
 import {PullComponent} from "./datasets/pull/info.dataset.pull.component";
 import {RouterLinkActive} from "@angular/router";
 import {PullRequestService} from "../services/PullRequestService";
+import {KeysPipe} from "../pipes/KeysPipe";
 
 @NgModule({
   imports: [
@@ -30,11 +31,12 @@ import {PullRequestService} from "../services/PullRequestService";
     InfoDatasetsComponent,
     InfoComComponent,
     InfoCoursesComponent,
-    PullComponent
+    PullComponent,
+      KeysPipe
   ],
   providers: [
-    PullRequestService
-
+    PullRequestService,
+    KeysPipe
   ]
 })
 

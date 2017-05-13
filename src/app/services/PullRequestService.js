@@ -49,6 +49,40 @@ var PullRequestService = (function () {
             });
         });
     };
+    PullRequestService.prototype.getPullRequestDetail = function (pullRequestId) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.get(Constants_1.Constants.Urls['getPullRequestDetail'] + "?pullRequestId=" + pullRequestId, {
+                headers: headers,
+                withCredentials: true
+            })
+                .map(function (res) {
+                var detail = res.json().detail;
+                var columns = detail.columns;
+                var new_limits = [];
+                for (var i = 0; i < detail.limits.length; i++) {
+                    var temp = {};
+                    for (var t in detail.limits[i]) {
+                        if (detail.limits[i].hasOwnProperty(t)) {
+                            temp[Constants_1.Constants.Restricts[columns[i].colType][parseInt(t)]] = detail.limits[i][t];
+                        }
+                    }
+                    new_limits.push(temp);
+                }
+                detail.limits = new_limits;
+                return detail;
+            })
+                .subscribe(function (body) {
+                observer.next(body);
+            }, function (err) {
+                console.log('PullRequestService->getUserDatasets', err);
+                observer.next('-1');
+            });
+        });
+    };
     PullRequestService.prototype.getAllPullRequests = function (curPage, datasetId) {
         var _this = this;
         var headers = new http_1.Headers();

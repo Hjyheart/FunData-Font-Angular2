@@ -6,7 +6,7 @@ import {PageableBaseClass} from "../../../baseclasses/PageableBaseClass";
 import {Router, RouterLinkActive} from "@angular/router";
 import {PullRequestService} from "../../../services/PullRequestService";
 import {PullRequest} from "../../../models/PullRequest";
-import {Constants} from "../../../util/Constants";
+import {PullRequestDetail} from "../../../models/PullRequestDetail";
 
 @Component({
   moduleId: module.id,
@@ -26,7 +26,7 @@ export class PullComponent extends PageableBaseClass implements OnInit {
         private pullRequestService: PullRequestService){
         super(pullRequestService.getAllPullRequests, 'pullrequests', pullRequestService);
     }
-    public pullRequest;
+    public pullRequest: PullRequestDetail = new PullRequestDetail();
   // 被选中的pull request的id
   private selectId:number;
   private tagValue:number;
@@ -46,6 +46,12 @@ export class PullComponent extends PageableBaseClass implements OnInit {
   // TODO: 选中某个 pull request
   chosePullRequest(id: number){
       this.selectId = id;
+      this.pullRequestService.getPullRequestDetail(id)
+          .subscribe((data: any) => {
+              if (data != "-1") {
+                  this.pullRequest = data;
+              }
+          })
   }
 
   // TODO: 拒绝这个数据集

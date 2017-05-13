@@ -23,6 +23,7 @@ var info_routing_module_1 = require("./info.routing.module");
 var ng2_bootstrap_1 = require("ng2-bootstrap");
 var info_dataset_pull_component_1 = require("./datasets/pull/info.dataset.pull.component");
 var PullRequestService_1 = require("../services/PullRequestService");
+var KeysPipe_1 = require("../pipes/KeysPipe");
 var InfoModule = (function () {
     function InfoModule() {
     }
@@ -42,10 +43,12 @@ var InfoModule = (function () {
                 info_datasets_component_1.InfoDatasetsComponent,
                 info_com_component_1.InfoComComponent,
                 info_courses_component_1.InfoCoursesComponent,
-                info_dataset_pull_component_1.PullComponent
+                info_dataset_pull_component_1.PullComponent,
+                KeysPipe_1.KeysPipe
             ],
             providers: [
-                PullRequestService_1.PullRequestService
+                PullRequestService_1.PullRequestService,
+                KeysPipe_1.KeysPipe
             ]
         }), 
         __metadata('design:paramtypes', [])
