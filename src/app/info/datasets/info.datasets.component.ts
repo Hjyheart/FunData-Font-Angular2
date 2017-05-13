@@ -1,13 +1,12 @@
 /**
  * Created by hongjiayong on 2017/4/25.
  */
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CurrentPageService} from "../../services/CurrentPageService";
 import {DatasetService} from "../../services/DatasetService";
 import {Dataset} from "../../models/Dataset";
 import {PageableBaseClass} from "../../baseclasses/PageableBaseClass";
 import {Router, RouterLinkActive} from "@angular/router";
-
 
 
 @Component({
@@ -17,8 +16,6 @@ import {Router, RouterLinkActive} from "@angular/router";
   styleUrls: ['../../main.css', 'info.datasets.component.css'],
   providers:[RouterLinkActive]
 })
-
-
 export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
 
   get datasets(): Dataset[] {
@@ -26,9 +23,9 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.currentPageService.currentPage = 'infoDatasets';
   }
-
 
   constructor(
     private currentPageService: CurrentPageService,

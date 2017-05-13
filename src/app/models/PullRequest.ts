@@ -8,6 +8,6 @@ export class PullRequest {
     public dataerName: string;
     public dataerUrl: string;
     public pullDescription: string;
-    public createTime: string;
+    public updateTime: string;
     public fileUrl: string;
 }

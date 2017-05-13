@@ -3,8 +3,8 @@
  */
 
 export class Column {
-    public colName: String;
-    public colType: String;
+    public colName: string;
+    public colType: string;
     public limits: number[];
 
     constructor(

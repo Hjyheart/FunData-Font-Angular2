@@ -30,6 +30,7 @@ export class DatasetListComponent extends PageableBaseClass implements OnInit {
   }
 
   ngOnInit(): void {
+        super.ngOnInit();
     this._hrWidth = '0px';
     this.currentPageService.currentPage = 'dataset';
   }

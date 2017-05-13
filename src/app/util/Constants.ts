@@ -8,7 +8,8 @@ export class Constants {
     //public static get ServerHost(): string { return 'http://192.168.1.18:3000';};
     public static get Restricts(): {} {
         return {
-            'Integer' : ['平均值', '方差'],
+            'Integer' : ['平均值', '方差', '标准差'],
+            'Double' : ['平均值', '方差', '标准差'],
             'String' : ['最大值', '最小值']};
     };
 
@@ -25,6 +26,10 @@ export class Constants {
             getMyDatasets: `${this.ServerHost}/dataset/getMyDatasets`,
             getAllDatasets: `${this.ServerHost}/dataset/getAllDatasets`,
             getDatasetDetail: `${this.ServerHost}/dataset/getDatasetDetail`,
+
+            getAllPullRequests: `${this.ServerHost}/pullrequest/getDatasetPullRequest`,
+            getPullRequestDetail: `${this.ServerHost}/pullrequest/getPullRequestDetail`,
+
             // mooc
             addMooc: `${this.ServerHost}/course/add`,
             addStep: `${this.ServerHost}/course/addstep`,

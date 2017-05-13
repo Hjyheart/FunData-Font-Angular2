@@ -38,6 +38,7 @@ var InfoDatasetsComponent = (function (_super) {
         configurable: true
     });
     InfoDatasetsComponent.prototype.ngOnInit = function () {
+        _super.prototype.ngOnInit.call(this);
         this.currentPageService.currentPage = 'infoDatasets';
     };
     InfoDatasetsComponent = __decorate([

@@ -17,14 +17,6 @@ var PullRequestService = (function () {
     function PullRequestService(http) {
         this.http = http;
     }
-    PullRequestService.convertUrl = function (res) {
-        res = res.json();
-        for (var _i = 0, _a = res.datasets; _i < _a.length; _i++) {
-            var dataset = _a[_i];
-            dataset.coverUrl = Constants_1.Constants.ServerHost + '/' + dataset.coverUrl;
-        }
-        return res;
-    };
     PullRequestService.prototype.createPullRequest = function (pullRequest) {
         var _this = this;
         var headers = new http_1.Headers();
@@ -41,34 +33,68 @@ var PullRequestService = (function () {
             });
         });
     };
-    PullRequestService.prototype.getUserPullRequests = function (curPage) {
+    PullRequestService.prototype.getUserPullRequests = function (curPage, datasetId) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
-            _this.http.get(Constants_1.Constants.Urls['getMyDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
-                .map(function (res) { return PullRequestService.convertUrl(res); })
+            _this.http.get(Constants_1.Constants.Urls['getAllPullRequests'] + "?datasetId=" + datasetId + "&curPage=" + curPage, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
-                console.log('DatasetService->getUserDatasets', err);
+                console.log('PullRequestService->getUserDatasets', err);
                 observer.next('-1');
             });
         });
     };
-    PullRequestService.prototype.getAllPullRequests = function (curPage) {
+    PullRequestService.prototype.getPullRequestDetail = function (pullRequestId) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
-            _this.http.get(Constants_1.Constants.Urls['getAllDatasets'] + "?curPage=" + curPage, { headers: headers, withCredentials: true })
-                .map(function (res) { return PullRequestService.convertUrl(res); })
+            _this.http.get(Constants_1.Constants.Urls['getPullRequestDetail'] + "?pullRequestId=" + pullRequestId, {
+                headers: headers,
+                withCredentials: true
+            })
+                .map(function (res) {
+                var detail = res.json().detail;
+                var columns = detail.columns;
+                var new_limits = [];
+                for (var i = 0; i < detail.limits.length; i++) {
+                    var temp = {};
+                    for (var t in detail.limits[i]) {
+                        if (detail.limits[i].hasOwnProperty(t)) {
+                            temp[Constants_1.Constants.Restricts[columns[i].colType][parseInt(t)]] = detail.limits[i][t];
+                        }
+                    }
+                    new_limits.push(temp);
+                }
+                detail.limits = new_limits;
+                return detail;
+            })
                 .subscribe(function (body) {
                 observer.next(body);
             }, function (err) {
-                console.log('DatasetService->getAllDatasets', err);
+                console.log('PullRequestService->getUserDatasets', err);
+                observer.next('-1');
+            });
+        });
+    };
+    PullRequestService.prototype.getAllPullRequests = function (curPage, datasetId) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.get(Constants_1.Constants.Urls['getAllPullRequests'] + "?datasetId=" + datasetId + "&curPage=" + curPage, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body);
+            }, function (err) {
+                console.log('PullRequestService->getAllPullRequests', err);
                 observer.next('-1');
             });
         });

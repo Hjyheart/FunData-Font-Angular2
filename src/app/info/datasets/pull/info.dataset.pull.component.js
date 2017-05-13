@@ -19,13 +19,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var PageableBaseClass_1 = require("../../../baseclasses/PageableBaseClass");
 var PullRequestService_1 = require("../../../services/PullRequestService");
+var PullRequestDetail_1 = require("../../../models/PullRequestDetail");
 var PullComponent = (function (_super) {
     __extends(PullComponent, _super);
-    function PullComponent(pullService) {
-        _super.call(this, pullService.getAllPullRequests, 'pullrequests', pullService);
-        this.pullService = pullService;
+    function PullComponent(pullRequestService) {
+        _super.call(this, pullRequestService.getAllPullRequests, 'pullrequests', pullRequestService);
+        this.pullRequestService = pullRequestService;
+        this.pullRequest = new PullRequestDetail_1.PullRequestDetail();
     }
+    Object.defineProperty(PullComponent.prototype, "pullRequests", {
+        get: function () {
+            return this.data;
+        },
+        enumerable: true,
+        configurable: true
+    });
     PullComponent.prototype.ngOnInit = function () {
+        _super.prototype.ngOnInit.call(this);
         this.selectId = -1;
         this.tagValue = 0;
         this.newTag = '';
@@ -33,7 +43,14 @@ var PullComponent = (function (_super) {
     };
     // TODO: 选中某个 pull request
     PullComponent.prototype.chosePullRequest = function (id) {
+        var _this = this;
         this.selectId = id;
+        this.pullRequestService.getPullRequestDetail(id)
+            .subscribe(function (data) {
+            if (data != "-1") {
+                _this.pullRequest = data;
+            }
+        });
     };
     // TODO: 拒绝这个数据集
     PullComponent.prototype.reject = function () {
@@ -44,10 +61,6 @@ var PullComponent = (function (_super) {
     PullComponent.prototype.showNewTag = function () {
         this.newTagFlag = true;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], PullComponent.prototype, "id", void 0);
     PullComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
