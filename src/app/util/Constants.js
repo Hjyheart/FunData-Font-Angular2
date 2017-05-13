@@ -38,6 +38,8 @@ var Constants = (function () {
                 getDatasetDetail: this.ServerHost + "/dataset/getDatasetDetail",
                 getAllPullRequests: this.ServerHost + "/pullrequest/getDatasetPullRequest",
                 getPullRequestDetail: this.ServerHost + "/pullrequest/getPullRequestDetail",
+                mergePullRequest: this.ServerHost + "/pullrequest/confirmRequest",
+                rejectPullRequest: this.ServerHost + "/pullrequest/rejectRequest",
                 // mooc
                 addMooc: this.ServerHost + "/course/add",
                 addStep: this.ServerHost + "/course/addstep",

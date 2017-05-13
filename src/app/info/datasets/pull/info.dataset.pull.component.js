@@ -54,9 +54,13 @@ var PullComponent = (function (_super) {
     };
     // TODO: 拒绝这个数据集
     PullComponent.prototype.reject = function () {
+        this.pullRequestService.rejectPullRequest(this.pullRequest.id)
+            .subscribe();
     };
     // TODO: 同意合并这个数据集，需要提供一个tag
     PullComponent.prototype.agree = function (tag) {
+        this.pullRequestService.mergePullRequest(this.pullRequest.id)
+            .subscribe();
     };
     PullComponent.prototype.showNewTag = function () {
         this.newTagFlag = true;
