@@ -14,13 +14,13 @@ export class PullRequestService {
     constructor(private http: Http,) {
     }
 
-    public mergePullRequest(pullRequestId: number) {
+    public mergePullRequest(pullRequestId: number, tag: string) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
             this.http.post(`${Constants.Urls['mergePullRequest']}`,
-                `pullRequestId=${pullRequestId}`,
+                `pullRequestId=${pullRequestId}&tag=${tag}`,
                 {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
