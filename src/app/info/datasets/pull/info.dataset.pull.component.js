@@ -59,7 +59,7 @@ var PullComponent = (function (_super) {
     };
     // TODO: 同意合并这个数据集，需要提供一个tag
     PullComponent.prototype.agree = function (tag) {
-        this.pullRequestService.mergePullRequest(this.pullRequest.id)
+        this.pullRequestService.mergePullRequest(this.pullRequest.id, tag)
             .subscribe();
     };
     PullComponent.prototype.showNewTag = function () {

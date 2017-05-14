@@ -62,7 +62,7 @@ export class PullComponent extends PageableBaseClass implements OnInit {
 
   // TODO: 同意合并这个数据集，需要提供一个tag
   agree(tag:string){
-      this.pullRequestService.mergePullRequest(this.pullRequest.id)
+      this.pullRequestService.mergePullRequest(this.pullRequest.id, tag)
           .subscribe();
   }
 
