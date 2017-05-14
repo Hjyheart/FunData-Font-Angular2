@@ -4,7 +4,9 @@ import {Column} from "./Column";
  */
 
 export class PullRequestDetail {
+    public id: number;
     public columns: Column[];
     public limits: Array<Map<string, number>>;
+    public url: string;
 
 }

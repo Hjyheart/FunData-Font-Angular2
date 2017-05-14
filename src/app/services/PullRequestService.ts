@@ -14,6 +14,44 @@ export class PullRequestService {
     constructor(private http: Http,) {
     }
 
+    public mergePullRequest(pullRequestId: number, tag: string) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', Cookie.get('authorization'));
+        return new Observable((observer: Observer<String>) => {
+            this.http.post(`${Constants.Urls['mergePullRequest']}`,
+                `pullRequestId=${pullRequestId}&tag=${tag}`,
+                {headers: headers, withCredentials: true})
+                .map(res => res.json())
+                .subscribe((body) => {
+                        observer.next(body.code)
+                    },
+                    err => {
+                        console.log('PullRequestService->mergePullRequest', err);
+                        observer.next('-1');
+                    })
+        });
+    }
+
+    public rejectPullRequest(pullRequestId: number) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', Cookie.get('authorization'));
+        return new Observable((observer: Observer<String>) => {
+            this.http.post(`${Constants.Urls['rejectPullRequest']}`,
+                `pullRequestId=${pullRequestId}`,
+                {headers: headers, withCredentials: true})
+                .map(res => res.json())
+                .subscribe((body) => {
+                        observer.next(body.code)
+                    },
+                    err => {
+                        console.log('PullRequestService->rejectPullRequest', err);
+                        observer.next('-1');
+                    })
+        });
+    }
+
     public createPullRequest(pullRequest: PullRequest) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');

@@ -17,6 +17,38 @@ var PullRequestService = (function () {
     function PullRequestService(http) {
         this.http = http;
     }
+    PullRequestService.prototype.mergePullRequest = function (pullRequestId, tag) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.post("" + Constants_1.Constants.Urls['mergePullRequest'], "pullRequestId=" + pullRequestId + "&tag=" + tag, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body.code);
+            }, function (err) {
+                console.log('PullRequestService->mergePullRequest', err);
+                observer.next('-1');
+            });
+        });
+    };
+    PullRequestService.prototype.rejectPullRequest = function (pullRequestId) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.post("" + Constants_1.Constants.Urls['rejectPullRequest'], "pullRequestId=" + pullRequestId, { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body.code);
+            }, function (err) {
+                console.log('PullRequestService->rejectPullRequest', err);
+                observer.next('-1');
+            });
+        });
+    };
     PullRequestService.prototype.createPullRequest = function (pullRequest) {
         var _this = this;
         var headers = new http_1.Headers();
