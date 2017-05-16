@@ -29,6 +29,8 @@ var InfoDatasetsComponent = (function (_super) {
         this.datasetService = datasetService;
         this.routerActive = routerActive;
         this.router = router;
+        this.exp = [];
+        this.exps = [];
     }
     Object.defineProperty(InfoDatasetsComponent.prototype, "datasets", {
         get: function () {
@@ -40,6 +42,31 @@ var InfoDatasetsComponent = (function (_super) {
     InfoDatasetsComponent.prototype.ngOnInit = function () {
         _super.prototype.ngOnInit.call(this);
         this.currentPageService.currentPage = 'infoDatasets';
+        this.chooseDataset = null;
+        this.exp = [];
+        this.exps = [];
+    };
+    //TODO: 获取被选中要进行约束管理数据集的信息
+    InfoDatasetsComponent.prototype.getChooseDataset = function (id) {
+        console.log(id);
+    };
+    InfoDatasetsComponent.prototype.yueshuEnding = function () {
+        this.chooseDataset = null;
+    };
+    InfoDatasetsComponent.prototype.putExp = function (str) {
+        this.exp.push(str);
+    };
+    InfoDatasetsComponent.prototype.deleteExp = function () {
+        this.exp.pop();
+    };
+    InfoDatasetsComponent.prototype.addExp = function () {
+        var e = '';
+        this.exp.forEach(function (s) { return e += s; });
+        this.exps.push(e);
+        this.exp = [];
+    };
+    InfoDatasetsComponent.prototype.deleteConfirmExp = function () {
+        this.exps.pop();
     };
     InfoDatasetsComponent = __decorate([
         core_1.Component({

@@ -18,6 +18,10 @@ import {Router, RouterLinkActive} from "@angular/router";
 })
 export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
 
+  private chooseDataset: Dataset;
+  private exp = [];
+  private exps = [];
+
   get datasets(): Dataset[] {
     return this.data;
   }
@@ -25,6 +29,9 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
     this.currentPageService.currentPage = 'infoDatasets';
+    this.chooseDataset = null;
+    this.exp = [];
+    this.exps = [];
   }
 
   constructor(
@@ -33,5 +40,33 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
     private routerActive:RouterLinkActive,
     private router: Router){
       super(datasetService.getUserDatasets, 'datasets', datasetService);
+  }
+
+  //TODO: 获取被选中要进行约束管理数据集的信息
+  getChooseDataset(id:number){
+    console.log(id);
+  }
+
+  yueshuEnding(){
+    this.chooseDataset = null;
+  }
+
+  putExp(str:string){
+    this.exp.push(str)
+  }
+
+  deleteExp(){
+    this.exp.pop();
+  }
+
+  addExp(){
+    let e = '';
+    this.exp.forEach(s => e += s);
+    this.exps.push(e);
+    this.exp = [];
+  }
+
+  deleteConfirmExp(){
+    this.exps.pop();
   }
 }

@@ -57,10 +57,9 @@
       </table>
     </div>
     <div class="buttons">
-      <button class="btn-cta-primary" (click)="upload()">上传</button>
+        <button class="btn-cta-primary" (click)="uploadModal.show()">上传</button>
         <!--TODO edit confirm upload file btn-->
         <button class="btn-cta-primary" (click)="newPullRequest()">确认</button>
-        <input style="visibility: hidden" type="file" id="upload" #upfile (change)="onFiles()"/>
       <button class="btn-cta-secondary" (click)="download()">下载</button>
     </div>
   </div>
@@ -109,3 +108,33 @@
     </div>
   </div>
 </section>
+
+<!--上传文件弹框-->
+<div bsModal #uploadModal="bs-modal" class="modal fade" style="top: 20%" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">上传文件</h4>
+        <button type="button" class="close pull-right" (click)="uploadModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="upload-file">上传文件</label>
+          <button (click)="upload()" id="upload-file"></button>
+          <input style="display: none" type="file" id="upload" #upfile (change)="onFiles()"/>
+        </div>
+        <div class="form-group">
+          <label for="upload-des">描述</label>
+          <br>
+          <input type="text" id="upload-des" placeholder="上传文件的相关描述" [(ngModel)]="pullRequest.pullDescription">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" (click)="newPullRequest();uploadModal.hide();">确定</button>
+        <button class="btn btn-danger"  type="button" (click)="uploadModal.hide()">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
