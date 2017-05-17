@@ -9,6 +9,7 @@ import {DatasetService} from "../../services/DatasetService";
 import {Router} from "@angular/router";
 import {QiniuUploadService} from "../../services/QiniuUploadService";
 import {UploadBaseClass} from "../../baseclasses/UploadBaseClass";
+import {Table} from "../../models/Table";
 
 
 
@@ -24,21 +25,20 @@ declare const $:any;
 
 export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
     public dataset: Dataset = new Dataset();
+    public attrFlag: boolean;
+    private keyName:string;
+    private keyType:number;
+    private loaderClass:string;
+    private loaderText:string;
 
-  public attrFlag: boolean;
-  cover: any;
-  private keyName:string;
-  private keyType:number;
-  private loaderClass:string;
-  private loaderText:string;
-  constructor(private renderer:Renderer,
+    constructor(private renderer:Renderer,
               private currentPage: CurrentPageService,
                 private datasetService: DatasetService,
                 private qiniuUploadService: QiniuUploadService,
                 private router: Router
-  ){
+    ){
       super();
-  }
+    }
 
 
   public loaderControl(res: string) {
@@ -106,7 +106,7 @@ export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
     else{
       type = '';
     }
-    this.dataset.columns.push(new Column(this.keyName, type, []));
+    this.dataset.tables.push(new Table());
     this.keyName = '';
     this.keyType = 0;
   }

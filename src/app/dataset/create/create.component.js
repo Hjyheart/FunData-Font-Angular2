@@ -19,11 +19,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var Dataset_1 = require("../../models/Dataset");
-var Column_1 = require("../../models/Column");
 var DatasetService_1 = require("../../services/DatasetService");
 var router_1 = require("@angular/router");
 var QiniuUploadService_1 = require("../../services/QiniuUploadService");
 var UploadBaseClass_1 = require("../../baseclasses/UploadBaseClass");
+var Table_1 = require("../../models/Table");
 var DatasetCreateComponent = (function (_super) {
     __extends(DatasetCreateComponent, _super);
     function DatasetCreateComponent(renderer, currentPage, datasetService, qiniuUploadService, router) {
@@ -93,7 +93,7 @@ var DatasetCreateComponent = (function (_super) {
         else {
             type = '';
         }
-        this.dataset.columns.push(new Column_1.Column(this.keyName, type, []));
+        this.dataset.tables.push(new Table_1.Table());
         this.keyName = '';
         this.keyType = 0;
     };
