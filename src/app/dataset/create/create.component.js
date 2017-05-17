@@ -19,7 +19,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var Dataset_1 = require("../../models/Dataset");
-var Column_1 = require("../../models/Column");
 var DatasetService_1 = require("../../services/DatasetService");
 var router_1 = require("@angular/router");
 var QiniuUploadService_1 = require("../../services/QiniuUploadService");
@@ -34,6 +33,7 @@ var DatasetCreateComponent = (function (_super) {
         this.qiniuUploadService = qiniuUploadService;
         this.router = router;
         this.dataset = new Dataset_1.Dataset();
+        this.newTables = [];
     }
     DatasetCreateComponent.prototype.loaderControl = function (res) {
         var _this = this;
@@ -59,7 +59,10 @@ var DatasetCreateComponent = (function (_super) {
         this.keyType = 0;
         this.loaderClass = 'loader loader-default';
         this.loaderText = '等待中。。。';
+        this.newTableName = '';
+        this.newTables = [];
         this.currentPage.currentPage = 'dataset';
+        this.currentTable = -1;
     };
     DatasetCreateComponent.prototype.upload = function () {
         this.qiniuUploader = this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl);
@@ -93,9 +96,21 @@ var DatasetCreateComponent = (function (_super) {
         else {
             type = '';
         }
-        this.dataset.columns.push(new Column_1.Column(this.keyName, type, []));
+        // this.dataset.columns.push(new Column(this.keyName, type, []));
+        this.newTables[this.currentTable]['attr'].push([this.keyName, type]);
         this.keyName = '';
         this.keyType = 0;
+    };
+    DatasetCreateComponent.prototype.addNewTable = function () {
+        this.newTables.push({
+            name: this.newTableName,
+            attr: []
+        });
+        this.newTableName = '';
+    };
+    DatasetCreateComponent.prototype.chooseTable = function (i) {
+        console.log(i);
+        this.currentTable = i;
     };
     DatasetCreateComponent = __decorate([
         core_1.Component({

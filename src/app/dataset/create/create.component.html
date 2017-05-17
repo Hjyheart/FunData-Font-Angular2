@@ -20,41 +20,57 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="format-table" class="col-sm-2 control-label">表格属性</label>
+      <label for="format-table" class="col-sm-2 control-label">新建表格</label>
       <div class="col-sm-10">
-        <button id="format-table" type="button" class="btn-cta-secondary" (click)="createDbTitileModal.show()">添加</button>
-        <br>
+        <button id="format-table" type="button" class="btn-cta-secondary" (click)="createDbTableModal.show()">添加</button>
+        <!--<br>-->
+        <!--<table class="table table-bordered">-->
+          <!--<thead>-->
+            <!--<tr>-->
+              <!--<th *ngFor="let key of dataset.columns">{{key.colName}}({{key.colType}})</th>-->
+            <!--</tr>-->
+          <!--</thead>-->
+        <!--</table>-->
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">表:</label>
+      <div *ngFor="let table of newTables; let i=index" class="col-sm-2">
+        <button type="button" class="btn btn-default" (click)="chooseTable(i);createDbTitleModal.show();">{{table['name']}}</button>
+      </div>
+      <div *ngFor="let table of newTables">
+        {{table['name']}}
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th *ngFor="let key of dataset.columns">{{key.colName}}({{key.colType}})</th>
+              <th *ngFor="let key of table['attr']">{{key[0]}}({{key[1]}})</th>
             </tr>
           </thead>
         </table>
       </div>
     </div>
-    <div class="form-group">
-      <label for="attr-flag" class="col-sm-2 control-label">使用限制属性</label>
-      <div class="col-sm-10">
-        <input type="checkbox" id="attr-flag" name="attr-flag" [(ngModel)]="attrFlag">
-        <div *ngIf="attrFlag">
-          <table class="table table-bordered">
-            <tbody>
-              <tr *ngFor="let key of dataset.columns">
-                <th>{{key.colName}}({{key.colType}})</th>
-                <th>
-                  <select name="limited" id="limited" multiple="multiple" class="form-control" [(ngModel)]="key.limits">
-                    <option [ngValue]="0">平均值</option>
-                    <option [ngValue]="1">方差</option>
-                    <option [ngValue]="2">标准差</option>
-                  </select>
-                </th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="attr-flag" class="col-sm-2 control-label">使用限制属性</label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input type="checkbox" id="attr-flag" name="attr-flag" [(ngModel)]="attrFlag">-->
+        <!--<div *ngIf="attrFlag">-->
+          <!--<table class="table table-bordered">-->
+            <!--<tbody>-->
+              <!--<tr *ngFor="let key of dataset.columns">-->
+                <!--<th>{{key.colName}}({{key.colType}})</th>-->
+                <!--<th>-->
+                  <!--<select name="limited" id="limited" multiple="multiple" class="form-control" [(ngModel)]="key.limits">-->
+                    <!--<option [ngValue]="0">平均值</option>-->
+                    <!--<option [ngValue]="1">方差</option>-->
+                    <!--<option [ngValue]="2">标准差</option>-->
+                  <!--</select>-->
+                <!--</th>-->
+              <!--</tr>-->
+            <!--</tbody>-->
+          <!--</table>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="form-group" id="upload-form">
       <label for="upbtn" class="col-sm-2 control-label">上传封面</label>
       <button (click)="upload()" class="btn-cta-secondary" id="upbtn">上传</button>
@@ -70,12 +86,36 @@
 </form>
 
 <!--创建数据库表名-->
-<div bsModal #createDbTitileModal="bs-modal" class="modal fade" style="top: 20%" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div bsModal #createDbTableModal="bs-modal" class="modal fade" style="top: 20%" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">创建键新表</h4>
+        <button type="button" class="close pull-right" (click)="createDbTableModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" name="table-name" class="form-control" placeholder="新数据表名" [(ngModel)]="newTableName">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" (click)="addNewTable();createDbTableModal.hide();">确定</button>
+        <button class="btn btn-danger"  type="button" (click)="createDbTableModal.hide()">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--创建数据库属性名-->
+<div bsModal #createDbTitleModal="bs-modal" class="modal fade" style="top: 20%" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">创建键值对</h4>
-        <button type="button" class="close pull-right" (click)="createLimitedModal.hide()" aria-label="Close">
+        <button type="button" class="close pull-right" (click)="createDbTitleModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -96,8 +136,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" (click)="addKey(); createDbTitileModal.hide();">确定</button>
-        <button class="btn btn-danger"  type="button" (click)="createDbTitileModal.hide()">取消</button>
+        <button class="btn btn-primary" type="submit" (click)="addKey();createDbTitleModal.hide();">确定</button>
+        <button class="btn btn-danger"  type="button" (click)="createDbTitleModal.hide()">取消</button>
       </div>
     </div>
   </div>

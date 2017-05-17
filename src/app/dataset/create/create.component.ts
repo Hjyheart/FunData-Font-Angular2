@@ -1,7 +1,7 @@
 /**
  * Created by hongjiayong on 2017/4/12.
  */
-import {Component, OnInit, Renderer} from '@angular/core';
+import {Component, OnInit, Renderer, ViewChild} from '@angular/core';
 import {CurrentPageService} from "../../services/CurrentPageService";
 import {Dataset} from "../../models/Dataset";
 import {Column} from "../../models/Column";
@@ -9,6 +9,7 @@ import {DatasetService} from "../../services/DatasetService";
 import {Router} from "@angular/router";
 import {QiniuUploadService} from "../../services/QiniuUploadService";
 import {UploadBaseClass} from "../../baseclasses/UploadBaseClass";
+import {ModalDirective} from "ng2-bootstrap";
 
 
 
@@ -31,6 +32,9 @@ export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
   private keyType:number;
   private loaderClass:string;
   private loaderText:string;
+  private newTableName:string;
+  private newTables = [];
+  private currentTable:number;
   constructor(private renderer:Renderer,
               private currentPage: CurrentPageService,
                 private datasetService: DatasetService,
@@ -65,7 +69,10 @@ export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
     this.keyType = 0;
     this.loaderClass = 'loader loader-default';
     this.loaderText = '等待中。。。';
+    this.newTableName = '';
+    this.newTables = [];
     this.currentPage.currentPage = 'dataset';
+    this.currentTable = -1;
   }
 
   public upload() {
@@ -106,8 +113,22 @@ export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
     else{
       type = '';
     }
-    this.dataset.columns.push(new Column(this.keyName, type, []));
+    // this.dataset.columns.push(new Column(this.keyName, type, []));
+    this.newTables[this.currentTable]['attr'].push([this.keyName, type]);
     this.keyName = '';
     this.keyType = 0;
+  }
+
+  addNewTable(){
+    this.newTables.push({
+      name: this.newTableName,
+      attr: []
+    });
+    this.newTableName = '';
+  }
+
+  chooseTable(i:number){
+    console.log(i);
+    this.currentTable = i;
   }
 }
