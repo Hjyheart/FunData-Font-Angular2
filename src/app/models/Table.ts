@@ -6,7 +6,8 @@ import {Column} from "./Column";
 export class Table {
     public name: string;
     public columns: Column[];
-    constructor() {
+    constructor(name: string) {
         this.columns = [];
+        this.name = name;
     }
 }

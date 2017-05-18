@@ -24,6 +24,7 @@ var router_1 = require("@angular/router");
 var QiniuUploadService_1 = require("../../services/QiniuUploadService");
 var UploadBaseClass_1 = require("../../baseclasses/UploadBaseClass");
 var Table_1 = require("../../models/Table");
+var Column_1 = require("../../models/Column");
 var DatasetCreateComponent = (function (_super) {
     __extends(DatasetCreateComponent, _super);
     function DatasetCreateComponent(renderer, currentPage, datasetService, qiniuUploadService, router) {
@@ -59,7 +60,9 @@ var DatasetCreateComponent = (function (_super) {
         this.keyType = 0;
         this.loaderClass = 'loader loader-default';
         this.loaderText = '等待中。。。';
+        this.newTableName = '';
         this.currentPage.currentPage = 'dataset';
+        this.currentTable = -1;
     };
     DatasetCreateComponent.prototype.upload = function () {
         this.qiniuUploader = this.qiniuUploadService.getStaticUploader(this.datasetService, this.datasetService.createDataset, this.dataset, this, this.loaderControl);
@@ -93,9 +96,17 @@ var DatasetCreateComponent = (function (_super) {
         else {
             type = '';
         }
-        this.dataset.tables.push(new Table_1.Table());
+        this.dataset.tables[this.currentTable].columns.push(new Column_1.Column(this.keyName, type));
         this.keyName = '';
         this.keyType = 0;
+    };
+    DatasetCreateComponent.prototype.addNewTable = function () {
+        this.dataset.tables.push(new Table_1.Table(this.newTableName));
+        this.newTableName = '';
+    };
+    DatasetCreateComponent.prototype.chooseTable = function (i) {
+        console.log(i);
+        this.currentTable = i;
     };
     DatasetCreateComponent = __decorate([
         core_1.Component({

@@ -13,6 +13,7 @@
         <div class="dataset-list-item-right">
             <p>{{dataset.contributeNum}} 贡献者</p>
             <p>下载所需金币</p>
+             <button class="btn-cta-primary" (click)="getChooseDataset(dataset.id);yueshuModal.show()">约束管理</button>
         </div>
     </div>
     <hr/>
@@ -26,5 +27,50 @@
   <div class="page-change">
     <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
                 [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+  </div>
+</div>
+
+<!--计算器表-->
+<div bsModal #yueshuModal="bs-modal" class="modal fade" style="top: 20%" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">创建约束</h4>
+        <button type="button" class="close pull-right" (click)="yueshuEnding();yueshuModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="yueshu-edit-contain">
+          <div class="attr-buttons">
+            <button type="button" class="btn btn-info" (click)="putExp('age')">age(int)</button>
+            <button type="button" class="btn btn-info" (click)="putExp('name')">name(string)</button>
+            <button type="button" class="btn btn-info" (click)="putExp('test')">test</button>
+            <button type="button" class="btn btn-info" (click)="putExp('test1')">test1</button>
+          </div>
+          <div class="operations">
+            <button type="button" class="btn btn-default" (click)="putExp('+')">+</button>
+            <button type="button" class="btn btn-default" (click)="putExp('-')">-</button>
+            <button type="button" class="btn btn-default" (click)="putExp('*')">*</button>
+            <button type="button" class="btn btn-default" (click)="putExp('/')">/</button>
+            <button type="button" class="btn btn-default" (click)="putExp('(')">(</button>
+            <button type="button" class="btn btn-default" (click)="putExp(')')">)</button>
+          </div>
+        </div>
+        <div class="res">
+          <span *ngFor="let ex of exp">{{ex}}</span>
+          <div class="btn btn-cta-secondary expression-confirm" (click)="addExp()">确认</div>
+          <div class="btn btn-cta-primary expression-delete" (click)="deleteExp()">退格</div>
+        </div>
+        <div class="selected-exp">
+          {{exps}}
+        </div>
+        <button class="btn btn-danger" (click)="deleteConfirmExp()">删除</button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" (click)="yueshuEnding();yueshuModal.hide();">确定</button>
+        <button class="btn btn-danger"  type="button" (click)="yueshuEnding();yueshuModal.hide();">取消</button>
+      </div>
+    </div>
   </div>
 </div>

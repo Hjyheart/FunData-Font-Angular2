@@ -78,9 +78,67 @@
     margin-top: 9px;
 }
 
+.dataset-list-item-right > button {
+    border-radius: 4px;
+    width: 60%;
+}
+
 /*换页栏*/
 .page-change {
     position: relative;
     left: 20%;
 }
 
+/* 约束编辑器 */
+.yueshu-edit-contain {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.attr-buttons {
+    width: 50%;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.attr-buttons > button {
+    margin: 20px 10px;
+}
+
+.operations {
+    width: 50%;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.operations > button {
+    margin: 20px 10px;
+}
+
+.res {
+    text-align: center;
+    padding: 20px;
+}
+
+.expression-confirm {
+    float: right;
+    text-align: center;
+    position: relative;
+    top: -30px;
+}
+
+.expression-delete {
+    float: right;
+    text-align: center;
+    position: relative;
+    top: -30px;
+    margin-right: 3px;
+}
+
+.selected-exp {
+    float: left;
+    height: 50px;
+    width: 100%;
+}
