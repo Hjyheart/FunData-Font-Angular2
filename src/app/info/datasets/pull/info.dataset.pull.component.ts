@@ -27,19 +27,19 @@ export class PullComponent extends PageableBaseClass implements OnInit {
         super(pullRequestService.getAllPullRequests, 'pullrequests', pullRequestService);
     }
     public pullRequest: PullRequestDetail = new PullRequestDetail();
-  // 被选中的pull request的id
-  private selectId:number;
-  private tagValue:number;
-  private newTag:string;
-  private newTagFlag:boolean;
+    // 被选中的pull request的id
+    private selectId:number;
+    private tagValue:number;
+    private newTag:string;
+    private newTagFlag:boolean;
 
-  ngOnInit(): void {
-      super.ngOnInit();
-    this.selectId = -1;
-    this.tagValue = 0;
-    this.newTag = '';
-    this.newTagFlag = false;
-  }
+    ngOnInit(): void {
+        super.ngOnInit();
+        this.selectId = -1;
+        this.tagValue = 0;
+        this.newTag = '';
+        this.newTagFlag = false;
+    }
 
 
 
@@ -67,7 +67,7 @@ export class PullComponent extends PageableBaseClass implements OnInit {
   }
 
   showNewTag(){
-    this.newTagFlag = true;
+      this.newTagFlag = true;
   }
 
 }

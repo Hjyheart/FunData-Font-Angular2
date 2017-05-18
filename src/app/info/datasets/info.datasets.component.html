@@ -36,17 +36,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">创建约束</h4>
-        <button type="button" class="close pull-right" (click)="yueshuEnding();yueshuModal.hide()" aria-label="Close">
+        <button type="button" class="close pull-right" (click)="restrictEnding();yueshuModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="yueshu-edit-contain">
-          <div class="attr-buttons">
-            <button type="button" class="btn btn-info" (click)="putExp('age')">age(int)</button>
-            <button type="button" class="btn btn-info" (click)="putExp('name')">name(string)</button>
-            <button type="button" class="btn btn-info" (click)="putExp('test')">test</button>
-            <button type="button" class="btn btn-info" (click)="putExp('test1')">test1</button>
+          <div class="attr-buttons" *ngFor="let table of chooseDataset.tables">
+              <p>{{table.name}}</p>
+            <button type="button" class="btn btn-info" *ngFor="let column of table.columns" (click)="putExp(table.name.concat('.').concat(column.colName))">{{column.colName}}({{column.colType}})</button>
           </div>
           <div class="operations">
             <button type="button" class="btn btn-default" (click)="putExp('+')">+</button>
@@ -68,8 +66,8 @@
         <button class="btn btn-danger" (click)="deleteConfirmExp()">删除</button>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" (click)="yueshuEnding();yueshuModal.hide();">确定</button>
-        <button class="btn btn-danger"  type="button" (click)="yueshuEnding();yueshuModal.hide();">取消</button>
+        <button class="btn btn-primary" type="submit" (click)="restrictEnding();yueshuModal.hide();">确定</button>
+        <button class="btn btn-danger"  type="button" (click)="restrictEnding();yueshuModal.hide();">取消</button>
       </div>
     </div>
   </div>
