@@ -36,13 +36,13 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
   constructor(
     private currentPageService: CurrentPageService,
     private datasetService: DatasetService,
-    private routerActive:RouterLinkActive,
+    private routerActive: RouterLinkActive,
     private router: Router) {
       super(datasetService.getUserDatasets, 'datasets', datasetService);
   }
 
   //TODO: 获取被选中要进行约束管理数据集的信息
-  getChooseDataset(id: number){
+  public getChooseDataset(id: number){
       this.datasetService.getDatasetDetail(id)
         .subscribe((res: any) => {
             this.chooseDataset = res.detail.datasetInfo;
@@ -51,8 +51,14 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
         });
   }
 
-  restrictEnding(){
-    this.chooseDataset = new Dataset();
+  public restrictEnding(type: number){
+      if (type == 1) {
+          this.datasetService.addExpressions(this.chooseDataset.id, this.exps)
+              .subscribe((res: any) => {});
+      }
+      this.exp.length = 0;
+      this.exps.length = 0;
+      this.chooseDataset = new Dataset();
   }
 
   putExp(str:string){

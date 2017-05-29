@@ -15,12 +15,31 @@ export class DatasetService {
     constructor(private http: Http,) {
     }
 
-    private static convertUrl(res: any) {
-        res = res.json();
-        for (let dataset of res.datasets) {
-            dataset.coverUrl = Constants.ServerHost+'/'+dataset.coverUrl;
-        }
-        return res;
+    // private static convertUrl(res: any) {
+    //     res = res.json();
+    //     for (let dataset of res.datasets) {
+    //         dataset.coverUrl = Constants.ServerHost+'/'+dataset.coverUrl;
+    //     }
+    //     return res;
+    // }
+
+    public addExpressions(datasetId: number, expressions: string[]) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', Cookie.get('authorization'));
+        return new Observable((observer: Observer<String>) => {
+            this.http.post(`${Constants.ServerHost}/dataset/addExpressions`,
+                `datasetId=${datasetId}&expressions=${JSON.stringify(expressions)}`,
+                {headers: headers, withCredentials: true})
+                .map(res => res.json())
+                .subscribe((body) => {
+                        observer.next(body.code)
+                    },
+                    err => {
+                        console.log('DatasetService->addExpressions', err);
+                        observer.next('-1');
+                    });
+        });
     }
 
     public createDataset(dataset: Dataset) {

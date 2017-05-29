@@ -109,7 +109,7 @@ var QiniuUploadService = (function () {
                     var domain = up.getOption('domain');
                     var res = eval('(' + info + ')');
                     if (form_data instanceof PullRequest_1.PullRequest) {
-                        form_data.fileUrl = "" + domain + res.key;
+                        form_data.fileUrl = res.key;
                     }
                     func.bind(service)(form_data)
                         .subscribe(loader_func.bind(comp));

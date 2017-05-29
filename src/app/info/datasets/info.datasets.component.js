@@ -57,7 +57,13 @@ var InfoDatasetsComponent = (function (_super) {
             _this.chooseDataset.url = res.detail.url;
         });
     };
-    InfoDatasetsComponent.prototype.restrictEnding = function () {
+    InfoDatasetsComponent.prototype.restrictEnding = function (type) {
+        if (type == 1) {
+            this.datasetService.addExpressions(this.chooseDataset.id, this.exps)
+                .subscribe(function (res) { });
+        }
+        this.exp.length = 0;
+        this.exps.length = 0;
         this.chooseDataset = new Dataset_1.Dataset();
     };
     InfoDatasetsComponent.prototype.putExp = function (str) {

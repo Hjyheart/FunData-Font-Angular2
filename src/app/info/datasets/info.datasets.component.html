@@ -36,7 +36,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">创建约束</h4>
-        <button type="button" class="close pull-right" (click)="restrictEnding();yueshuModal.hide()" aria-label="Close">
+        <button type="button" class="close pull-right" (click)="restrictEnding(0);yueshuModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -66,8 +66,8 @@
         <button class="btn btn-danger" (click)="deleteConfirmExp()">删除</button>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" (click)="restrictEnding();yueshuModal.hide();">确定</button>
-        <button class="btn btn-danger"  type="button" (click)="restrictEnding();yueshuModal.hide();">取消</button>
+        <button class="btn btn-primary" type="submit" (click)="restrictEnding(1);yueshuModal.hide();">确定</button>
+        <button class="btn btn-danger"  type="button" (click)="restrictEnding(0);yueshuModal.hide();">取消</button>
       </div>
     </div>
   </div>
