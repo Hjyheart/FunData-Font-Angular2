@@ -110,7 +110,7 @@ export class QiniuUploadService {
                     let domain = up.getOption('domain');
                     let res = eval('(' + info + ')');
                     if ( form_data instanceof PullRequest) {
-                        form_data.fileUrl = `${domain}${res.key}`;
+                        form_data.fileUrl = res.key;
                     }
                     func.bind(service)(form_data)
                         .subscribe(loader_func.bind(comp))

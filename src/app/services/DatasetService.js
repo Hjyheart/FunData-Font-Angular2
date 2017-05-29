@@ -20,13 +20,28 @@ var DatasetService = (function () {
     function DatasetService(http) {
         this.http = http;
     }
-    DatasetService.convertUrl = function (res) {
-        res = res.json();
-        for (var _i = 0, _a = res.datasets; _i < _a.length; _i++) {
-            var dataset = _a[_i];
-            dataset.coverUrl = Constants_1.Constants.ServerHost + '/' + dataset.coverUrl;
-        }
-        return res;
+    // private static convertUrl(res: any) {
+    //     res = res.json();
+    //     for (let dataset of res.datasets) {
+    //         dataset.coverUrl = Constants.ServerHost+'/'+dataset.coverUrl;
+    //     }
+    //     return res;
+    // }
+    DatasetService.prototype.addExpressions = function (datasetId, expressions) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
+        return new Observable_1.Observable(function (observer) {
+            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/addExpressions", "datasetId=" + datasetId + "&expressions=" + JSON.stringify(expressions), { headers: headers, withCredentials: true })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body.code);
+            }, function (err) {
+                console.log('DatasetService->addExpressions', err);
+                observer.next('-1');
+            });
+        });
     };
     DatasetService.prototype.createDataset = function (dataset) {
         var _this = this;
@@ -35,7 +50,7 @@ var DatasetService = (function () {
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
             JSON.stringify(dataset);
-            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.dsDescription + "&format_desc=" + dataset.formatDescription + "&cover_url=" + dataset.coverUrl + "&columns=" + JSON.stringify(dataset.columns), { headers: headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/createDataset", "ds_name=" + dataset.name + "&ds_desc=" + dataset.dsDescription + "&format_desc=" + dataset.formatDescription + "&cover_url=" + dataset.coverUrl + "&tables=" + JSON.stringify(dataset.tables), { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);

@@ -62,7 +62,7 @@ export class DatasetDetailComponent extends UploadBaseClass implements OnInit {
       this.datasetService.getDatasetDetail(dataset_id)
           .subscribe((res: any) => {
               this.dataset = res.detail.datasetInfo;
-              this.dataset.columns = res.detail.columns;
+              this.dataset.tables = res.detail.tables;
               this.dataset.url = res.detail.url;
           });
       this.currentPage.currentPage = 'dataset';

@@ -59,7 +59,7 @@ var DatasetDetailComponent = (function (_super) {
         this.datasetService.getDatasetDetail(dataset_id)
             .subscribe(function (res) {
             _this.dataset = res.detail.datasetInfo;
-            _this.dataset.columns = res.detail.columns;
+            _this.dataset.tables = res.detail.tables;
             _this.dataset.url = res.detail.url;
         });
         this.currentPage.currentPage = 'dataset';

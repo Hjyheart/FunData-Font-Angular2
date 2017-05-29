@@ -1,5 +1,6 @@
 import {Column} from "./Column";
 import {Constants} from "../util/Constants";
+import {Table} from "./Table";
 /**
  * Created by huang on 17-4-18.
  */
@@ -15,9 +16,9 @@ export class Dataset {
     public formatDescription: string;
     public createTime: string;
     public contributeNum: number;
-    public columns: Column[];
+    public tables: Table[];
     constructor() {
-        this.columns = [];
+        this.tables = [];
     }
 
 }

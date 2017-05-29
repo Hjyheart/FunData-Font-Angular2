@@ -19,6 +19,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var CurrentPageService_1 = require("../../services/CurrentPageService");
 var DatasetService_1 = require("../../services/DatasetService");
+var Dataset_1 = require("../../models/Dataset");
 var PageableBaseClass_1 = require("../../baseclasses/PageableBaseClass");
 var router_1 = require("@angular/router");
 var InfoDatasetsComponent = (function (_super) {
@@ -29,6 +30,7 @@ var InfoDatasetsComponent = (function (_super) {
         this.datasetService = datasetService;
         this.routerActive = routerActive;
         this.router = router;
+        this.chooseDataset = new Dataset_1.Dataset();
         this.exp = [];
         this.exps = [];
     }
@@ -42,16 +44,27 @@ var InfoDatasetsComponent = (function (_super) {
     InfoDatasetsComponent.prototype.ngOnInit = function () {
         _super.prototype.ngOnInit.call(this);
         this.currentPageService.currentPage = 'infoDatasets';
-        this.chooseDataset = null;
         this.exp = [];
         this.exps = [];
     };
     //TODO: 获取被选中要进行约束管理数据集的信息
     InfoDatasetsComponent.prototype.getChooseDataset = function (id) {
-        console.log(id);
+        var _this = this;
+        this.datasetService.getDatasetDetail(id)
+            .subscribe(function (res) {
+            _this.chooseDataset = res.detail.datasetInfo;
+            _this.chooseDataset.tables = res.detail.tables;
+            _this.chooseDataset.url = res.detail.url;
+        });
     };
-    InfoDatasetsComponent.prototype.yueshuEnding = function () {
-        this.chooseDataset = null;
+    InfoDatasetsComponent.prototype.restrictEnding = function (type) {
+        if (type == 1) {
+            this.datasetService.addExpressions(this.chooseDataset.id, this.exps)
+                .subscribe(function (res) { });
+        }
+        this.exp.length = 0;
+        this.exps.length = 0;
+        this.chooseDataset = new Dataset_1.Dataset();
     };
     InfoDatasetsComponent.prototype.putExp = function (str) {
         this.exp.push(str);
