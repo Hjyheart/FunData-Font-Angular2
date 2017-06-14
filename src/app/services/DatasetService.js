@@ -43,6 +43,21 @@ var DatasetService = (function () {
             });
         });
     };
+    DatasetService.prototype.enterTerminal = function (userId, datasetId) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return new Observable_1.Observable(function (observer) {
+            _this.http.post(Constants_1.Constants.ServerHost2 + "/terminal", "datasetId=" + datasetId + "&user_id=" + userId, { headers: headers })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (body) {
+                observer.next(body.url);
+            }, function (err) {
+                console.log('DatasetService->enterTerminal', err);
+                observer.next('-1');
+            });
+        });
+    };
     DatasetService.prototype.createDataset = function (dataset) {
         var _this = this;
         var headers = new http_1.Headers();
