@@ -21,6 +21,10 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
   private chooseDataset: Dataset = new Dataset();
   private exp = [];
   private exps = [];
+  private foreigns = [];
+  private out = false;
+  private foreign = '';
+  private foreign2 = '';
 
   get datasets(): Dataset[] {
     return this.data;
@@ -47,6 +51,7 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
         .subscribe((res: any) => {
             this.chooseDataset = res.detail.datasetInfo;
             this.chooseDataset.tables = res.detail.tables;
+            this.chooseDataset.tables.forEach(item => item['outLock'] = false)
             this.chooseDataset.url = res.detail.url;
         });
   }
@@ -61,22 +66,82 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
       this.chooseDataset = new Dataset();
   }
 
-  putExp(str:string){
-    this.exp.push(str)
+  putExp(str:string, table){
+    if (!this.out){
+      this.exp.push(str)
+      this.exp.push(' ')
+    }else {
+      if (table !== undefined){
+        table.outLock = true
+      }else {
+        return
+      }
+      if (this.foreign === ''){
+        this.foreign = str
+      }else {
+        this.foreign2 = str
+      }
+    }
   }
 
   deleteExp(){
-    this.exp.pop();
+    if (!this.out) {
+      this.exp.pop();
+    }else {
+      if (this.foreign2 !== '') {
+        this.chooseDataset.tables.forEach(item => {
+          item.columns.forEach(c => {
+            if (item.name.concat('.').concat(c.colName) === this.foreign2){
+              item['outLock'] = false
+              this.foreign2 = ''
+              return
+            }
+          })
+        })
+      }else if (this.foreign2 === '' && this.foreign !== '') {
+        this.chooseDataset.tables.forEach(item => {
+          item.columns.forEach(c => {
+            if (item.name.concat('.').concat(c.colName) === this.foreign){
+              item['outLock'] = false
+              this.foreign = ''
+              return
+            }
+          })
+        })
+      }else if (this.foreign2 === '' && this.foreign === '') {
+        this.out = false
+      }
+      return
+    }
   }
 
   addExp(){
-    let e = '';
-    this.exp.forEach(s => e += s);
-    this.exps.push(e);
-    this.exp = [];
+    if (!this.out) {
+      let e = '';
+      this.exp.forEach(s => e += s);
+      this.exps.push(e);
+      this.exp = [];
+    }else {
+      if (this.foreign === '' || this.foreign2 === ''){
+        return;
+      }
+      this.foreigns.push(this.foreign + '->' + this.foreign2);
+      this.foreign = '';
+      this.foreign2 = '';
+      this.chooseDataset.tables.forEach(item => item['outLock'] = false)
+      this.out = false
+    }
+  }
+
+  startOut(){
+    this.out = true
   }
 
   deleteConfirmExp(){
     this.exps.pop();
+  }
+
+  deleteConfirmForeign(){
+    this.foreigns.pop();
   }
 }

@@ -44,7 +44,7 @@
         <div class="yueshu-edit-contain">
           <div class="attr-buttons" *ngFor="let table of chooseDataset.tables">
               <p>{{table.name}}</p>
-            <button type="button" class="btn btn-info" *ngFor="let column of table.columns" (click)="putExp(table.name.concat('.').concat(column.colName))">{{column.colName}}({{column.colType}})</button>
+            <button type="button" class="btn btn-info" [disabled]="table.outLock" *ngFor="let column of table.columns" (click)="putExp(table.name.concat('.').concat(column.colName), table)">{{column.colName}}({{column.colType}})</button>
           </div>
           <div class="operations">
             <button type="button" class="btn btn-default" (click)="putExp('+')">+</button>
@@ -53,6 +53,7 @@
             <button type="button" class="btn btn-default" (click)="putExp('/')">/</button>
             <button type="button" class="btn btn-default" (click)="putExp('(')">(</button>
             <button type="button" class="btn btn-default" (click)="putExp(')')">)</button>
+            <button type="button" class="btn btn-default" [disabled]="out" (click)="startOut()">外键</button>
           </div>
         </div>
         <div class="res">
@@ -61,9 +62,12 @@
           <div class="btn btn-cta-primary expression-delete" (click)="deleteExp()">退格</div>
         </div>
         <div class="selected-exp">
-          {{exps}}
+          表达式：{{exps}}
+          外键：{{foreigns}}
         </div>
-        <button class="btn btn-danger" (click)="deleteConfirmExp()">删除</button>
+        <button class="btn btn-danger" (click)="deleteConfirmExp()">删除表达式</button>
+        <button class="btn btn-danger" (click)="deleteConfirmForeign()">删除外键操作</button>
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" type="submit" (click)="restrictEnding(1);yueshuModal.hide();">确定</button>

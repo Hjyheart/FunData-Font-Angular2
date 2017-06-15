@@ -33,6 +33,10 @@ var InfoDatasetsComponent = (function (_super) {
         this.chooseDataset = new Dataset_1.Dataset();
         this.exp = [];
         this.exps = [];
+        this.foreigns = [];
+        this.out = false;
+        this.foreign = '';
+        this.foreign2 = '';
     }
     Object.defineProperty(InfoDatasetsComponent.prototype, "datasets", {
         get: function () {
@@ -54,6 +58,7 @@ var InfoDatasetsComponent = (function (_super) {
             .subscribe(function (res) {
             _this.chooseDataset = res.detail.datasetInfo;
             _this.chooseDataset.tables = res.detail.tables;
+            _this.chooseDataset.tables.forEach(function (item) { return item['outLock'] = false; });
             _this.chooseDataset.url = res.detail.url;
         });
     };
@@ -66,20 +71,86 @@ var InfoDatasetsComponent = (function (_super) {
         this.exps.length = 0;
         this.chooseDataset = new Dataset_1.Dataset();
     };
-    InfoDatasetsComponent.prototype.putExp = function (str) {
-        this.exp.push(str);
+    InfoDatasetsComponent.prototype.putExp = function (str, table) {
+        if (!this.out) {
+            this.exp.push(str);
+            this.exp.push(' ');
+        }
+        else {
+            if (table !== undefined) {
+                table.outLock = true;
+            }
+            else {
+                return;
+            }
+            if (this.foreign === '') {
+                this.foreign = str;
+            }
+            else {
+                this.foreign2 = str;
+            }
+        }
     };
     InfoDatasetsComponent.prototype.deleteExp = function () {
-        this.exp.pop();
+        var _this = this;
+        if (!this.out) {
+            this.exp.pop();
+        }
+        else {
+            if (this.foreign2 !== '') {
+                this.chooseDataset.tables.forEach(function (item) {
+                    item.columns.forEach(function (c) {
+                        if (item.name.concat('.').concat(c.colName) === _this.foreign2) {
+                            item['outLock'] = false;
+                            _this.foreign2 = '';
+                            return;
+                        }
+                    });
+                });
+            }
+            else if (this.foreign2 === '' && this.foreign !== '') {
+                this.chooseDataset.tables.forEach(function (item) {
+                    item.columns.forEach(function (c) {
+                        if (item.name.concat('.').concat(c.colName) === _this.foreign) {
+                            item['outLock'] = false;
+                            _this.foreign = '';
+                            return;
+                        }
+                    });
+                });
+            }
+            else if (this.foreign2 === '' && this.foreign === '') {
+                this.out = false;
+            }
+            return;
+        }
     };
     InfoDatasetsComponent.prototype.addExp = function () {
-        var e = '';
-        this.exp.forEach(function (s) { return e += s; });
-        this.exps.push(e);
-        this.exp = [];
+        if (!this.out) {
+            var e_1 = '';
+            this.exp.forEach(function (s) { return e_1 += s; });
+            this.exps.push(e_1);
+            this.exp = [];
+        }
+        else {
+            if (this.foreign === '' || this.foreign2 === '') {
+                return;
+            }
+            this.foreigns.push(this.foreign + '->' + this.foreign2);
+            this.foreign = '';
+            this.foreign2 = '';
+            this.chooseDataset.tables.forEach(function (item) { return item['outLock'] = false; });
+            this.out = false;
+        }
+    };
+    InfoDatasetsComponent.prototype.startOut = function () {
+        this.out = true;
     };
     InfoDatasetsComponent.prototype.deleteConfirmExp = function () {
         this.exps.pop();
+    };
+    InfoDatasetsComponent.prototype.deleteConfirmForeign = function () {
+        this.foreigns.pop();
     };
     InfoDatasetsComponent = __decorate([
         core_1.Component({
