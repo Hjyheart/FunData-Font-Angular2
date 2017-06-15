@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {Dataset} from "../models/Dataset";
 import {DatasetService} from "./DatasetService";
 import {PullRequest} from "../models/PullRequest";
+import {InterceptorService} from "ng2-interceptors";
 /**
  * Created by huang on 17-4-30.
  */
@@ -138,5 +139,5 @@ export class QiniuUploadService {
         return Qiniu.uploader(options);
     }
 
-    constructor(private http: Http) {}
+    constructor(private http: InterceptorService) {}
 }

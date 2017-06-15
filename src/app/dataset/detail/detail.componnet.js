@@ -25,6 +25,7 @@ var UploadBaseClass_1 = require("../../baseclasses/UploadBaseClass");
 var QiniuUploadService_1 = require("../../services/QiniuUploadService");
 var PullRequestService_1 = require("../../services/PullRequestService");
 var PullRequest_1 = require("../../models/PullRequest");
+var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
 var DatasetDetailComponent = (function (_super) {
     __extends(DatasetDetailComponent, _super);
     function DatasetDetailComponent(route, router, renderer, qiniuUploadService, datasetService, currentPage, pullRequestService) {
@@ -52,6 +53,13 @@ var DatasetDetailComponent = (function (_super) {
     };
     DatasetDetailComponent.prototype.download = function () {
         window.location.href = this.dataset.url;
+    };
+    DatasetDetailComponent.prototype.enter_terminal = function () {
+        var s = ng2_cookies_1.Cookie.get('authorization').split("_");
+        this.datasetService.enterTerminal(Number(s[0]), this.dataset.id)
+            .subscribe(function (res) {
+            window.location.href = res;
+        });
     };
     DatasetDetailComponent.prototype.ngOnInit = function () {
         var _this = this;

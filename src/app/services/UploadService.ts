@@ -4,6 +4,7 @@ import {FileItem, FileUploader} from 'ng2-file-upload';
 import {Constants} from "../util/Constants";
 import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
+import {InterceptorService} from "ng2-interceptors";
 /**
  * Created by huang on 17-4-25.
  */
@@ -14,7 +15,7 @@ declare const plupload: any;
 @Injectable()
 export class UploadService {
     private uploader: any = null;
-    constructor(private http: Http,) {
+    constructor(private http: InterceptorService,) {
     }
 
     public getUploader(url: string) {

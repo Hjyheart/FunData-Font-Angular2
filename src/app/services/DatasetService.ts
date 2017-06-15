@@ -8,11 +8,12 @@ import {Constants} from "../util/Constants";
 import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
 import {Cookie} from 'ng2-cookies/ng2-cookies';
+import {InterceptorService} from "ng2-interceptors";
 
 @Injectable()
 export class DatasetService {
 
-    constructor(private http: Http,) {
+    constructor(private http: InterceptorService,) {
     }
 
     // private static convertUrl(res: any) {
@@ -41,6 +42,26 @@ export class DatasetService {
                     });
         });
     }
+
+    public enterTerminal(userId: number, datasetId: number) {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return new Observable((observer: Observer<String>) => {
+            this.http.post(`${Constants.ServerHost2}/terminal`,
+                `datasetId=${datasetId}&user_id=${userId}`,
+                {headers: headers}
+                )
+                .map(res => res.json())
+                .subscribe((body) => {
+                        observer.next(body.url)
+                    },
+                    err => {
+                        console.log('DatasetService->enterTerminal', err);
+                        observer.next('-1');
+                    });
+        });
+    }
+
 
     public createDataset(dataset: Dataset) {
         let headers: Headers = new Headers();

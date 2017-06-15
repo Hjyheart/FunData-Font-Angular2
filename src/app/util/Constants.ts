@@ -5,6 +5,7 @@
 
 export class Constants {
     public static get ServerHost(): string { return 'http://localhost:8080'; };
+    public static get ServerHost2(): string { return 'http://localhost:5000'; };
     //public static get ServerHost(): string { return 'http://192.168.1.18:3000';};
     public static get Restricts(): {} {
         return {

@@ -7,7 +7,8 @@ import {AuthorizeService} from "./AuthorizeService";
 
 @Injectable()
 export class AuthorizeGuard implements CanActivate {
-    constructor(private authorizeService: AuthorizeService, private router: Router) {}
+    constructor(private authorizeService: AuthorizeService,
+                private router: Router) {}
 
     canActivate(): boolean {
         if (this.authorizeService.isLogin) {

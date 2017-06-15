@@ -8,7 +8,7 @@ import {ErrorComponent} from "./error/error.componnet";
 import {RegisterComponent} from "./register/register.component";
 import {AuthorizeService} from "./services/AuthorizeService";
 import {FormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import {HttpModule, RequestOptions, XHRBackend} from "@angular/http";
 import {MarkdownModule} from 'angular2-markdown';
 import {AuthorizeGuard} from "./services/AuthorizeGuard";
 import {TestComponent} from "./test/test.component";
@@ -21,6 +21,14 @@ import {CommonModule} from "@angular/common";
 import {CurrentPageService} from "./services/CurrentPageService";
 import {InfoModule} from "./info/info.module";
 import {OthersComponent} from "./others/others.component";
+import {InterceptorService} from "ng2-interceptors";
+import {HttpInterceptor} from "./interceptors/HttpInterceptor";
+
+export function interceptorFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions, httpInterceptor: HttpInterceptor) {
+  const service = new InterceptorService(xhrBackend, requestOptions);
+  service.addInterceptor(httpInterceptor); // Add it here
+  return service;
+}
 
 @NgModule({
   imports:      [
@@ -49,7 +57,13 @@ import {OthersComponent} from "./others/others.component";
   providers: [
     AuthorizeService,
     AuthorizeGuard,
-    CurrentPageService
+    CurrentPageService,
+    HttpInterceptor,
+    {
+      provide: InterceptorService,
+      useFactory: interceptorFactory,
+      deps: [XHRBackend, RequestOptions, HttpInterceptor]
+    }
   ],
   bootstrap:    [ AppComponent ]
 })
