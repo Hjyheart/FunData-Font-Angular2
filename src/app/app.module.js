@@ -31,6 +31,14 @@ var common_1 = require("@angular/common");
 var CurrentPageService_1 = require("./services/CurrentPageService");
 var info_module_1 = require("./info/info.module");
 var others_component_1 = require("./others/others.component");
+var ng2_interceptors_1 = require("ng2-interceptors");
+var HttpInterceptor_1 = require("./interceptors/HttpInterceptor");
+function interceptorFactory(xhrBackend, requestOptions, httpInterceptor) {
+    var service = new ng2_interceptors_1.InterceptorService(xhrBackend, requestOptions);
+    service.addInterceptor(httpInterceptor); // Add it here
+    return service;
+}
+exports.interceptorFactory = interceptorFactory;
 var AppModule = (function () {
     function AppModule() {
     }
@@ -62,7 +70,13 @@ var AppModule = (function () {
             providers: [
                 AuthorizeService_1.AuthorizeService,
                 AuthorizeGuard_1.AuthorizeGuard,
-                CurrentPageService_1.CurrentPageService
+                CurrentPageService_1.CurrentPageService,
+                HttpInterceptor_1.HttpInterceptor,
+                {
+                    provide: ng2_interceptors_1.InterceptorService,
+                    useFactory: interceptorFactory,
+                    deps: [http_1.XHRBackend, http_1.RequestOptions, HttpInterceptor_1.HttpInterceptor]
+                }
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
