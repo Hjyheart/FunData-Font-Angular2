@@ -28,13 +28,13 @@ var DatasetService = (function () {
     //     }
     //     return res;
     // }
-    DatasetService.prototype.addExpressions = function (datasetId, expressions) {
+    DatasetService.prototype.addExpressions = function (datasetId, expressions, foreign_keys) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
-            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/addExpressions", "datasetId=" + datasetId + "&expressions=" + JSON.stringify(expressions), { headers: headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/dataset/addExpressions", "datasetId=" + datasetId + "&expressions=" + JSON.stringify(expressions) + "&foreigns=" + JSON.stringify(foreign_keys), { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);

@@ -51,34 +51,38 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
         .subscribe((res: any) => {
             this.chooseDataset = res.detail.datasetInfo;
             this.chooseDataset.tables = res.detail.tables;
-            this.chooseDataset.tables.forEach(item => item['outLock'] = false)
+            this.chooseDataset.tables.forEach(item => item['outLock'] = false);
             this.chooseDataset.url = res.detail.url;
         });
   }
 
   public restrictEnding(type: number){
       if (type == 1) {
-          this.datasetService.addExpressions(this.chooseDataset.id, this.exps)
+          this.datasetService.addExpressions(this.chooseDataset.id, this.exps, this.foreigns)
               .subscribe((res: any) => {});
       }
       this.exp.length = 0;
       this.exps.length = 0;
+      this.foreigns.length = 0;
+      this.foreign = '';
+      this.foreign2 = '';
       this.chooseDataset = new Dataset();
   }
 
   putExp(str:string, table){
     if (!this.out){
-      this.exp.push(str)
-      this.exp.push(' ')
-    }else {
+      this.exp.push(str);
+      this.exp.push(' ');    }else {
       if (table !== undefined){
         table.outLock = true
-      }else {
+      }
+      else {
         return
       }
       if (this.foreign === ''){
         this.foreign = str
-      }else {
+      }
+      else {
         this.foreign2 = str
       }
     }
@@ -87,28 +91,31 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
   deleteExp(){
     if (!this.out) {
       this.exp.pop();
-    }else {
+    }
+    else {
       if (this.foreign2 !== '') {
         this.chooseDataset.tables.forEach(item => {
           item.columns.forEach(c => {
             if (item.name.concat('.').concat(c.colName) === this.foreign2){
-              item['outLock'] = false
-              this.foreign2 = ''
+              item['outLock'] = false;
+              this.foreign2 = '';
               return
             }
           })
         })
-      }else if (this.foreign2 === '' && this.foreign !== '') {
+      }
+      else if (this.foreign2 === '' && this.foreign !== '') {
         this.chooseDataset.tables.forEach(item => {
           item.columns.forEach(c => {
             if (item.name.concat('.').concat(c.colName) === this.foreign){
-              item['outLock'] = false
-              this.foreign = ''
+              item['outLock'] = false;
+              this.foreign = '';
               return
             }
           })
         })
-      }else if (this.foreign2 === '' && this.foreign === '') {
+      }
+      else if (this.foreign2 === '' && this.foreign === '') {
         this.out = false
       }
       return
@@ -121,14 +128,15 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
       this.exp.forEach(s => e += s);
       this.exps.push(e);
       this.exp = [];
-    }else {
+    }
+    else {
       if (this.foreign === '' || this.foreign2 === ''){
         return;
       }
       this.foreigns.push(this.foreign + '->' + this.foreign2);
       this.foreign = '';
       this.foreign2 = '';
-      this.chooseDataset.tables.forEach(item => item['outLock'] = false)
+      this.chooseDataset.tables.forEach(item => item['outLock'] = false);
       this.out = false
     }
   }
