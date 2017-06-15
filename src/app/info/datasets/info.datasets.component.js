@@ -64,11 +64,14 @@ var InfoDatasetsComponent = (function (_super) {
     };
     InfoDatasetsComponent.prototype.restrictEnding = function (type) {
         if (type == 1) {
-            this.datasetService.addExpressions(this.chooseDataset.id, this.exps)
+            this.datasetService.addExpressions(this.chooseDataset.id, this.exps, this.foreigns)
                 .subscribe(function (res) { });
         }
         this.exp.length = 0;
         this.exps.length = 0;
+        this.foreigns.length = 0;
+        this.foreign = '';
+        this.foreign2 = '';
         this.chooseDataset = new Dataset_1.Dataset();
     };
     InfoDatasetsComponent.prototype.putExp = function (str, table) {

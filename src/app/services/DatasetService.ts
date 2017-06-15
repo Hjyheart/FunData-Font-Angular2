@@ -24,13 +24,13 @@ export class DatasetService {
     //     return res;
     // }
 
-    public addExpressions(datasetId: number, expressions: string[]) {
+    public addExpressions(datasetId: number, expressions: string[], foreign_keys: string[]) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
             this.http.post(`${Constants.ServerHost}/dataset/addExpressions`,
-                `datasetId=${datasetId}&expressions=${JSON.stringify(expressions)}`,
+                `datasetId=${datasetId}&expressions=${JSON.stringify(expressions)}&foreigns=${JSON.stringify(foreign_keys)}`,
                 {headers: headers, withCredentials: true})
                 .map(res => res.json())
                 .subscribe((body) => {
