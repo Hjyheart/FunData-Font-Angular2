@@ -10,9 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var Constants_1 = require("../util/Constants");
-var http_1 = require("@angular/http");
 var Dataset_1 = require("../models/Dataset");
 var PullRequest_1 = require("../models/PullRequest");
+var ng2_interceptors_1 = require("ng2-interceptors");
 var QiniuUploadService = (function () {
     function QiniuUploadService(http) {
         this.http = http;
@@ -138,7 +138,7 @@ var QiniuUploadService = (function () {
     };
     QiniuUploadService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [ng2_interceptors_1.InterceptorService])
     ], QiniuUploadService);
     return QiniuUploadService;
 }());

@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
 var ng2_file_upload_1 = require('ng2-file-upload');
 var Observable_1 = require("rxjs/Observable");
+var ng2_interceptors_1 = require("ng2-interceptors");
 var UploadService = (function () {
     function UploadService(http) {
         this.http = http;
@@ -43,7 +43,7 @@ var UploadService = (function () {
     };
     UploadService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [ng2_interceptors_1.InterceptorService])
     ], UploadService);
     return UploadService;
 }());

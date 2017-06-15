@@ -13,6 +13,7 @@ var http_1 = require("@angular/http");
 var Constants_1 = require("../util/Constants");
 var Observable_1 = require("rxjs/Observable");
 var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
+var ng2_interceptors_1 = require("ng2-interceptors");
 var PullRequestService = (function () {
     function PullRequestService(http) {
         this.http = http;
@@ -133,7 +134,7 @@ var PullRequestService = (function () {
     };
     PullRequestService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [ng2_interceptors_1.InterceptorService])
     ], PullRequestService);
     return PullRequestService;
 }());

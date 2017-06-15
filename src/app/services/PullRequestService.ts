@@ -7,11 +7,12 @@ import {Observable} from "rxjs/Observable";
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {PullRequest} from "../models/PullRequest";
 import {PullRequestDetail} from "../models/PullRequestDetail";
+import {InterceptorService} from "ng2-interceptors";
 
 @Injectable()
 export class PullRequestService {
 
-    constructor(private http: Http,) {
+    constructor(private http: InterceptorService,) {
     }
 
     public mergePullRequest(pullRequestId: number, tag: string) {

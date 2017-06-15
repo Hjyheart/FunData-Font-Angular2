@@ -16,6 +16,7 @@ var http_1 = require("@angular/http");
 var Constants_1 = require("../util/Constants");
 var Observable_1 = require("rxjs/Observable");
 var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
+var ng2_interceptors_1 = require("ng2-interceptors");
 var DatasetService = (function () {
     function DatasetService(http) {
         this.http = http;
@@ -125,7 +126,7 @@ var DatasetService = (function () {
     };
     DatasetService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [ng2_interceptors_1.InterceptorService])
     ], DatasetService);
     return DatasetService;
 }());

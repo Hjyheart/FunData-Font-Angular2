@@ -8,11 +8,12 @@ import {Constants} from "../util/Constants";
 import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
 import {Cookie} from 'ng2-cookies/ng2-cookies';
+import {InterceptorService} from "ng2-interceptors";
 
 @Injectable()
 export class DatasetService {
 
-    constructor(private http: Http,) {
+    constructor(private http: InterceptorService,) {
     }
 
     // private static convertUrl(res: any) {
