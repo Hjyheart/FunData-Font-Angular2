@@ -58,6 +58,10 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
 
   public restrictEnding(type: number){
       if (type == 1) {
+          for (let i = 0; i < this.exps.length; i++){
+              this.exps[i] = this.exps[i].replace(/\+/, '%2B')
+
+          }
           this.datasetService.addExpressions(this.chooseDataset.id, this.exps, this.foreigns)
               .subscribe((res: any) => {});
       }

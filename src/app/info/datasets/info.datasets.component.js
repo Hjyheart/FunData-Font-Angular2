@@ -64,6 +64,9 @@ var InfoDatasetsComponent = (function (_super) {
     };
     InfoDatasetsComponent.prototype.restrictEnding = function (type) {
         if (type == 1) {
+            for (var i = 0; i < this.exps.length; i++) {
+                this.exps[i] = this.exps[i].replace(/\+/, '%2B');
+            }
             this.datasetService.addExpressions(this.chooseDataset.id, this.exps, this.foreigns)
                 .subscribe(function (res) { });
         }
