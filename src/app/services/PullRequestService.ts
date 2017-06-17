@@ -101,18 +101,18 @@ export class PullRequestService {
                 })
                 .map(res => {
                     let detail: PullRequestDetail = res.json().detail;
-                    let columns = detail.columns;
-                    let new_limits = [];
-                    for (let i = 0; i < detail.limits.length; i++) {
-                        let temp = {};
-                        for(let t in detail.limits[i]) {
-                            if (detail.limits[i].hasOwnProperty(t)) {
-                                temp[Constants.Restricts[columns[i].colType][parseInt(t)]] = detail.limits[i][t];
-                            }
-                        }
-                        new_limits.push(temp);
-                    }
-                    detail.limits = new_limits;
+                    // let columns = detail.columns;
+                    // let new_limits = [];
+                    // for (let i = 0; i < detail.limits.length; i++) {
+                    //     let temp = {};
+                    //     for(let t in detail.limits[i]) {
+                    //         if (detail.limits[i].hasOwnProperty(t)) {
+                    //             temp[Constants.Restricts[columns[i].colType][parseInt(t)]] = detail.limits[i][t];
+                    //         }
+                    //     }
+                    //     new_limits.push(temp);
+                    // }
+                    // detail.limits = new_limits;
                     return detail;
                 })
                 .subscribe((body) => {

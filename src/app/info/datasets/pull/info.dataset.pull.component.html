@@ -1,6 +1,6 @@
 <div class="my-dataset-pull-request">
   <accordion>
-    <accordion-group *ngFor="let pull of pullRequests" heading="{{pull.dataerName}} {{pull.updateTime}}" (click)="chosePullRequest(1)" >
+    <accordion-group *ngFor="let pull of pullRequests" heading="{{pull.dataerName}} {{pull.updateTime}}" (click)="chosePullRequest(pull.id)" >
       <div class="pull-des">
         <p>{{pull.pullDescription}}</p>
       </div>
@@ -49,21 +49,36 @@
         </button>
       </div>
       <div class="modal-body" style=" height: 400px;overflow-y: auto;">
-        <div class="form-group" *ngFor="let limit of pullRequest.limits; let i = index">
-          <h4>{{pullRequest.columns[i].colName}}({{pullRequest.columns[i].colType}})</h4>
-          <table class="table">
-            <thead>
-            <tr>
-              <th *ngFor="let k of limit | keys">{{k}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th *ngFor="let k of limit | keys">{{limit[k]}}</th>
-            </tr>
-            </tbody>
-          </table>
+        <div class="form-group" *ngFor="let k of pullRequest.limits | keys">
+          <h4>{{k}} : {{pullRequest.limits[k]}}</h4>
+          <!--<table class="table">-->
+          <!--<thead>-->
+          <!--<tr>-->
+          <!--<th *ngFor="let k of limit | keys">{{k}}</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+          <!--<tr>-->
+          <!--<th *ngFor="let k of limit | keys">{{limit[k]}}</th>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+          <!--</table>-->
         </div>
+        <!--<div class="form-group" *ngFor="let k of pullRequest.limits | keys; let i = index">-->
+          <!--<h4>{{k}}({{pullRequest.limits[i][k]}})</h4>-->
+          <!--&lt;!&ndash;<table class="table">&ndash;&gt;-->
+            <!--&lt;!&ndash;<thead>&ndash;&gt;-->
+            <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+              <!--&lt;!&ndash;<th *ngFor="let k of limit | keys">{{k}}</th>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+            <!--&lt;!&ndash;</thead>&ndash;&gt;-->
+            <!--&lt;!&ndash;<tbody>&ndash;&gt;-->
+            <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+              <!--&lt;!&ndash;<th *ngFor="let k of limit | keys">{{limit[k]}}</th>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tbody>&ndash;&gt;-->
+          <!--&lt;!&ndash;</table>&ndash;&gt;-->
+        <!--</div>-->
       </div>
       <div class="modal-footer">
         <a class="btn btn-success" href="{{pullRequest.url}}" style="text-decoration: none; color: white">下载</a>
