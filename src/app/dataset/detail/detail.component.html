@@ -58,7 +58,7 @@
       </table>
     </div>
     <div class="buttons">
-        <button class="btn-cta-primary" (click)="uploadModal.show()">上传</button>
+        <button class="btn-cta-primary" (click)="uploadModal.show();clearPullRequest()">上传</button>
         <!--TODO edit confirm upload file btn-->
         <button class="btn-cta-primary" (click)="newPullRequest()">确认</button>
       <button class="btn-cta-secondary" (click)="download()">下载</button>
