@@ -87,7 +87,7 @@ export class QiniuUploadService {
             uptoken_url: Constants.Urls['getPriToken'],
             unique_names: true,
             domain: 'http://op9cfw6va.bkt.clouddn.com/',//自己的七牛云存储空间域名
-            multi_selection: true,//是否允许同时选择多文件
+            multi_selection: false,//是否允许同时选择多文件
             filters: {
                 mime_types : [
                     {title : "Csv files", extensions: "csv"}
