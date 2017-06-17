@@ -86,7 +86,7 @@ var QiniuUploadService = (function () {
             uptoken_url: Constants_1.Constants.Urls['getPriToken'],
             unique_names: true,
             domain: 'http://op9cfw6va.bkt.clouddn.com/',
-            multi_selection: false,
+            multi_selection: true,
             filters: {
                 mime_types: [
                     { title: "Csv files", extensions: "csv" }

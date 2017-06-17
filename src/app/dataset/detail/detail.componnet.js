@@ -46,6 +46,9 @@ var DatasetDetailComponent = (function (_super) {
     DatasetDetailComponent.prototype.newPullRequest = function () {
         this.qiniuUploader.start();
     };
+    DatasetDetailComponent.prototype.clearPullRequest = function () {
+        this.pullRequest = new PullRequest_1.PullRequest();
+    };
     DatasetDetailComponent.prototype.upload = function () {
         this.pullRequest.datasetId = this.dataset.id;
         this.qiniuUploader = this.qiniuUploadService.getDataUploader(this.pullRequestService, this.pullRequestService.createPullRequest, this.pullRequest, this, this.loaderControl);

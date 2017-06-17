@@ -44,6 +44,10 @@ export class DatasetDetailComponent extends UploadBaseClass implements OnInit {
       this.qiniuUploader.start();
   }
 
+  public clearPullRequest() {
+      this.pullRequest = new PullRequest();
+  }
+
   public upload() {
       this.pullRequest.datasetId = this.dataset.id;
       this.qiniuUploader = this.qiniuUploadService.getDataUploader(this.pullRequestService,
