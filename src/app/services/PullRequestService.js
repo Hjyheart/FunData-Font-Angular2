@@ -56,7 +56,7 @@ var PullRequestService = (function () {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', ng2_cookies_1.Cookie.get('authorization'));
         return new Observable_1.Observable(function (observer) {
-            _this.http.post(Constants_1.Constants.ServerHost + "/pullrequest/newPullRequest", "datasetId=" + pullRequest.datasetId + "&fileUrl=" + pullRequest.fileUrl + "&description=" + pullRequest.pullDescription, { headers: headers, withCredentials: true })
+            _this.http.post(Constants_1.Constants.ServerHost + "/pullrequest/newPullRequest", "datasetId=" + pullRequest.datasetId + "&fileUrl=" + pullRequest.fileUrl + "&description=" + pullRequest.pullDescription + "&tableName=" + pullRequest.tableName, { headers: headers, withCredentials: true })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (body) {
                 observer.next(body.code);

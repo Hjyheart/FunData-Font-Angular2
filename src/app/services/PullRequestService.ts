@@ -59,7 +59,7 @@ export class PullRequestService {
         headers.append('authorization', Cookie.get('authorization'));
         return new Observable((observer: Observer<String>) => {
           this.http.post(`${Constants.ServerHost}/pullrequest/newPullRequest`,
-              `datasetId=${pullRequest.datasetId}&fileUrl=${pullRequest.fileUrl}&description=${pullRequest.pullDescription}`,
+              `datasetId=${pullRequest.datasetId}&fileUrl=${pullRequest.fileUrl}&description=${pullRequest.pullDescription}&tableName=${pullRequest.tableName}`,
               {headers: headers, withCredentials: true})
               .map(res => res.json())
               .subscribe((body) => {
