@@ -22,11 +22,14 @@ var LoginComponent = (function () {
         this.currentPageService = currentPageService;
         this.normal = 'form-group';
         this.error = 'form-group has-error has-feedback';
+        this.right = 'error-state';
+        this.wrong = 'error-state active';
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.currentPageService.currentPage = 'login';
         this.emailState = this.normal;
         this.pwdState = this.normal;
+        this.errorState = this.right;
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -41,6 +44,7 @@ var LoginComponent = (function () {
             }
             else {
                 _this.pwdState = _this.error;
+                _this.errorState = _this.wrong;
             }
         });
     };

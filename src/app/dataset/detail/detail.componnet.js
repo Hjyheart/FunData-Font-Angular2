@@ -58,10 +58,14 @@ var DatasetDetailComponent = (function (_super) {
         window.location.href = this.dataset.url;
     };
     DatasetDetailComponent.prototype.enter_terminal = function () {
+        var _this = this;
         var s = ng2_cookies_1.Cookie.get('authorization').split("_");
         this.datasetService.enterTerminal(Number(s[0]), this.dataset.id)
             .subscribe(function (res) {
-            window.location.href = res;
+            _this.datasetService.enterTerminal(Number(s[0]), _this.dataset.id)
+                .subscribe(function (res) {
+                window.open(res);
+            });
         });
     };
     DatasetDetailComponent.prototype.ngOnInit = function () {
@@ -72,6 +76,7 @@ var DatasetDetailComponent = (function (_super) {
             _this.dataset = res.detail.datasetInfo;
             _this.dataset.tables = res.detail.tables;
             _this.dataset.url = res.detail.url;
+            console.log(_this.dataset);
         });
         this.currentPage.currentPage = 'dataset';
     };

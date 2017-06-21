@@ -10,4 +10,6 @@ export class PullRequest {
     public pullDescription: string;
     public updateTime: string;
     public fileUrl: string;
+    public tableName: string;
+    public status: number;
 }

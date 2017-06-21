@@ -1,13 +1,17 @@
 <div class="my-dataset-pull-request">
   <accordion>
     <accordion-group *ngFor="let pull of pullRequests" heading="{{pull.dataerName}} {{pull.updateTime}}" (click)="chosePullRequest(pull.id)" >
-      <div class="pull-des">
+      <div class="pull-des" style="margin-bottom: 80px">
         <p>{{pull.pullDescription}}</p>
+        <p *ngIf="pull.status === 1" style="float: right;background-color: orange;color: white;padding: 5px;border-radius: 4px;">处理中</p>
+        <p *ngIf="pull.status === 0" style="float: right;background-color: #0088f5;color: white;padding: 5px;border-radius: 4px;">待处理</p>
+        <p *ngIf="pull.status === -1" style="float: right;background-color: red;color: white;padding: 5px;border-radius: 4px;">已拒绝</p>
+        <p *ngIf="pull.status === 2" style="float: right;background-color: green;color: white;padding: 5px;border-radius: 4px;">已合并</p>
       </div>
       <div class="buttons">
         <button class="btn btn-cta-primary" (click)="chosePullRequest(pull.id);detailModal.show()">查看</button>
-        <button class="btn btn-cta-secondary" (click)="chosePullRequest(pull.id);agreeModal.show()">同意</button>
-        <button class="btn btn-danger" (click)="chosePullRequest(pull.id);deleteModal.show()">拒绝</button>
+        <button class="btn btn-cta-secondary" [disabled]="pull.status !== 0" (click)="chosePullRequest(pull.id);agreeModal.show()">同意</button>
+        <button class="btn btn-danger" [disabled]="pull.status === -1 || pull.status === 2 || pull.status === 1" (click)="chosePullRequest(pull.id);deleteModal.show()">拒绝</button>
       </div>
     </accordion-group>
   </accordion>
@@ -51,15 +55,17 @@
       <div class="modal-body" style=" height: 400px;overflow-y: auto;">
         <div class="form-group" *ngFor="let k of pullRequest.limits | keys">
           <h4>{{k}} : {{pullRequest.limits[k]}}</h4>
+          <br>
+          <!--<h3>计算属性</h3>-->
           <!--<table class="table">-->
           <!--<thead>-->
           <!--<tr>-->
-          <!--<th *ngFor="let k of limit | keys">{{k}}</th>-->
+          <!--<th>平均值</th>-->
           <!--</tr>-->
           <!--</thead>-->
           <!--<tbody>-->
           <!--<tr>-->
-          <!--<th *ngFor="let k of limit | keys">{{limit[k]}}</th>-->
+          <!--&lt;!&ndash;<th *ngFor="let k of limit | keys">{{limit[k]}}</th>&ndash;&gt;-->
           <!--</tr>-->
           <!--</tbody>-->
           <!--</table>-->

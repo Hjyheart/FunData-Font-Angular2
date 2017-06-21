@@ -8,7 +8,7 @@ import {DatasetDetailComponent} from "./detail/detail.componnet";
 import {DatasetListComponent} from "./list/list.component";
 import {DatasetRoutingModule} from "./dataset.routing.module";
 import {DatasetComponent} from "./dataset.component";
-import {PaginationModule, ModalModule, AccordionModule} from "ng2-bootstrap";
+import {PaginationModule, ModalModule, AccordionModule, TabsModule} from "ng2-bootstrap";
 import {HeaderComponent} from "../header/header.component";
 import {DatasetCreateComponent} from "./create/create.component";
 import {CommonModule} from "@angular/common";
@@ -24,6 +24,7 @@ import {QiniuUploadService} from "../services/QiniuUploadService";
     DatasetRoutingModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
+    TabsModule.forRoot(),
     FileUploadModule,
   ],
   declarations: [

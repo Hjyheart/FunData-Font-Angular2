@@ -21,10 +21,14 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
   private chooseDataset: Dataset = new Dataset();
   private exp = [];
   private exps = [];
+  private res = {};
   private foreigns = [];
   private out = false;
   private foreign = '';
   private foreign2 = '';
+  private roblisticLock = true;
+  private operattingTable = 'all';
+  private operatingTableStore = 'all';
 
   get datasets(): Dataset[] {
     return this.data;
@@ -51,18 +55,22 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
         .subscribe((res: any) => {
             this.chooseDataset = res.detail.datasetInfo;
             this.chooseDataset.tables = res.detail.tables;
-            this.chooseDataset.tables.forEach(item => item['outLock'] = false);
+            this.chooseDataset.tables.forEach(item => {
+              item['outLock'] = false;
+              this.res[item.name] = []
+            });
             this.chooseDataset.url = res.detail.url;
         });
   }
 
   public restrictEnding(type: number){
+
       if (type == 1) {
           for (let i = 0; i < this.exps.length; i++){
               this.exps[i] = this.exps[i].replace(/\+/, '%2B')
 
           }
-          this.datasetService.addExpressions(this.chooseDataset.id, this.exps, this.foreigns)
+          this.datasetService.addExpressions(this.chooseDataset.id, this.res, this.foreigns)
               .subscribe((res: any) => {});
       }
       this.exp.length = 0;
@@ -70,30 +78,65 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
       this.foreigns.length = 0;
       this.foreign = '';
       this.foreign2 = '';
+      this.res = {};
+      this.operattingTable = 'all';
+      this.operatingTableStore = 'all';
+      this.roblisticLock = true;
       this.chooseDataset = new Dataset();
   }
 
   putExp(str:string, table){
     if (!this.out){
+      if (this.roblisticLock) {
+        return;
+      }
       this.exp.push(str);
-      this.exp.push(' ');    }else {
+      this.exp.push(' ');
+    }else {}
+  }
+
+  clickAttr (str:string, table) {
+    if (!this.out){
+      if (!this.roblisticLock) {
+        return;
+      }
+      this.operattingTable=table.name;
+      this.operatingTableStore = this.operattingTable;
+      this.roblisticLock = !this.roblisticLock;
+    }else {
       if (table !== undefined){
         table.outLock = true
-      }
-      else {
-        return
+        if (this.foreign2 !== '') {
+          return
+        }
       }
       if (this.foreign === ''){
         this.foreign = str
+        for (let i = 0; i < this.chooseDataset.tables.length; i++) {
+          if (this.chooseDataset.tables[i] !== table) {
+            this.chooseDataset.tables[i]['outLock'] = false
+          }
+        }
+        return
       }
       else {
+        if (this.foreign2 !== '') {
+          return
+        }
         this.foreign2 = str
+        return
       }
     }
+    this.putExp(str, table);
+
   }
 
   deleteExp(){
     if (!this.out) {
+      if (this.exp.length === 0) {
+        this.operattingTable = 'all'
+        this.roblisticLock = true
+      }
       this.exp.pop();
     }
     else {
@@ -131,7 +174,14 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
       let e = '';
       this.exp.forEach(s => e += s);
       this.exps.push(e);
+      this.res[this.operattingTable].push(e)
+      console.log(this.res)
       this.exp = [];
+      this.operattingTable = 'all';
+      this.operatingTableStore = 'all';
+      this.roblisticLock = true;
+      this.foreign = '';
+      this.foreign2 = '';
     }
     else {
       if (this.foreign === '' || this.foreign2 === ''){
@@ -141,16 +191,18 @@ export class InfoDatasetsComponent extends PageableBaseClass implements OnInit {
       this.foreign = '';
       this.foreign2 = '';
       this.chooseDataset.tables.forEach(item => item['outLock'] = false);
+      this.operattingTable = this.operatingTableStore
       this.out = false
     }
   }
 
   startOut(){
     this.out = true
+    this.operattingTable = 'all'
   }
 
-  deleteConfirmExp(){
-    this.exps.pop();
+  deleteConfirmExp(index, name){
+    this.res[name].splice(index, 1)
   }
 
   deleteConfirmForeign(){

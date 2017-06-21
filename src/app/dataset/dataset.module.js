@@ -36,6 +36,7 @@ var DatasetModule = (function () {
                 dataset_routing_module_1.DatasetRoutingModule,
                 ng2_bootstrap_1.PaginationModule.forRoot(),
                 ng2_bootstrap_1.ModalModule.forRoot(),
+                ng2_bootstrap_1.TabsModule.forRoot(),
                 ng2_file_upload_1.FileUploadModule,
             ],
             declarations: [

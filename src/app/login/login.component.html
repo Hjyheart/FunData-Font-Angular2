@@ -13,6 +13,9 @@
           <input name="pwd" type="password" class="form-control" [(ngModel)]="pwd" placeholder="密码" aria-describedby="pwdErrorStatus" (focus)="clearPwdState()">
           <span *ngIf="pwdState != 'form-group'" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
           <span id="pwdErrorStatus" class="sr-only">(error)</span>
+          <div [class]="errorState">
+            <p>用户名或密码错误</p>
+          </div>
         </div>
         <label class="checkbox">
           <span class="pull-right">

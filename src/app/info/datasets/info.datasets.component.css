@@ -122,6 +122,12 @@
     padding: 20px;
 }
 
+.res span {
+    color: black;
+    font-weight: 500;
+    font-size: 1.4em;
+}
+
 .expression-confirm {
     float: right;
     text-align: center;
@@ -139,6 +145,5 @@
 
 .selected-exp {
     float: left;
-    height: 50px;
     width: 100%;
 }

@@ -7,9 +7,8 @@
       </div>
       <article>
         <h1>{{dataset.name}}</h1>
-        <div class="tags">
-          <button class="tag1">tag1</button>
-          <button class="tag2">tag2</button>
+        <div class="tags" *ngIf="dataset.tables.length > 0">
+          <button class="tag1" *ngFor="let tag of dataset.tables[0].columns">{{tag.colName}}</button>
         </div>
         <h2>详情</h2>
         <p>{{dataset.dsDescription}}</p>
@@ -17,50 +16,20 @@
         <p>{{dataset.formatDescription}}</p>
       </article>
     </div>
-    <button (click)="enter_terminal()">进入终端</button>
+    <button (click)="enter_terminal()" class="btn-cta-secondary" style="border-radius: 5px;padding: 10px">进入终端</button>
     <div class="dataset-detail-content-follow">
-      <table class="table table-striped">
-        <thead>
-            <tr>
-              <th>#</th>
-              <th *ngFor="let column of dataset.columns">{{column.colName}}</th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <th>Username</th>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <th>Username</th>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-          <th>Username</th>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-          <th>Username</th>
-        </tbody>
-      </table>
+      <tabset>
+        <tab heading={{table.name}} *ngFor="let table of dataset.tables">
+          <ul>
+            <li *ngFor="let col of table.columns">{{col.colName}}:{{col.colType}}</li>
+          </ul>
+        </tab>
+      </tabset>
     </div>
     <div class="buttons">
         <button class="btn-cta-primary" (click)="uploadModal.show();clearPullRequest()">上传</button>
         <!--TODO edit confirm upload file btn-->
-        <button class="btn-cta-primary" (click)="newPullRequest()">确认</button>
+        <!--<button class="btn-cta-primary" (click)="newPullRequest()">确认</button>-->
       <button class="btn-cta-secondary" (click)="download()">下载</button>
     </div>
   </div>
@@ -68,8 +37,8 @@
     <div class="user-block">
       <div class="user-head">
         <img src="../../../assets/img/friends/fr-01.jpg" alt="头像">
-        <h2>用户名</h2>
-        <p>个性签名</p>
+        <h2>洪嘉勇</h2>
+        <!--<p></p>-->
         <button class="btn-cta-secondary">详情 <i class="fa fa-arrow-right"></i></button>
       </div>
     </div>
@@ -122,14 +91,20 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="upload-file">上传文件</label>
-          <button (click)="upload()" id="upload-file">点击上传</button>
+          <label for="upload-file">上传文件: </label>
+          <button (click)="upload()" id="upload-file" class="btn btn-success">点击上传</button>
           <input style="display: none" type="file" id="upload" #upfile (change)="onFiles()"/>
         </div>
         <div class="form-group">
+          <label for="selection">选择表</label>
+          <br>
+          <select [(ngModel)]="pullRequest.tableName" id="selection">
+            <option value="{{table.name}}" *ngFor="let table of dataset.tables">{{table.name}}</option>
+          </select>
+          <br>
           <label for="upload-des">描述</label>
           <br>
-          <input type="text" id="upload-des" placeholder="上传文件的相关描述" [(ngModel)]="pullRequest.pullDescription">
+          <textarea id="upload-des" placeholder="上传文件的相关描述" [(ngModel)]="pullRequest.pullDescription"></textarea>
         </div>
       </div>
       <div class="modal-footer">

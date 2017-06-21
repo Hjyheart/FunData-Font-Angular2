@@ -25,6 +25,7 @@ var QiniuUploadService_1 = require("../../services/QiniuUploadService");
 var UploadBaseClass_1 = require("../../baseclasses/UploadBaseClass");
 var Table_1 = require("../../models/Table");
 var Column_1 = require("../../models/Column");
+var ng2_bootstrap_1 = require("ng2-bootstrap");
 var DatasetCreateComponent = (function (_super) {
     __extends(DatasetCreateComponent, _super);
     function DatasetCreateComponent(renderer, currentPage, datasetService, qiniuUploadService, router) {
@@ -70,6 +71,17 @@ var DatasetCreateComponent = (function (_super) {
         return false;
     };
     DatasetCreateComponent.prototype.createDataset = function () {
+        console.log(this.dataset);
+        if (this.dataset.name === '' || this.dataset.name === undefined) {
+            this.alertMessage = '未填写数据集名称';
+            this.alertModal.show();
+            return;
+        }
+        else if (this.dataset.tables.length === 0 || this.dataset.name === undefined) {
+            this.alertMessage = '未添加表';
+            this.alertModal.show();
+            return;
+        }
         this.loaderClass = 'loader loader-default is-active';
         if (this._fileUpload.nativeElement.files[0] === undefined) {
             this.datasetService.createDataset(this.dataset)
@@ -108,6 +120,10 @@ var DatasetCreateComponent = (function (_super) {
         console.log(i);
         this.currentTable = i;
     };
+    __decorate([
+        core_1.ViewChild('alertModal'), 
+        __metadata('design:type', ng2_bootstrap_1.ModalDirective)
+    ], DatasetCreateComponent.prototype, "alertModal", void 0);
     DatasetCreateComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

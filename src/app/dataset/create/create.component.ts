@@ -1,7 +1,7 @@
 /**
  * Created by hongjiayong on 2017/4/12.
  */
-import {Component, OnInit, Renderer} from '@angular/core';
+import {Component, OnInit, Renderer, ViewChild} from '@angular/core';
 import {CurrentPageService} from "../../services/CurrentPageService";
 import {Dataset} from "../../models/Dataset";
 import {DatasetService} from "../../services/DatasetService";
@@ -10,6 +10,7 @@ import {QiniuUploadService} from "../../services/QiniuUploadService";
 import {UploadBaseClass} from "../../baseclasses/UploadBaseClass";
 import {Table} from "../../models/Table";
 import {Column} from "../../models/Column";
+import {ModalDirective} from "ng2-bootstrap";
 
 
 
@@ -32,6 +33,9 @@ export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
     private loaderText:string;
     private newTableName:string;
     private currentTable:number;
+    private alertMessage:string;
+
+    @ViewChild('alertModal') public alertModal:ModalDirective;
 
     constructor(private renderer:Renderer,
                 private currentPage: CurrentPageService,
@@ -82,6 +86,16 @@ export class DatasetCreateComponent extends UploadBaseClass implements OnInit{
     }
 
     public createDataset() {
+        console.log(this.dataset)
+        if (this.dataset.name === '' || this.dataset.name === undefined) {
+            this.alertMessage = '未填写数据集名称'
+            this.alertModal.show();
+            return;
+        }else if (this.dataset.tables.length === 0 || this.dataset.name === undefined){
+            this.alertMessage = '未添加表';
+            this.alertModal.show();
+            return;
+        }
         this.loaderClass = 'loader loader-default is-active';
         if (this._fileUpload.nativeElement.files[0] === undefined) {
             this.datasetService.createDataset(this.dataset)

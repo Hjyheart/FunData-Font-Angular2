@@ -33,10 +33,14 @@ var InfoDatasetsComponent = (function (_super) {
         this.chooseDataset = new Dataset_1.Dataset();
         this.exp = [];
         this.exps = [];
+        this.res = {};
         this.foreigns = [];
         this.out = false;
         this.foreign = '';
         this.foreign2 = '';
+        this.roblisticLock = true;
+        this.operattingTable = 'all';
+        this.operatingTableStore = 'all';
     }
     Object.defineProperty(InfoDatasetsComponent.prototype, "datasets", {
         get: function () {
@@ -58,7 +62,10 @@ var InfoDatasetsComponent = (function (_super) {
             .subscribe(function (res) {
             _this.chooseDataset = res.detail.datasetInfo;
             _this.chooseDataset.tables = res.detail.tables;
-            _this.chooseDataset.tables.forEach(function (item) { return item['outLock'] = false; });
+            _this.chooseDataset.tables.forEach(function (item) {
+                item['outLock'] = false;
+                _this.res[item.name] = [];
+            });
             _this.chooseDataset.url = res.detail.url;
         });
     };
@@ -67,7 +74,7 @@ var InfoDatasetsComponent = (function (_super) {
             for (var i = 0; i < this.exps.length; i++) {
                 this.exps[i] = this.exps[i].replace(/\+/, '%2B');
             }
-            this.datasetService.addExpressions(this.chooseDataset.id, this.exps, this.foreigns)
+            this.datasetService.addExpressions(this.chooseDataset.id, this.res, this.foreigns)
                 .subscribe(function (res) { });
         }
         this.exp.length = 0;
@@ -75,31 +82,64 @@ var InfoDatasetsComponent = (function (_super) {
         this.foreigns.length = 0;
         this.foreign = '';
         this.foreign2 = '';
+        this.res = {};
+        this.operattingTable = 'all';
+        this.operatingTableStore = 'all';
+        this.roblisticLock = true;
         this.chooseDataset = new Dataset_1.Dataset();
     };
     InfoDatasetsComponent.prototype.putExp = function (str, table) {
         if (!this.out) {
+            if (this.roblisticLock) {
+                return;
+            }
             this.exp.push(str);
             this.exp.push(' ');
+        }
+        else { }
+    };
+    InfoDatasetsComponent.prototype.clickAttr = function (str, table) {
+        if (!this.out) {
+            if (!this.roblisticLock) {
+                return;
+            }
+            this.operattingTable = table.name;
+            this.operatingTableStore = this.operattingTable;
+            this.roblisticLock = !this.roblisticLock;
         }
         else {
             if (table !== undefined) {
                 table.outLock = true;
-            }
-            else {
-                return;
+                if (this.foreign2 !== '') {
+                    return;
+                }
             }
             if (this.foreign === '') {
                 this.foreign = str;
+                for (var i = 0; i < this.chooseDataset.tables.length; i++) {
+                    if (this.chooseDataset.tables[i] !== table) {
+                        this.chooseDataset.tables[i]['outLock'] = false;
+                    }
+                }
+                return;
             }
             else {
+                if (this.foreign2 !== '') {
+                    return;
+                }
                 this.foreign2 = str;
+                return;
             }
         }
+        this.putExp(str, table);
     };
     InfoDatasetsComponent.prototype.deleteExp = function () {
         var _this = this;
         if (!this.out) {
+            if (this.exp.length === 0) {
+                this.operattingTable = 'all';
+                this.roblisticLock = true;
+            }
             this.exp.pop();
         }
         else {
@@ -136,7 +176,14 @@ var InfoDatasetsComponent = (function (_super) {
             var e_1 = '';
             this.exp.forEach(function (s) { return e_1 += s; });
             this.exps.push(e_1);
+            this.res[this.operattingTable].push(e_1);
+            console.log(this.res);
             this.exp = [];
+            this.operattingTable = 'all';
+            this.operatingTableStore = 'all';
+            this.roblisticLock = true;
+            this.foreign = '';
+            this.foreign2 = '';
         }
         else {
             if (this.foreign === '' || this.foreign2 === '') {
@@ -146,14 +193,16 @@ var InfoDatasetsComponent = (function (_super) {
             this.foreign = '';
             this.foreign2 = '';
             this.chooseDataset.tables.forEach(function (item) { return item['outLock'] = false; });
+            this.operattingTable = this.operatingTableStore;
             this.out = false;
         }
     };
     InfoDatasetsComponent.prototype.startOut = function () {
         this.out = true;
+        this.operattingTable = 'all';
     };
-    InfoDatasetsComponent.prototype.deleteConfirmExp = function () {
-        this.exps.pop();
+    InfoDatasetsComponent.prototype.deleteConfirmExp = function (index, name) {
+        this.res[name].splice(index, 1);
     };
     InfoDatasetsComponent.prototype.deleteConfirmForeign = function () {
         this.foreigns.pop();

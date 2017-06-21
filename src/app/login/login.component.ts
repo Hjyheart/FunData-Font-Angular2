@@ -24,10 +24,15 @@ export class LoginComponent implements OnInit{
   public normal:string = 'form-group';
   public error:string = 'form-group has-error has-feedback';
 
+  public errorState:string;
+  public right:string = 'error-state'
+  public wrong:string = 'error-state active'
+
   ngOnInit(): void {
     this.currentPageService.currentPage = 'login';
     this.emailState = this.normal;
     this.pwdState = this.normal;
+    this.errorState = this.right;
   }
 
   constructor(private authorizeService: AuthorizeService,
@@ -45,6 +50,7 @@ export class LoginComponent implements OnInit{
                 this.router.navigate(['/'])
             }else{
               this.pwdState = this.error;
+              this.errorState = this.wrong;
             }
         })
   }

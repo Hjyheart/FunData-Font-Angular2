@@ -67,7 +67,10 @@ export class DatasetDetailComponent extends UploadBaseClass implements OnInit {
 
       this.datasetService.enterTerminal(Number(s[0]), this.dataset.id)
           .subscribe((res: string) => {
-              window.location.href = res;
+            this.datasetService.enterTerminal(Number(s[0]), this.dataset.id)
+              .subscribe((res: string) => {
+                window.open(res);
+              });
       });
   }
 
@@ -79,6 +82,7 @@ export class DatasetDetailComponent extends UploadBaseClass implements OnInit {
               this.dataset = res.detail.datasetInfo;
               this.dataset.tables = res.detail.tables;
               this.dataset.url = res.detail.url;
+              console.log(this.dataset)
           });
       this.currentPage.currentPage = 'dataset';
   }

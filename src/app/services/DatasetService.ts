@@ -24,7 +24,7 @@ export class DatasetService {
     //     return res;
     // }
 
-    public addExpressions(datasetId: number, expressions: string[], foreign_keys: string[]) {
+    public addExpressions(datasetId: number, expressions: {}, foreign_keys: string[]) {
         let headers: Headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('authorization', Cookie.get('authorization'));
