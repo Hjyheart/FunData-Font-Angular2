@@ -2,6 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aca12c39-4ac4-47f5-bd75-7a2aa3b95134" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/index.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/intercepted-request.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/intercepted-request.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/intercepted-request.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/intercepted-response.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/intercepted-response.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/intercepted-response.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-options.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-options.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-options.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-provider.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-provider.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-provider.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-service.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-service.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor-service.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/lib/interceptor.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ng2-interceptors/yarn.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataset/create/create.component.html" afterPath="$PROJECT_DIR$/src/app/dataset/create/create.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/dataset/create/create.component.js" afterPath="$PROJECT_DIR$/src/app/dataset/create/create.component.js" />
@@ -52,7 +76,7 @@
       <file leaf-file-name="info.dataset.pull.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/info/datasets/pull/info.dataset.pull.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="225">
               <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -289,8 +313,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -555,6 +577,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -729,11 +753,12 @@
       <workItem from="1497748606131" duration="11716000" />
       <workItem from="1497792405426" duration="13535000" />
       <workItem from="1498031995514" duration="77000" />
+      <workItem from="1498032188845" duration="53000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199001000" />
+    <option name="totallyTimeSpent" value="199054000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1245,7 +1270,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/info/datasets/pull/info.dataset.pull.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="225">
           <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
